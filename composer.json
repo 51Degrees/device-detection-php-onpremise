@@ -1,0 +1,68 @@
+{
+    "name": "51degrees/fiftyone.devicedetection",
+    "description": "Device detection engines for 51Degrees Pipeline API - Get hardware and software details of the device connecting to your website or service",
+	"authors" : [
+		{
+			"name": "Filip Hnízdo",
+            "email": "filip@octophin.com",
+            "homepage": "https://octophindigital.com/"
+        },
+		{
+			"name": "Steve Ballantine",
+            "email": "stephen@51degrees.com"
+        },
+		{
+			"name": "Ben Shilito",
+            "email": "ben@51degrees.com"
+        },
+		{
+			"name": "Joseph Dix",
+            "email": "joseph@51degrees.com"
+        }
+	],
+    "license": "EUPL-1.2",    
+    "type": "library",
+    "autoload": {
+        "classmap": [
+            "deviceDetectionCloud.php",
+            "deviceDetectionPipelineBuilder.php"
+        ]
+    },
+    "repositories": {
+        "dev-core": {
+            "type": "path",
+            "url": "../FiftyOne.Pipeline.Core",
+            "options": {
+                "symlink": true
+            }
+        },
+        "dev-engines": {
+            "type": "path",
+            "url": "../FiftyOne.Pipeline.Engines",
+            "options": {
+                "symlink": true
+            }
+        },
+        "dev-cloud-request": {
+            "type": "path",
+            "url": "../FiftyOne.Pipeline.CloudRequestEngine",
+            "options": {
+                "symlink": true
+            }
+        },
+        "dev-javascript": {
+            "type": "path",
+            "url": "../FiftyOne.Pipeline.JavaScriptBundler",
+            "options": {
+                "symlink": true
+            }
+        }
+        
+    },
+    "require": {
+        "51degrees/fiftyone.pipeline.core": "@dev",
+        "51degrees/fiftyone.pipeline.engines": "@dev",
+        "51degrees/fiftyone.pipeline.cloudrequestengine": "@dev",
+        "51degrees/fiftyone.pipeline.javascriptbundler": "@dev"
+    }
+}

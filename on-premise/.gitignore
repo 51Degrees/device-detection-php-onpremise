@@ -1,0 +1,14 @@
+/config*
+/*.m4
+!config.m4
+/Makefile*
+autom4te.cache
+/build
+/*_wrap.cxx
+/php_*.h
+/DeviceDetection*EngineModule.php
+install-sh
+libtool
+ltmain.sh
+mkinstalldirs
+missing
