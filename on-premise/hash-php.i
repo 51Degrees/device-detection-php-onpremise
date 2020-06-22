@@ -22,17 +22,37 @@
 
 %include "device-detection-cxx/src/hash/hash.i"
 
+// Add a void constructor. This is not to be used, but a workaround for a bug
+// in SWIG's PHP 5 generation (PHP 7 does not have this issue).
+// Instead of generating:
+//     __construct($a, $b=null,$c=null)
+// so that __construct($resource) can be called, the code generated is:
+//    __construct($a, $b, $c)
+// meaning that the valid call to __construct($resource) fails as there are not
+// enough arguments. This workaround allows no arguments to be passed, forcing
+// SWIG to generate the __construct method with all the arguments being optional.
+// Although this creates a constructor which only throws an exception, this
+// shouldn't be an issue as the user never calls the constructor directly.
+%extend EngineHash {
+public:
+	EngineHash() {
+        throw runtime_error("This constructor should never be used.");
+    }
+
+};
+
 %{
     EngineHash *engine;
     ConfigHash *config;
     RequiredPropertiesConfig *properties;
 
     PHP_INI_BEGIN()
-    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.data_file", "/usr/lib/php5/51Degrees.trie", PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.data_file", "/usr/lib/php5/51Degrees.hash", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.required_properties", NULL, PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.performance_profile", NULL, PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.drift", "0", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.difference", "", PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.allow_unmatched", NULL, PHP_INI_ALL, NULL)
     PHP_INI_END()
 %}
 
@@ -47,6 +67,7 @@ EngineHash *engine;
     char *performanceProfile = INI_STR("FiftyOneDegreesHashEngine.performance_profile");
     int drift = INI_INT("FiftyOneDegreesHashEngine.drift");
     int difference = INI_INT("FiftyOneDegreesHashEngine.difference");
+    char *allowUnmatched = INI_STR("FiftyOneDegreesHashEngine.allow_unmatched");
 
     config = new ConfigHash();
     // Set the performance profile.
@@ -77,6 +98,10 @@ EngineHash *engine;
     // Set the difference.
     if (difference != 0) {
         config->setDifference(difference);
+    }
+    // Set allow unmatched.
+    if (allowUnmatched != NULL) {
+        config->setAllowUnmatched(strcmp(allowUnmatched, "true") == 0);
     }
     
     // Set the required properties.

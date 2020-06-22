@@ -23,10 +23,13 @@
 
 namespace fiftyone\pipeline\devicedetection;
 
-use fiftyone\pipeline\engines\aspectData;
-use fiftyone\pipeline\engines\aspectPropertyValue;
+use fiftyone\pipeline\engines\AspectData;
+use fiftyone\pipeline\engines\AspectDataDictionary;
+use fiftyone\pipeline\core\AspectPropertyValue;
+use fiftyone\pipeline\devicedetection\SwigHelpers;
 
-class swigData extends aspectData {
+
+class SwigData extends AspectData {
 
     public function __construct($engine, $result){
 
@@ -34,6 +37,10 @@ class swigData extends aspectData {
         
         parent::__construct(...func_get_args());
         
+    }
+
+    public function __isset($key) {
+        return isset($this->flowElement->properties[strtolower($key)]);
     }
 
     public function getInternal($key){
@@ -46,40 +53,39 @@ class swigData extends aspectData {
 
             $value = null;
 
-            switch ($property["meta"]["type"]) {
-                case "bool":                
-                    $value = $this->result->getValueAsBool($property["meta"]["name"]);
+            switch ($property["type"]) {
+                case "Boolean":                
+                    $value = $this->result->getValueAsBool($property["name"]);
                     break;
-                case "string":
-                    $value = $this->result->getValueAsString($property["meta"]["name"]);
+                case "String":
+                    $value = $this->result->getValueAsString($property["name"]);
                     break;
-                case "javascript":
-                    $value = $this->result->getValueAsString($property["meta"]["name"]);
+                case "JavaScript":
+                    $value = $this->result->getValueAsString($property["name"]);
                     break;
-                case "int":
-                    $value = $this->result->getValueAsInteger($property["meta"]["name"]);
+                case "Integer":
+                    $value = $this->result->getValueAsInteger($property["name"]);
                     break;
-                case "double":
-                    $value = $this->result->getValueAsDouble($property["meta"]["name"]);
+                case "Double":
+                    $value = $this->result->getValueAsDouble($property["name"]);
                     break;
-                case "string[]":
-                    $value = [];
-                    $list = $this->result->getValues($property["meta"]["name"]);
-                    for ($j = 0; $j < $list->size(); $j++) {
-                        $value[$j] = $list.get($j);
-                    }
+                case "Array":
+                    $value = $this->result->getValues($property["name"]);
                     break;
             }
 
             $result;
 
-            if ($value->hasValue())
-            {
-                $result = new aspectPropertyValue(null, $value->getValue());
+            if ($value->hasValue()) {
+                if ($property["type"] == "Array") {
+                    $result = new AspectPropertyValue(null, SwigHelpers::vectorToArray($value->getValue()));
+                }
+                else {
+                    $result = new AspectPropertyValue(null, $value->getValue());
+                }
             }
-            else
-            {
-                $result = new aspectPropertyValue($value->getNoValueMessage());
+            else {
+                $result = new AspectPropertyValue($value->getNoValueMessage());
             }
 
             return $result;

@@ -8,16 +8,16 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-#ifndef PHP_DEVICEDETECTIONPATTERNENGINEMODULE_H
-#define PHP_DEVICEDETECTIONPATTERNENGINEMODULE_H
+#ifndef PHP_FIFTYONEDEGREESHASHENGINE_H
+#define PHP_FIFTYONEDEGREESHASHENGINE_H
 
-extern zend_module_entry DeviceDetectionPatternEngineModule_module_entry;
-#define phpext_DeviceDetectionPatternEngineModule_ptr &DeviceDetectionPatternEngineModule_module_entry
+extern zend_module_entry FiftyOneDegreesHashEngine_module_entry;
+#define phpext_FiftyOneDegreesHashEngine_ptr &FiftyOneDegreesHashEngine_module_entry
 
 #ifdef PHP_WIN32
-# define PHP_DEVICEDETECTIONPATTERNENGINEMODULE_API __declspec(dllexport)
+# define PHP_FIFTYONEDEGREESHASHENGINE_API __declspec(dllexport)
 #else
-# define PHP_DEVICEDETECTIONPATTERNENGINEMODULE_API
+# define PHP_FIFTYONEDEGREESHASHENGINE_API
 #endif
 
 ZEND_NAMED_FUNCTION(_wrap_new_MapStringStringSwig);
@@ -89,7 +89,6 @@ ZEND_NAMED_FUNCTION(_wrap_ComponentMetaDataSwig_getComponentIdAsInt);
 ZEND_NAMED_FUNCTION(_wrap_ComponentMetaDataSwig_getComponentId);
 ZEND_NAMED_FUNCTION(_wrap_ComponentMetaDataSwig_getName);
 ZEND_NAMED_FUNCTION(_wrap_ProfileMetaDataSwig_getProfileId);
-ZEND_NAMED_FUNCTION(_wrap_ProfileMetaDataSwig_getSignatureCount);
 ZEND_NAMED_FUNCTION(_wrap_new_ValueMetaDataKeySwig);
 ZEND_NAMED_FUNCTION(_wrap_ValueMetaDataKeySwig_getPropertyName);
 ZEND_NAMED_FUNCTION(_wrap_ValueMetaDataKeySwig_getValueName);
@@ -139,7 +138,6 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setUseUpperPrefixHeaders);
 ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setUseTempFile);
 ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setReuseTempFile);
 ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setTempDirectories);
-ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setFreeData);
 ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_getUseUpperPrefixHeaders);
 ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_getUseTempFile);
 ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_getReuseTempFile);
@@ -159,13 +157,15 @@ ZEND_NAMED_FUNCTION(_wrap_EngineDeviceDetectionSwig_processDeviceDetection);
 ZEND_NAMED_FUNCTION(_wrap_ResultsDeviceDetectionSwig_getDeviceId);
 ZEND_NAMED_FUNCTION(_wrap_ResultsDeviceDetectionSwig_getUserAgent);
 ZEND_NAMED_FUNCTION(_wrap_ResultsDeviceDetectionSwig_getUserAgents);
-ZEND_NAMED_FUNCTION(_wrap_ResultsPatternSwig_getDeviceId);
-ZEND_NAMED_FUNCTION(_wrap_ResultsPatternSwig_getRank);
-ZEND_NAMED_FUNCTION(_wrap_ResultsPatternSwig_getDifference);
-ZEND_NAMED_FUNCTION(_wrap_ResultsPatternSwig_getMethod);
-ZEND_NAMED_FUNCTION(_wrap_ResultsPatternSwig_getSignaturesCompared);
-ZEND_NAMED_FUNCTION(_wrap_ResultsPatternSwig_getUserAgent);
-ZEND_NAMED_FUNCTION(_wrap_ResultsPatternSwig_getUserAgents);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDeviceId);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDifference);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMethod);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDrift);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getTrace);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMatchedNodes);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getIterations);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getUserAgent);
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getUserAgents);
 ZEND_NAMED_FUNCTION(_wrap_new_CollectionConfigSwig);
 ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_setCapacity);
 ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_setConcurrency);
@@ -173,41 +173,42 @@ ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_setLoaded);
 ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_getCapacity);
 ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_getConcurrency);
 ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_getLoaded);
-ZEND_NAMED_FUNCTION(_wrap_new_ConfigPatternSwig);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setHighPerformance);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setBalanced);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setBalancedTemp);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setLowMemory);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setMaxPerformance);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setClosestSignatures);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setDifference);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setUserAgentCacheCapacity);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_setConcurrency);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getStrings);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getProperties);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getValues);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getProfiles);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getSignatures);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getSignatureNodeOffsets);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getNodeRankedSignatureIndexes);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getRankedSignatureIndexes);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getNodes);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getProfileOffsets);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getClosestSignatures);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getDifference);
-ZEND_NAMED_FUNCTION(_wrap_ConfigPatternSwig_getConcurrency);
-ZEND_NAMED_FUNCTION(_wrap_new_EnginePatternSwig);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_getPublishedTime);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_getUpdateAvailableTime);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_getDataFilePath);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_getDataFileTempPath);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_refreshData);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_process);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_processBase);
-ZEND_NAMED_FUNCTION(_wrap_EnginePatternSwig_processDeviceDetection);
+ZEND_NAMED_FUNCTION(_wrap_new_ConfigHashSwig);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setHighPerformance);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setBalanced);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setBalancedTemp);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setLowMemory);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setMaxPerformance);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDrift);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDifference);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setConcurrency);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setUsePerformanceGraph);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setUsePredictiveGraph);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setTraceRoute);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getStrings);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getProperties);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getValues);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getProfiles);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getNodes);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getProfileOffsets);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getDrift);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getDifference);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getUsePerformanceGraph);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getUsePredictiveGraph);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getConcurrency);
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getTraceRoute);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getPublishedTime);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getUpdateAvailableTime);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getDataFilePath);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getDataFileTempPath);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_refreshData);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_processBase);
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_processDeviceDetection);
+ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig);
 ZEND_NAMED_FUNCTION(_wrap_engine_get);
-PHP_RINIT_FUNCTION(DeviceDetectionPatternEngineModule);
-PHP_MINIT_FUNCTION(DeviceDetectionPatternEngineModule);
-PHP_MSHUTDOWN_FUNCTION(DeviceDetectionPatternEngineModule);
+PHP_RINIT_FUNCTION(FiftyOneDegreesHashEngine);
+PHP_MINIT_FUNCTION(FiftyOneDegreesHashEngine);
+PHP_MSHUTDOWN_FUNCTION(FiftyOneDegreesHashEngine);
 
-#endif /* PHP_DEVICEDETECTIONPATTERNENGINEMODULE_H */
+#endif /* PHP_FIFTYONEDEGREESHASHENGINE_H */

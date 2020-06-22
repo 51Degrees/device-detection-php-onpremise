@@ -23,32 +23,26 @@
 
 namespace fiftyone\pipeline\devicedetection;
 
-include(__DIR__ . "/swigHelpers.php");
-include(__DIR__ . "/swigData.php");
+include_once(__DIR__ . "/SwigHelpers.php");
+include_once(__DIR__ . "/SwigData.php");
 
-use fiftyone\pipeline\engines\aspectDataDictionary;
-use fiftyone\pipeline\engines\engine;
-use fiftyone\pipeline\devicedetection\swigHelpers;
-use fiftyone\pipeline\devicedetection\swigData;
+include_once(__DIR__ . "/on-premise/src/php" . explode('.', PHP_VERSION)[0] . "/FiftyOneDegreesHashEngine.php");
 
-class deviceDetectionOnPremise extends engine {
+use fiftyone\pipeline\engines\AspectDataDictionary;
+use fiftyone\pipeline\engines\Engine;
+use fiftyone\pipeline\devicedetection\SwigHelpers;
+use fiftyone\pipeline\devicedetection\SwigData;
+
+class DeviceDetectionOnPremise extends Engine {
 
     public $dataKey = "device";
 
-    public function __construct($FiftyOneProvider){
+    public function __construct(){
 
         // List of pipelines the flowElement has been added to
         $this->pipelines = [];
 
-        if ($FiftyOneProvider === "Pattern") {
-            include(__dir__ . "/on-premise/DeviceDetectionPatternEngineModule.php");
-            $this->engine = \DeviceDetectionPatternEngineModule::engine_get();
-        } else if ($settings["FiftyOneProvider"] === "Hash") {
-            $this->engine = \DeviceDetectionHashEngineModule::engine_get();
-            include(__dir__ . "/on-premise/DeviceDetectionHashEngineModule.php");
-        } else {
-            throw "Must pass in 'Pattern' or 'Hash' to deviceDetectionOnPremise";
-        }
+        $this->engine = \FiftyOneDegreesHashEngine::engine_get();
 
         $requiredProperties = ini_get("FiftyOneDegreesHashEngine.required_properties");
 
@@ -66,23 +60,32 @@ class deviceDetectionOnPremise extends engine {
        
         for ($i = 0; $i < $propertiesInternal->getSize(); $i++) {
             $property = $propertiesInternal->getByIndex($i);
-            if ($property->getAvailable()) {
-
-                $properties[strtolower($property->getName())] = [
-                    "meta" => [
-                        "name" => $property->getName(),
-                        "type" => $property->getType(),
-                        "dataFiles" => swigHelpers::vectorToArray($property->getDataFilesWherePresent()),
-                        "category" => $property->getCategory()
-                    ]
-                ];
-            }
+            $properties[strtolower($property->getName())] = [
+                "name" => $property->getName(),
+                "type" => $this->getPropertyType($property),
+                "dataFiles" => SwigHelpers::vectorToArray($property->getDataFilesWherePresent()),
+                "category" => $property->getCategory(),
+                "description" => $property->getDescription(),
+                "available" => $property->getAvailable()
+            ];
         }
        
         $this->properties = $properties;
 
         parent::__construct(...func_get_args());
 
+    }
+
+    private function getPropertyType($property) {
+        switch ($property->getType()) {
+            case "string": return "String";
+            case "int": return "Integer";
+            case "bool": return "Boolean";
+            case "double": return "Double";
+            case "javascript": return "JavaScript";
+            case "string[]": return "Array";
+            default: return "String";
+        }
     }
 
     public function processInternal($flowData) {
@@ -101,7 +104,7 @@ class deviceDetectionOnPremise extends engine {
 
         $result = $this->engine->processDeviceDetection($evidenceInternal);
 
-        $data = new swigData($this, $result);
+        $data = new SwigData($this, $result);
             
         $flowData->setElementData($data);
 

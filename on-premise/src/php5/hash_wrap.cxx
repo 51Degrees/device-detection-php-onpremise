@@ -1090,17 +1090,17 @@ static swig_module_info swig_module = {swig_types, 45, 0, 0, 0, 0};
 /* -------- TYPES TABLE (END) -------- */
 
 /* header section */
-ZEND_BEGIN_MODULE_GLOBALS(DeviceDetectionHashEngineModule)
+ZEND_BEGIN_MODULE_GLOBALS(FiftyOneDegreesHashEngine)
 const char *error_msg;
 int error_code;
-ZEND_END_MODULE_GLOBALS(DeviceDetectionHashEngineModule)
-ZEND_DECLARE_MODULE_GLOBALS(DeviceDetectionHashEngineModule)
+ZEND_END_MODULE_GLOBALS(FiftyOneDegreesHashEngine)
+ZEND_DECLARE_MODULE_GLOBALS(FiftyOneDegreesHashEngine)
 #ifdef ZTS
-#define SWIG_ErrorMsg() TSRMG(DeviceDetectionHashEngineModule_globals_id, zend_DeviceDetectionHashEngineModule_globals *, error_msg )
-#define SWIG_ErrorCode() TSRMG(DeviceDetectionHashEngineModule_globals_id, zend_DeviceDetectionHashEngineModule_globals *, error_code )
+#define SWIG_ErrorMsg() TSRMG(FiftyOneDegreesHashEngine_globals_id, zend_FiftyOneDegreesHashEngine_globals *, error_msg )
+#define SWIG_ErrorCode() TSRMG(FiftyOneDegreesHashEngine_globals_id, zend_FiftyOneDegreesHashEngine_globals *, error_code )
 #else
-#define SWIG_ErrorMsg() (DeviceDetectionHashEngineModule_globals.error_msg)
-#define SWIG_ErrorCode() (DeviceDetectionHashEngineModule_globals.error_code)
+#define SWIG_ErrorMsg() (FiftyOneDegreesHashEngine_globals.error_msg)
+#define SWIG_ErrorCode() (FiftyOneDegreesHashEngine_globals.error_code)
 #endif
 
 #ifdef __GNUC__
@@ -1112,7 +1112,7 @@ static void SWIG_FAIL(TSRMLS_D) {
     abort();
 }
 
-static void DeviceDetectionHashEngineModule_init_globals(zend_DeviceDetectionHashEngineModule_globals *globals ) {
+static void FiftyOneDegreesHashEngine_init_globals(zend_FiftyOneDegreesHashEngine_globals *globals ) {
   globals->error_msg = default_error_msg;
   globals->error_code = default_error_code;
 }
@@ -1121,7 +1121,7 @@ static void SWIG_ResetError(TSRMLS_D) {
   SWIG_ErrorCode() = default_error_code;
 }
 
-ZEND_NAMED_FUNCTION(_wrap_swig_DeviceDetectionHashEngineModule_alter_newobject) {
+ZEND_NAMED_FUNCTION(_wrap_swig_FiftyOneDegreesHashEngine_alter_newobject) {
   zval **args[2];
   swig_object_wrapper *value;
   int type;
@@ -1136,7 +1136,7 @@ ZEND_NAMED_FUNCTION(_wrap_swig_DeviceDetectionHashEngineModule_alter_newobject) 
 
   return;
 }
-ZEND_NAMED_FUNCTION(_wrap_swig_DeviceDetectionHashEngineModule_get_newobject) {
+ZEND_NAMED_FUNCTION(_wrap_swig_FiftyOneDegreesHashEngine_get_newobject) {
   zval **args[1];
   swig_object_wrapper *value;
   int type;
@@ -1151,14 +1151,14 @@ ZEND_NAMED_FUNCTION(_wrap_swig_DeviceDetectionHashEngineModule_get_newobject) {
 
   return;
 }
-#define SWIG_name  "DeviceDetectionHashEngineModule"
+#define SWIG_name  "FiftyOneDegreesHashEngine"
 #ifdef __cplusplus
 extern "C" {
 #endif
 #include "php.h"
 #include "php_ini.h"
 #include "ext/standard/info.h"
-#include "php_DeviceDetectionHashEngineModule.h"
+#include "php_FiftyOneDegreesHashEngine.h"
 #ifdef __cplusplus
 }
 #endif
@@ -1245,17 +1245,21 @@ SWIGINTERN void std_vector_Sl_std_string_Sg__set(std::vector< std::string > *sel
 
 #include <stdint.h>		// Use the C99 official header
 
+SWIGINTERN EngineHash *new_EngineHash__SWIG_2(){
+        throw runtime_error("This constructor should never be used.");
+    }
 
     EngineHash *engine;
     ConfigHash *config;
     RequiredPropertiesConfig *properties;
 
     PHP_INI_BEGIN()
-    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.data_file", "/usr/lib/php5/51Degrees.trie", PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.data_file", "/usr/lib/php5/51Degrees.hash", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.required_properties", NULL, PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.performance_profile", NULL, PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.drift", "0", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.difference", "", PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.allow_unmatched", NULL, PHP_INI_ALL, NULL)
     PHP_INI_END()
 
 
@@ -6499,64 +6503,6 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ProfileMetaDataSwig_getSignatureCount) {
-  ProfileMetaData *arg1 = (ProfileMetaData *) 0 ;
-  zval **args[1];
-  uint32_t result;
-  
-  SWIG_ResetError(TSRMLS_C);
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ProfileMetaData, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ProfileMetaDataSwig_getSignatureCount. Expected SWIGTYPE_p_ProfileMetaData");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    try {
-      result = (uint32_t)(arg1)->getSignatureCount();;
-    }
-    catch(FatalException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(NotImplementedException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(InvalidPropertyException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(EvidenceException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(TooManyValuesException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(NoValuesAvailableException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }	
-    catch(StatusCodeException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(runtime_error& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(invalid_argument& e) {
-      SWIG_exception(SWIG_ValueError, e.what());
-    }
-  }
-  {
-    ZVAL_LONG(return_value,result);
-  }
-thrown:
-  return;
-fail:
-  SWIG_FAIL(TSRMLS_C);
-}
-
-
 /* This function is designed to be called by the zend list destructors */
 /* to typecast and do the actual destruction */
 static void __wrap_delete_ProfileMetaDataSwig(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
@@ -10237,68 +10183,6 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setFreeData) {
-  ConfigBase *arg1 = (ConfigBase *) 0 ;
-  bool arg2 ;
-  zval **args[2];
-  
-  SWIG_ResetError(TSRMLS_C);
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigBase, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigBaseSwig_setFreeData. Expected SWIGTYPE_p_ConfigBase");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  /*@SWIG:/usr/share/swig3.0/php5/utils.i,2,CONVERT_BOOL_IN@*/
-  convert_to_boolean_ex(args[1]);
-  arg2 = (bool) Z_LVAL_PP(args[1]);
-  /*@SWIG@*/;
-  
-  {
-    try {
-      (arg1)->setFreeData(arg2);;
-    }
-    catch(FatalException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(NotImplementedException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(InvalidPropertyException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(EvidenceException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(TooManyValuesException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(NoValuesAvailableException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }	
-    catch(StatusCodeException& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(runtime_error& e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    }
-    catch(invalid_argument& e) {
-      SWIG_exception(SWIG_ValueError, e.what());
-    }
-  }
-  
-thrown:
-  return;
-fail:
-  SWIG_FAIL(TSRMLS_C);
-}
-
-
 ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_getUseUpperPrefixHeaders) {
   ConfigBase *arg1 = (ConfigBase *) 0 ;
   zval **args[1];
@@ -11756,7 +11640,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDeviceId) {
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDeviceId__SWIG_0) {
   ResultsHash *arg1 = (ResultsHash *) 0 ;
   zval **args[1];
   std::string result;
@@ -11814,25 +11698,32 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getRank) {
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDeviceId__SWIG_1) {
   ResultsHash *arg1 = (ResultsHash *) 0 ;
-  zval **args[1];
-  int result;
+  uint32_t arg2 ;
+  zval **args[2];
+  std::string result;
   
   SWIG_ResetError(TSRMLS_C);
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getRank. Expected SWIGTYPE_p_ResultsHash");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getDeviceId. Expected SWIGTYPE_p_ResultsHash");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   {
     try {
-      result = (int)(arg1)->getRank();;
+      result = (arg1)->getDeviceId(arg2);;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -11862,9 +11753,9 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getRank) {
       SWIG_exception(SWIG_ValueError, e.what());
     }
   }
-  {
-    ZVAL_LONG(return_value,result);
-  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
 thrown:
   return;
 fail:
@@ -11872,7 +11763,43 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDifference) {
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDeviceId) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_ResultsHashSwig_getDeviceId__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
+      if (_v) {
+        _wrap_ResultsHashSwig_getDeviceId__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'ResultsHashSwig_getDeviceId'";
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDifference__SWIG_0) {
   ResultsHash *arg1 = (ResultsHash *) 0 ;
   zval **args[1];
   int result;
@@ -11930,7 +11857,267 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDrift) {
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDifference__SWIG_1) {
+  ResultsHash *arg1 = (ResultsHash *) 0 ;
+  uint32_t arg2 ;
+  zval **args[2];
+  int result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getDifference. Expected SWIGTYPE_p_ResultsHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      result = (int)(arg1)->getDifference(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_LONG(return_value,result);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDifference) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_ResultsHashSwig_getDifference__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
+      if (_v) {
+        _wrap_ResultsHashSwig_getDifference__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'ResultsHashSwig_getDifference'";
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMethod__SWIG_0) {
+  ResultsHash *arg1 = (ResultsHash *) 0 ;
+  zval **args[1];
+  int result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getMethod. Expected SWIGTYPE_p_ResultsHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (int)(arg1)->getMethod();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_LONG(return_value,result);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMethod__SWIG_1) {
+  ResultsHash *arg1 = (ResultsHash *) 0 ;
+  uint32_t arg2 ;
+  zval **args[2];
+  int result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getMethod. Expected SWIGTYPE_p_ResultsHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      result = (int)(arg1)->getMethod(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_LONG(return_value,result);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMethod) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_ResultsHashSwig_getMethod__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
+      if (_v) {
+        _wrap_ResultsHashSwig_getMethod__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'ResultsHashSwig_getMethod'";
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDrift__SWIG_0) {
   ResultsHash *arg1 = (ResultsHash *) 0 ;
   zval **args[1];
   int result;
@@ -11949,6 +12136,223 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDrift) {
   {
     try {
       result = (int)(arg1)->getDrift();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_LONG(return_value,result);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDrift__SWIG_1) {
+  ResultsHash *arg1 = (ResultsHash *) 0 ;
+  uint32_t arg2 ;
+  zval **args[2];
+  int result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getDrift. Expected SWIGTYPE_p_ResultsHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      result = (int)(arg1)->getDrift(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_LONG(return_value,result);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDrift) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_ResultsHashSwig_getDrift__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_ResultsHash, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
+      if (_v) {
+        _wrap_ResultsHashSwig_getDrift__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'ResultsHashSwig_getDrift'";
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getTrace) {
+  ResultsHash *arg1 = (ResultsHash *) 0 ;
+  zval **args[1];
+  std::string result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getTrace. Expected SWIGTYPE_p_ResultsHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (arg1)->getTrace();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMatchedNodes) {
+  ResultsHash *arg1 = (ResultsHash *) 0 ;
+  zval **args[1];
+  int result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getMatchedNodes. Expected SWIGTYPE_p_ResultsHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (int)(arg1)->getMatchedNodes();;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -12046,25 +12450,32 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMethod) {
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getUserAgent) {
   ResultsHash *arg1 = (ResultsHash *) 0 ;
-  zval **args[1];
-  int result;
+  uint32_t arg2 ;
+  zval **args[2];
+  std::string result;
   
   SWIG_ResetError(TSRMLS_C);
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getMethod. Expected SWIGTYPE_p_ResultsHash");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getUserAgent. Expected SWIGTYPE_p_ResultsHash");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   {
     try {
-      result = (int)(arg1)->getMethod();;
+      result = (arg1)->getUserAgent(arg2);;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -12094,9 +12505,9 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMethod) {
       SWIG_exception(SWIG_ValueError, e.what());
     }
   }
-  {
-    ZVAL_LONG(return_value,result);
-  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
 thrown:
   return;
 fail:
@@ -12104,7 +12515,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMatchedNodes) {
+ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getUserAgents) {
   ResultsHash *arg1 = (ResultsHash *) 0 ;
   zval **args[1];
   int result;
@@ -12116,13 +12527,13 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMatchedNodes) {
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ResultsHash, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getMatchedNodes. Expected SWIGTYPE_p_ResultsHash");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ResultsHashSwig_getUserAgents. Expected SWIGTYPE_p_ResultsHash");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   {
     try {
-      result = (int)(arg1)->getMatchedNodes();;
+      result = (int)(arg1)->getUserAgents();;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -12950,7 +13361,7 @@ fail:
 
 ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDrift) {
   ConfigHash *arg1 = (ConfigHash *) 0 ;
-  int arg2 ;
+  int32_t arg2 ;
   zval **args[2];
   
   SWIG_ResetError(TSRMLS_C);
@@ -12967,7 +13378,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDrift) {
   
   /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  arg2 = (int) Z_LVAL_PP(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   {
@@ -13012,7 +13423,7 @@ fail:
 
 ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDifference) {
   ConfigHash *arg1 = (ConfigHash *) 0 ;
-  int arg2 ;
+  int32_t arg2 ;
   zval **args[2];
   
   SWIG_ResetError(TSRMLS_C);
@@ -13029,7 +13440,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDifference) {
   
   /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  arg2 = (int) Z_LVAL_PP(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   {
@@ -13134,6 +13545,192 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setUsePerformanceGraph) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_setUsePerformanceGraph. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      (arg1)->setUsePerformanceGraph(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setUsePredictiveGraph) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_setUsePredictiveGraph. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      (arg1)->setUsePredictiveGraph(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setTraceRoute) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_setTraceRoute. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      (arg1)->setTraceRoute(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getStrings) {
   ConfigHash *arg1 = (ConfigHash *) 0 ;
   zval **args[1];
@@ -13153,6 +13750,124 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getStrings) {
   {
     try {
       result = (arg1)->getStrings();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    CollectionConfig * resultobj = new CollectionConfig((const CollectionConfig &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_CollectionConfig, 1);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getProperties) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  zval **args[1];
+  CollectionConfig result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getProperties. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (arg1)->getProperties();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    CollectionConfig * resultobj = new CollectionConfig((const CollectionConfig &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_CollectionConfig, 1);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getValues) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  zval **args[1];
+  CollectionConfig result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getValues. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (arg1)->getValues();;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -13252,7 +13967,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getDevices) {
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getNodes) {
   ConfigHash *arg1 = (ConfigHash *) 0 ;
   zval **args[1];
   CollectionConfig result;
@@ -13264,13 +13979,13 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getDevices) {
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getDevices. Expected SWIGTYPE_p_ConfigHash");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getNodes. Expected SWIGTYPE_p_ConfigHash");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   {
     try {
-      result = (arg1)->getDevices();;
+      result = (arg1)->getNodes();;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -13311,7 +14026,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getNodes) {
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getProfileOffsets) {
   ConfigHash *arg1 = (ConfigHash *) 0 ;
   zval **args[1];
   CollectionConfig result;
@@ -13323,13 +14038,13 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getNodes) {
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getNodes. Expected SWIGTYPE_p_ConfigHash");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getProfileOffsets. Expected SWIGTYPE_p_ConfigHash");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   {
     try {
-      result = (arg1)->getNodes();;
+      result = (arg1)->getProfileOffsets();;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -13486,6 +14201,122 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getUsePerformanceGraph) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getUsePerformanceGraph. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (bool)(arg1)->getUsePerformanceGraph();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getUsePredictiveGraph) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getUsePredictiveGraph. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (bool)(arg1)->getUsePredictiveGraph();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getConcurrency) {
   ConfigHash *arg1 = (ConfigHash *) 0 ;
   zval **args[1];
@@ -13536,6 +14367,64 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getConcurrency) {
   }
   {
     ZVAL_LONG(return_value,result);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_getTraceRoute) {
+  ConfigHash *arg1 = (ConfigHash *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_ConfigHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of ConfigHashSwig_getTraceRoute. Expected SWIGTYPE_p_ConfigHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (bool)(arg1)->getTraceRoute();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
   }
 thrown:
   return;
@@ -13596,9 +14485,10 @@ fail:
 
 
 ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig__SWIG_0) {
-  char *arg1 = (char *) 0 ;
+  std::string *arg1 = 0 ;
   ConfigHash *arg2 = (ConfigHash *) 0 ;
   RequiredPropertiesConfig *arg3 = (RequiredPropertiesConfig *) 0 ;
+  std::string temp1 ;
   zval **args[3];
   EngineHash *result = 0 ;
   
@@ -13608,14 +14498,9 @@ ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig__SWIG_0) {
   }
   
   
-  /*@SWIG:/usr/share/swig3.0/php5/utils.i,62,CONVERT_STRING_IN@*/
-  if ((*args[0])->type==IS_NULL) {
-    arg1 = (char *) 0;
-  } else {
-    convert_to_string_ex(args[0]);
-    arg1 = (char *) Z_STRVAL_PP(args[0]);
-  }
-  /*@SWIG@*/;
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
   
   {
     if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_ConfigHash, 0) < 0) {
@@ -13629,7 +14514,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig__SWIG_0) {
   }
   {
     try {
-      result = (EngineHash *)new EngineHash((char const *)arg1,arg2,arg3);;
+      result = (EngineHash *)new EngineHash((std::string const &)*arg1,arg2,arg3);;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -13661,6 +14546,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig__SWIG_0) {
   }
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_EngineHash, 1);
+  
   
 thrown:
   return;
@@ -13745,102 +14631,143 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig) {
-  int argc;
-  zval **argv[4];
-  
-  argc = ZEND_NUM_ARGS();
-  zend_get_parameters_array_ex(argc,argv);
-  if (argc == 3) {
-    int _v;
-    _v = (Z_TYPE_PP(argv[0]) == IS_STRING); 
-    if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_ConfigHash, 0) >= 0);
-      }
-      if (_v) {
-        {
-          void *tmp;
-          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_RequiredPropertiesConfig, 0) >= 0);
-        }
-        if (_v) {
-          _wrap_new_EngineHashSwig__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_unsigned_char, 0) >= 0);
-    }
-    if (_v) {
-      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
-      if (_v) {
-        {
-          void *tmp;
-          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_ConfigHash, 0) >= 0);
-        }
-        if (_v) {
-          {
-            void *tmp;
-            _v = (SWIG_ConvertPtr(*argv[3], (void**)&tmp, SWIGTYPE_p_RequiredPropertiesConfig, 0) >= 0);
-          }
-          if (_v) {
-            _wrap_new_EngineHashSwig__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-          }
-        }
-      }
-    }
-  }
-  
-  SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'new_EngineHashSwig'";
-  SWIG_FAIL(TSRMLS_C);
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_0) {
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getPublishedTime) {
   EngineHash *arg1 = (EngineHash *) 0 ;
-  EvidenceDeviceDetection *arg2 = (EvidenceDeviceDetection *) 0 ;
-  int arg3 ;
-  int arg4 ;
-  zval **args[4];
-  ResultsHash *result = 0 ;
+  zval **args[1];
+  Date result;
   
   SWIG_ResetError(TSRMLS_C);
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_process. Expected SWIGTYPE_p_EngineHash");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_getPublishedTime. Expected SWIGTYPE_p_EngineHash");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   {
-    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_EvidenceDeviceDetection, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of EngineHashSwig_process. Expected SWIGTYPE_p_EvidenceDeviceDetection");
+    try {
+      result = (arg1)->getPublishedTime();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
     }
   }
+  {
+    Date * resultobj = new Date((const Date &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_Date, 1);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getUpdateAvailableTime) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  zval **args[1];
+  Date result;
   
-  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[2]);
-  arg3 = (int) Z_LVAL_PP(args[2]);
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[3]);
-  arg4 = (int) Z_LVAL_PP(args[3]);
-  /*@SWIG@*/;
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
   
   {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_getUpdateAvailableTime. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
     try {
-      result = (ResultsHash *)(arg1)->process(arg2,arg3,arg4);;
+      result = (arg1)->getUpdateAvailableTime();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  {
+    Date * resultobj = new Date((const Date &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_Date, 1);
+  }
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getDataFilePath) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  zval **args[1];
+  std::string result;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_getDataFilePath. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (arg1)->getDataFilePath();;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -13871,7 +14798,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_0) {
     }
   }
   
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_ResultsHash, 1);
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
 thrown:
   return;
@@ -13880,22 +14807,132 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_1) {
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_getDataFileTempPath) {
   EngineHash *arg1 = (EngineHash *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int arg3 ;
-  int arg4 ;
-  zval **args[4];
-  ResultsHash *result = 0 ;
+  zval **args[1];
+  std::string result;
   
   SWIG_ResetError(TSRMLS_C);
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
   {
     if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_process. Expected SWIGTYPE_p_EngineHash");
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_getDataFileTempPath. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      result = (arg1)->getDataFileTempPath();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_refreshData__SWIG_0) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_refreshData. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    try {
+      (arg1)->refreshData();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_refreshData__SWIG_1) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  char *arg2 = (char *) 0 ;
+  zval **args[2];
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_refreshData. Expected SWIGTYPE_p_EngineHash");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -13909,21 +14946,9 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_1) {
   }
   /*@SWIG@*/;
   
-  
-  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[2]);
-  arg3 = (int) Z_LVAL_PP(args[2]);
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[3]);
-  arg4 = (int) Z_LVAL_PP(args[3]);
-  /*@SWIG@*/;
-  
   {
     try {
-      result = (ResultsHash *)(arg1)->process((char const *)arg2,arg3,arg4);;
+      (arg1)->refreshData((char const *)arg2);;
     }
     catch(FatalException& e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
@@ -13954,7 +14979,73 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_1) {
     }
   }
   
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_ResultsHash, 1);
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_refreshData__SWIG_2) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  unsigned char *arg2 ;
+  long arg3 ;
+  zval **args[3];
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_refreshData. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_unsigned_char, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of EngineHashSwig_refreshData. Expected SWIGTYPE_p_unsigned_char");
+    }
+  }
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[2]);
+  arg3 = (long) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  {
+    try {
+      (arg1)->refreshData(arg2,arg3);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
   
 thrown:
   return;
@@ -13963,7 +15054,62 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_2) {
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_refreshData) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_EngineHash, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_EngineHashSwig_refreshData__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_EngineHash, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_STRING); 
+      if (_v) {
+        _wrap_EngineHashSwig_refreshData__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_EngineHash, 0) >= 0);
+    }
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_unsigned_char, 0) >= 0);
+      }
+      if (_v) {
+        _v = (Z_TYPE_PP(argv[2]) == IS_LONG); 
+        if (_v) {
+          _wrap_EngineHashSwig_refreshData__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'EngineHashSwig_refreshData'";
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_0) {
   EngineHash *arg1 = (EngineHash *) 0 ;
   EvidenceDeviceDetection *arg2 = (EvidenceDeviceDetection *) 0 ;
   zval **args[2];
@@ -14027,7 +15173,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_3) {
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_1) {
   EngineHash *arg1 = (EngineHash *) 0 ;
   char *arg2 = (char *) 0 ;
   zval **args[2];
@@ -14098,7 +15244,7 @@ fail:
 
 ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process) {
   int argc;
-  zval **argv[4];
+  zval **argv[2];
   
   argc = ZEND_NUM_ARGS();
   zend_get_parameters_array_ex(argc,argv);
@@ -14114,7 +15260,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process) {
         _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_EvidenceDeviceDetection, 0) >= 0);
       }
       if (_v) {
-        _wrap_EngineHashSwig_process__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        _wrap_EngineHashSwig_process__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
     }
   }
@@ -14127,11 +15273,221 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process) {
     if (_v) {
       _v = (Z_TYPE_PP(argv[1]) == IS_STRING); 
       if (_v) {
-        _wrap_EngineHashSwig_process__SWIG_3(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        _wrap_EngineHashSwig_process__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
     }
   }
-  if (argc == 4) {
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'EngineHashSwig_process'";
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_processBase) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  EvidenceBase *arg2 = (EvidenceBase *) 0 ;
+  zval **args[2];
+  ResultsBase *result = 0 ;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_processBase. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_EvidenceBase, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of EngineHashSwig_processBase. Expected SWIGTYPE_p_EvidenceBase");
+    }
+  }
+  {
+    try {
+      result = (ResultsBase *)(arg1)->processBase(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_ResultsBase, 1);
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_processDeviceDetection__SWIG_0) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  EvidenceDeviceDetection *arg2 = (EvidenceDeviceDetection *) 0 ;
+  zval **args[2];
+  ResultsDeviceDetection *result = 0 ;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_processDeviceDetection. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_EvidenceDeviceDetection, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of EngineHashSwig_processDeviceDetection. Expected SWIGTYPE_p_EvidenceDeviceDetection");
+    }
+  }
+  {
+    try {
+      result = (ResultsDeviceDetection *)(arg1)->processDeviceDetection(arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_ResultsDeviceDetection, 1);
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_processDeviceDetection__SWIG_1) {
+  EngineHash *arg1 = (EngineHash *) 0 ;
+  char *arg2 = (char *) 0 ;
+  zval **args[2];
+  ResultsDeviceDetection *result = 0 ;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_EngineHash, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of EngineHashSwig_processDeviceDetection. Expected SWIGTYPE_p_EngineHash");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/share/swig3.0/php5/utils.i,62,CONVERT_STRING_IN@*/
+  if ((*args[1])->type==IS_NULL) {
+    arg2 = (char *) 0;
+  } else {
+    convert_to_string_ex(args[1]);
+    arg2 = (char *) Z_STRVAL_PP(args[1]);
+  }
+  /*@SWIG@*/;
+  
+  {
+    try {
+      result = (ResultsDeviceDetection *)(arg1)->processDeviceDetection((char const *)arg2);;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_ResultsDeviceDetection, 1);
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_processDeviceDetection) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
     int _v;
     {
       void *tmp;
@@ -14143,17 +15499,11 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process) {
         _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_EvidenceDeviceDetection, 0) >= 0);
       }
       if (_v) {
-        _v = (Z_TYPE_PP(argv[2]) == IS_LONG); 
-        if (_v) {
-          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
-          if (_v) {
-            _wrap_EngineHashSwig_process__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-          }
-        }
+        _wrap_EngineHashSwig_processDeviceDetection__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
     }
   }
-  if (argc == 4) {
+  if (argc == 2) {
     int _v;
     {
       void *tmp;
@@ -14162,11 +15512,117 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process) {
     if (_v) {
       _v = (Z_TYPE_PP(argv[1]) == IS_STRING); 
       if (_v) {
-        _v = (Z_TYPE_PP(argv[2]) == IS_LONG); 
+        _wrap_EngineHashSwig_processDeviceDetection__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'EngineHashSwig_processDeviceDetection'";
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig__SWIG_2) {
+  EngineHash *result = 0 ;
+  
+  SWIG_ResetError(TSRMLS_C);
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    try {
+      result = (EngineHash *)new_EngineHash__SWIG_2();;
+    }
+    catch(FatalException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NotImplementedException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(InvalidPropertyException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(EvidenceException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(TooManyValuesException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(NoValuesAvailableException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }	
+    catch(StatusCodeException& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(runtime_error& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+    catch(invalid_argument& e) {
+      SWIG_exception(SWIG_ValueError, e.what());
+    }
+  }
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_EngineHash, 1);
+  
+thrown:
+  return;
+fail:
+  SWIG_FAIL(TSRMLS_C);
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig) {
+  int argc;
+  zval **argv[4];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 0) {
+    _wrap_new_EngineHashSwig__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+  }
+  if (argc == 3) {
+    int _v;
+    
+    _v = ( Z_TYPE_PP(argv[0]) == IS_STRING ) ? 1 : 0;
+    
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_ConfigHash, 0) >= 0);
+      }
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_RequiredPropertiesConfig, 0) >= 0);
+        }
         if (_v) {
-          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
+          _wrap_new_EngineHashSwig__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_unsigned_char, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_ConfigHash, 0) >= 0);
+        }
+        if (_v) {
+          {
+            void *tmp;
+            _v = (SWIG_ConvertPtr(*argv[3], (void**)&tmp, SWIGTYPE_p_RequiredPropertiesConfig, 0) >= 0);
+          }
           if (_v) {
-            _wrap_EngineHashSwig_process__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            _wrap_new_EngineHashSwig__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
           }
         }
       }
@@ -14174,7 +15630,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process) {
   }
   
   SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'EngineHashSwig_process'";
+  SWIG_ErrorMsg() = "No matching function for overloaded 'new_EngineHashSwig'";
   SWIG_FAIL(TSRMLS_C);
 }
 
@@ -14364,17 +15820,11 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_000, 0, 0, 0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_0000, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
 
 
 /* entry subsection */
 /* Every non-class user visible function must have an entry here */
-static zend_function_entry DeviceDetectionHashEngineModule_functions[] = {
+static zend_function_entry FiftyOneDegreesHashEngine_functions[] = {
  SWIG_ZEND_NAMED_FE(new_mapstringstringswig,_wrap_new_MapStringStringSwig,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(mapstringstringswig_size,_wrap_MapStringStringSwig_size,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(mapstringstringswig_clear,_wrap_MapStringStringSwig_clear,swig_arginfo_0)
@@ -14444,7 +15894,6 @@ static zend_function_entry DeviceDetectionHashEngineModule_functions[] = {
  SWIG_ZEND_NAMED_FE(componentmetadataswig_getcomponentid,_wrap_ComponentMetaDataSwig_getComponentId,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(componentmetadataswig_getname,_wrap_ComponentMetaDataSwig_getName,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(profilemetadataswig_getprofileid,_wrap_ProfileMetaDataSwig_getProfileId,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(profilemetadataswig_getsignaturecount,_wrap_ProfileMetaDataSwig_getSignatureCount,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(new_valuemetadatakeyswig,_wrap_new_ValueMetaDataKeySwig,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(valuemetadatakeyswig_getpropertyname,_wrap_ValueMetaDataKeySwig_getPropertyName,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(valuemetadatakeyswig_getvaluename,_wrap_ValueMetaDataKeySwig_getValueName,swig_arginfo_0)
@@ -14494,7 +15943,6 @@ static zend_function_entry DeviceDetectionHashEngineModule_functions[] = {
  SWIG_ZEND_NAMED_FE(configbaseswig_setusetempfile,_wrap_ConfigBaseSwig_setUseTempFile,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(configbaseswig_setreusetempfile,_wrap_ConfigBaseSwig_setReuseTempFile,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(configbaseswig_settempdirectories,_wrap_ConfigBaseSwig_setTempDirectories,swig_arginfo_00)
- SWIG_ZEND_NAMED_FE(configbaseswig_setfreedata,_wrap_ConfigBaseSwig_setFreeData,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(configbaseswig_getuseupperprefixheaders,_wrap_ConfigBaseSwig_getUseUpperPrefixHeaders,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(configbaseswig_getusetempfile,_wrap_ConfigBaseSwig_getUseTempFile,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(configbaseswig_getreusetempfile,_wrap_ConfigBaseSwig_getReuseTempFile,swig_arginfo_0)
@@ -14514,13 +15962,15 @@ static zend_function_entry DeviceDetectionHashEngineModule_functions[] = {
  SWIG_ZEND_NAMED_FE(resultsdevicedetectionswig_getdeviceid,_wrap_ResultsDeviceDetectionSwig_getDeviceId,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(resultsdevicedetectionswig_getuseragent,_wrap_ResultsDeviceDetectionSwig_getUserAgent,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(resultsdevicedetectionswig_getuseragents,_wrap_ResultsDeviceDetectionSwig_getUserAgents,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(resultshashswig_getdeviceid,_wrap_ResultsHashSwig_getDeviceId,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(resultshashswig_getrank,_wrap_ResultsHashSwig_getRank,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(resultshashswig_getdifference,_wrap_ResultsHashSwig_getDifference,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(resultshashswig_getdrift,_wrap_ResultsHashSwig_getDrift,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(resultshashswig_getiterations,_wrap_ResultsHashSwig_getIterations,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(resultshashswig_getmethod,_wrap_ResultsHashSwig_getMethod,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(resultshashswig_getdeviceid,_wrap_ResultsHashSwig_getDeviceId,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(resultshashswig_getdifference,_wrap_ResultsHashSwig_getDifference,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(resultshashswig_getmethod,_wrap_ResultsHashSwig_getMethod,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(resultshashswig_getdrift,_wrap_ResultsHashSwig_getDrift,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(resultshashswig_gettrace,_wrap_ResultsHashSwig_getTrace,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(resultshashswig_getmatchednodes,_wrap_ResultsHashSwig_getMatchedNodes,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(resultshashswig_getiterations,_wrap_ResultsHashSwig_getIterations,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(resultshashswig_getuseragent,_wrap_ResultsHashSwig_getUserAgent,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(resultshashswig_getuseragents,_wrap_ResultsHashSwig_getUserAgents,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(new_collectionconfigswig,_wrap_new_CollectionConfigSwig,swig_arginfo_)
  SWIG_ZEND_NAMED_FE(collectionconfigswig_setcapacity,_wrap_CollectionConfigSwig_setCapacity,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(collectionconfigswig_setconcurrency,_wrap_CollectionConfigSwig_setConcurrency,swig_arginfo_00)
@@ -14537,18 +15987,33 @@ static zend_function_entry DeviceDetectionHashEngineModule_functions[] = {
  SWIG_ZEND_NAMED_FE(confighashswig_setdrift,_wrap_ConfigHashSwig_setDrift,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(confighashswig_setdifference,_wrap_ConfigHashSwig_setDifference,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(confighashswig_setconcurrency,_wrap_ConfigHashSwig_setConcurrency,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(confighashswig_setuseperformancegraph,_wrap_ConfigHashSwig_setUsePerformanceGraph,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(confighashswig_setusepredictivegraph,_wrap_ConfigHashSwig_setUsePredictiveGraph,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(confighashswig_settraceroute,_wrap_ConfigHashSwig_setTraceRoute,swig_arginfo_00)
  SWIG_ZEND_NAMED_FE(confighashswig_getstrings,_wrap_ConfigHashSwig_getStrings,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(confighashswig_getproperties,_wrap_ConfigHashSwig_getProperties,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(confighashswig_getvalues,_wrap_ConfigHashSwig_getValues,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(confighashswig_getprofiles,_wrap_ConfigHashSwig_getProfiles,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(confighashswig_getdevices,_wrap_ConfigHashSwig_getDevices,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(confighashswig_getnodes,_wrap_ConfigHashSwig_getNodes,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(confighashswig_getprofileoffsets,_wrap_ConfigHashSwig_getProfileOffsets,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(confighashswig_getdrift,_wrap_ConfigHashSwig_getDrift,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(confighashswig_getdifference,_wrap_ConfigHashSwig_getDifference,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(confighashswig_getuseperformancegraph,_wrap_ConfigHashSwig_getUsePerformanceGraph,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(confighashswig_getusepredictivegraph,_wrap_ConfigHashSwig_getUsePredictiveGraph,swig_arginfo_0)
  SWIG_ZEND_NAMED_FE(confighashswig_getconcurrency,_wrap_ConfigHashSwig_getConcurrency,swig_arginfo_0)
- SWIG_ZEND_NAMED_FE(new_enginehashswig,_wrap_new_EngineHashSwig,swig_arginfo_0000)
+ SWIG_ZEND_NAMED_FE(confighashswig_gettraceroute,_wrap_ConfigHashSwig_getTraceRoute,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(enginehashswig_getpublishedtime,_wrap_EngineHashSwig_getPublishedTime,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(enginehashswig_getupdateavailabletime,_wrap_EngineHashSwig_getUpdateAvailableTime,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(enginehashswig_getdatafilepath,_wrap_EngineHashSwig_getDataFilePath,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(enginehashswig_getdatafiletemppath,_wrap_EngineHashSwig_getDataFileTempPath,swig_arginfo_0)
+ SWIG_ZEND_NAMED_FE(enginehashswig_refreshdata,_wrap_EngineHashSwig_refreshData,swig_arginfo_000)
  SWIG_ZEND_NAMED_FE(enginehashswig_process,_wrap_EngineHashSwig_process,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(enginehashswig_processbase,_wrap_EngineHashSwig_processBase,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(enginehashswig_processdevicedetection,_wrap_EngineHashSwig_processDeviceDetection,swig_arginfo_00)
+ SWIG_ZEND_NAMED_FE(new_enginehashswig,_wrap_new_EngineHashSwig,swig_arginfo_)
  SWIG_ZEND_NAMED_FE(engine_get,_wrap_engine_get,swig_arginfo_)
- SWIG_ZEND_NAMED_FE(swig_DeviceDetectionHashEngineModule_alter_newobject,_wrap_swig_DeviceDetectionHashEngineModule_alter_newobject,NULL)
- SWIG_ZEND_NAMED_FE(swig_DeviceDetectionHashEngineModule_get_newobject,_wrap_swig_DeviceDetectionHashEngineModule_get_newobject,NULL)
+ SWIG_ZEND_NAMED_FE(swig_FiftyOneDegreesHashEngine_alter_newobject,_wrap_swig_FiftyOneDegreesHashEngine_alter_newobject,NULL)
+ SWIG_ZEND_NAMED_FE(swig_FiftyOneDegreesHashEngine_get_newobject,_wrap_swig_FiftyOneDegreesHashEngine_get_newobject,NULL)
  ZEND_FE_END
 };
 
@@ -14557,29 +16022,29 @@ static zend_function_entry DeviceDetectionHashEngineModule_functions[] = {
 #undef ZEND_MODULE_BUILD_ID
 #define ZEND_MODULE_BUILD_ID (char*)"API" ZEND_TOSTR(ZEND_MODULE_API_NO) ZEND_BUILD_TS ZEND_BUILD_DEBUG ZEND_BUILD_SYSTEM ZEND_BUILD_EXTRA
 #endif
-zend_module_entry DeviceDetectionHashEngineModule_module_entry = {
+zend_module_entry FiftyOneDegreesHashEngine_module_entry = {
     STANDARD_MODULE_HEADER,
-    (char*)"DeviceDetectionHashEngineModule",
-    DeviceDetectionHashEngineModule_functions,
-    PHP_MINIT(DeviceDetectionHashEngineModule),
-    PHP_MSHUTDOWN(DeviceDetectionHashEngineModule),
-    PHP_RINIT(DeviceDetectionHashEngineModule),
-    PHP_RSHUTDOWN(DeviceDetectionHashEngineModule),
-    PHP_MINFO(DeviceDetectionHashEngineModule),
+    (char*)"FiftyOneDegreesHashEngine",
+    FiftyOneDegreesHashEngine_functions,
+    PHP_MINIT(FiftyOneDegreesHashEngine),
+    PHP_MSHUTDOWN(FiftyOneDegreesHashEngine),
+    PHP_RINIT(FiftyOneDegreesHashEngine),
+    PHP_RSHUTDOWN(FiftyOneDegreesHashEngine),
+    PHP_MINFO(FiftyOneDegreesHashEngine),
     NO_VERSION_YET,
     STANDARD_MODULE_PROPERTIES
 };
-zend_module_entry* SWIG_module_entry = &DeviceDetectionHashEngineModule_module_entry;
+zend_module_entry* SWIG_module_entry = &FiftyOneDegreesHashEngine_module_entry;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-SWIGEXPORT zend_module_entry *get_module(void) { return &DeviceDetectionHashEngineModule_module_entry; }
+SWIGEXPORT zend_module_entry *get_module(void) { return &FiftyOneDegreesHashEngine_module_entry; }
 #ifdef __cplusplus
 }
 #endif
 
-#define SWIG_php_minit PHP_MINIT_FUNCTION(DeviceDetectionHashEngineModule)
+#define SWIG_php_minit PHP_MINIT_FUNCTION(FiftyOneDegreesHashEngine)
 /* -----------------------------------------------------------------------------
  * Type initialization:
  * This problem is tough by the requirement that no dynamic
@@ -14823,6 +16288,7 @@ SWIG_php_minit {
     char *performanceProfile = INI_STR("FiftyOneDegreesHashEngine.performance_profile");
     int drift = INI_INT("FiftyOneDegreesHashEngine.drift");
     int difference = INI_INT("FiftyOneDegreesHashEngine.difference");
+    char *allowUnmatched = INI_STR("FiftyOneDegreesHashEngine.allow_unmatched");
 
     config = new ConfigHash();
     // Set the performance profile.
@@ -14854,6 +16320,10 @@ SWIG_php_minit {
     if (difference != 0) {
         config->setDifference(difference);
     }
+    // Set allow unmatched.
+    if (allowUnmatched != NULL) {
+        config->setAllowUnmatched(strcmp(allowUnmatched, "true") == 0);
+    }
     
     // Set the required properties.
     if (propertyList != NULL) {
@@ -14869,7 +16339,7 @@ SWIG_php_minit {
         properties);
 
 /* oinit subsection */
-ZEND_INIT_MODULE_GLOBALS(DeviceDetectionHashEngineModule, DeviceDetectionHashEngineModule_init_globals, NULL);
+ZEND_INIT_MODULE_GLOBALS(FiftyOneDegreesHashEngine, FiftyOneDegreesHashEngine_init_globals, NULL);
 
 /* Register resource destructors for pointer types */
 le_swig__p_MetaData=zend_register_list_destructors_ex(_wrap_destroy_p_MetaData, NULL, (char *)SWIGTYPE_p_MetaData->name, module_number);
@@ -14971,7 +16441,7 @@ CG(active_class_entry) = NULL;
     return SUCCESS;
 }
 
-PHP_RINIT_FUNCTION(DeviceDetectionHashEngineModule)
+PHP_RINIT_FUNCTION(FiftyOneDegreesHashEngine)
 {
 /* rinit section */
 
@@ -14988,7 +16458,7 @@ PHP_RINIT_FUNCTION(DeviceDetectionHashEngineModule)
     return SUCCESS;
 }
 
-PHP_MSHUTDOWN_FUNCTION(DeviceDetectionHashEngineModule)
+PHP_MSHUTDOWN_FUNCTION(FiftyOneDegreesHashEngine)
 {
 /* shutdown section */
 
@@ -14998,19 +16468,19 @@ PHP_MSHUTDOWN_FUNCTION(DeviceDetectionHashEngineModule)
     delete config;
 
 #ifdef ZTS
-    ts_free_id(DeviceDetectionHashEngineModule_globals_id);
+    ts_free_id(FiftyOneDegreesHashEngine_globals_id);
 #endif
     return SUCCESS;
 }
 
-PHP_RSHUTDOWN_FUNCTION(DeviceDetectionHashEngineModule)
+PHP_RSHUTDOWN_FUNCTION(FiftyOneDegreesHashEngine)
 {
 /* rshutdown section */
 
     return SUCCESS;
 }
 
-PHP_MINFO_FUNCTION(DeviceDetectionHashEngineModule)
+PHP_MINFO_FUNCTION(FiftyOneDegreesHashEngine)
 {
 }
 /* end init section */

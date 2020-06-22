@@ -23,7 +23,7 @@
 
 namespace fiftyone\pipeline\devicedetection;
 
-class swigHelpers {
+class SwigHelpers {
     /**
      * Helper to convert a swig vector into a standard JavaScript array
      * @param {Object} vector

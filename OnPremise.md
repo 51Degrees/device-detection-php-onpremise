@@ -32,7 +32,7 @@ sudo make install
 
 To regenerate the SWIG wrapper files, add `SWIG=1` to the `./configure` step.
 
-The Pattern and Hash engine extensions will then be installed into the PHP extensions directory and can then be added to the active php.ini file.
+The Hash engine extension will then be installed into the PHP extensions directory and can then be added to the active php.ini file.
 
 ## Configuration
 
@@ -40,23 +40,12 @@ The minimum configuration needed for the extensions is to add it to the active p
 
 ```
 extension=/usr/lib/php/20170718/FiftyOneDegreesHashEngine.so
-FiftyOneDegreesHashEngine.data_file=/home/51dDegrees/51Degrees-LiteV3.4.trie
-
-extension=/usr/lib/php/20170718/FiftyOneDegreesPatternEngine.so
-FiftyOneDegreesPatternEngine.data_file=/home/51degrees/51Degrees-LiteV3.2.dat
+FiftyOneDegreesHashEngine.data_file=/home/51dDegrees/51Degrees-LiteV4.1.hash
 ```
 
-is enough to set up both Pattern and Hash extensions with default configuration options.
+is enough to set up the Hash extension with default configuration options.
 
 ### More Options
-
-#### Pattern
-
-| Option | Type | Description | Default |
-| ------ | ---- | ----------- | ------- |
-| `required_properties` | `string` | List of properties which are required. Properties not in this list will not be returned. | `""` (all properties) |
-| `performance_profile` | `string` | The performance profile to build the engine with. Available options are `"HighPerformance"`, `"MaxPerformance"`, `"Balanced"`, `"BalancedTemp"`, `"LowMemory"`, `"Default"` | `"Default"` |
-| `difference` | `int` | The difference value to allow when matching (`-1` to disable). | `10` |
 
 #### Hash
 

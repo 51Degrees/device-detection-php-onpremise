@@ -1,24 +1,42 @@
 trigger: none
 
 pool:
-  vmImage: 'ubuntu-latest'
-
+  vmImage: 'ubuntu-18.04'
 strategy:
   matrix:
-    PHP 5.6:
+    PHP 5:
       phpVersion: 5.6
-    PHP 7.2:
+    PHP 7:
       phpVersion: 7.2
 
+
+
 steps:
+- checkout: self
+  submodules: recursive
+  lfs: true
+  persistCredentials: true
+
 - script: |
+    sudo apt-get install php$(phpVersion)-dev re2c
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phpize /usr/bin/phpize$(phpVersion)
+    sudo update-alternatives --set php-config /usr/bin/php-config$(phpVersion)
     sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
     sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
     sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
     sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
     php -version
   displayName: 'Use PHP version $(phpVersion)'
+
+- script: |
+    cd on-premise
+    phpize
+    ./configure
+    sudo make install
+    cd ..
+  displayName: 'Install extension'
+  failOnStderr: true
 
 - script: |
     composer install --no-interaction --prefer-dist 
@@ -29,8 +47,21 @@ steps:
     wget -O phpunit https://phar.phpunit.de/phpunit-5.phar
     chmod +x phpunit
     sudo mv phpunit /usr/local/bin/phpunit
+    sudo apt-get install php5.6-xml
+    sudo apt-get install php5.6-mbstring
   displayName: 'install PHPUnit 5'
   condition: eq(variables['phpVersion'], '5.6')
+
+- script: |
+    export PHPVERSIONEXACT=`php-config --version | grep -o '^[0-9]\.[0-9]'`
+    sudo sed -i 's,^enable_dl =.*$,enable_dl = On,' /etc/php/$PHPVERSIONEXACT/cli/php.ini
+  displayName: 'Enable dl()'
+
+- script: |
+    export PHPVERSIONEXACT=`php-config --version | grep -o '^[0-9]\.[0-9]'`
+    echo FiftyOneDegreesHashEngine.data_file=`pwd`/on-premise/device-detection-cxx/device-detection-data/51Degrees-LiteV4.1.hash | sudo tee -a /etc/php/$PHPVERSIONEXACT/cli/php.ini
+    echo FiftyOneDegreesHashEngine.allow_unmatched=false | sudo tee -a /etc/php/$PHPVERSIONEXACT/cli/php.ini
+  displayName: 'Set php ini settings'
 
 - script: |
     phpunit --log-junit test-results.xml

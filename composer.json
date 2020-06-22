@@ -24,45 +24,13 @@
     "type": "library",
     "autoload": {
         "classmap": [
-            "deviceDetectionCloud.php",
-            "deviceDetectionPipelineBuilder.php"
+            "DeviceDetectionOnPremise.php",
+            "SwigData.php",
+            "SwigHelpers.php"
         ]
-    },
-    "repositories": {
-        "dev-core": {
-            "type": "path",
-            "url": "../FiftyOne.Pipeline.Core",
-            "options": {
-                "symlink": true
-            }
-        },
-        "dev-engines": {
-            "type": "path",
-            "url": "../FiftyOne.Pipeline.Engines",
-            "options": {
-                "symlink": true
-            }
-        },
-        "dev-cloud-request": {
-            "type": "path",
-            "url": "../FiftyOne.Pipeline.CloudRequestEngine",
-            "options": {
-                "symlink": true
-            }
-        },
-        "dev-javascript": {
-            "type": "path",
-            "url": "../FiftyOne.Pipeline.JavaScriptBundler",
-            "options": {
-                "symlink": true
-            }
-        }
-        
     },
     "require": {
         "51degrees/fiftyone.pipeline.core": "@dev",
-        "51degrees/fiftyone.pipeline.engines": "@dev",
-        "51degrees/fiftyone.pipeline.cloudrequestengine": "@dev",
-        "51degrees/fiftyone.pipeline.javascriptbundler": "@dev"
+        "51degrees/fiftyone.pipeline.engines": "@dev"
     }
 }

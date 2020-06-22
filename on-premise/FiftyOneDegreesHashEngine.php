@@ -11,22 +11,22 @@
  * ----------------------------------------------------------------------------- */
 
 // Try to load our extension if it's not already loaded.
-if (!extension_loaded('DeviceDetectionHashEngineModule')) {
+if (!extension_loaded('FiftyOneDegreesHashEngine')) {
   if (strtolower(substr(PHP_OS, 0, 3)) === 'win') {
-    if (!dl('php_DeviceDetectionHashEngineModule.dll')) return;
+    if (!dl('php_FiftyOneDegreesHashEngine.dll')) return;
   } else {
     // PHP_SHLIB_SUFFIX gives 'dylib' on MacOS X but modules are 'so'.
     if (PHP_SHLIB_SUFFIX === 'dylib') {
-      if (!dl('DeviceDetectionHashEngineModule.so')) return;
+      if (!dl('FiftyOneDegreesHashEngine.so')) return;
     } else {
-      if (!dl('DeviceDetectionHashEngineModule.'.PHP_SHLIB_SUFFIX)) return;
+      if (!dl('FiftyOneDegreesHashEngine.'.PHP_SHLIB_SUFFIX)) return;
     }
   }
 }
 
 
 
-abstract class DeviceDetectionHashEngineModule {
+abstract class FiftyOneDegreesHashEngine {
 	static function engine_get() {
 		$r=engine_get();
 		if (is_resource($r)) {
@@ -44,12 +44,12 @@ class MapStringStringSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -103,12 +103,12 @@ class VectorStringSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -170,12 +170,12 @@ class RequiredPropertiesConfigSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -211,12 +211,12 @@ class StringValueSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -251,12 +251,12 @@ class BoolValueSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -291,12 +291,12 @@ class IntegerValueSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -331,12 +331,12 @@ class VectorStringValuesSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -377,12 +377,12 @@ class DoubleValueSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -417,12 +417,12 @@ class ResultsBaseSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -512,12 +512,12 @@ class Date {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -547,12 +547,12 @@ class PropertyMetaDataSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -628,12 +628,12 @@ class ComponentMetaDataSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -663,12 +663,12 @@ class ProfileMetaDataSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -683,10 +683,6 @@ class ProfileMetaDataSwig {
 	function getProfileId() {
 		return ProfileMetaDataSwig_getProfileId($this->_cPtr);
 	}
-
-	function getSignatureCount() {
-		return ProfileMetaDataSwig_getSignatureCount($this->_cPtr);
-	}
 }
 
 class ValueMetaDataKeySwig {
@@ -694,12 +690,12 @@ class ValueMetaDataKeySwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -708,7 +704,7 @@ class ValueMetaDataKeySwig {
 		return array_key_exists($var, $this->_pData);
 	}
 
-	function __construct($propertyName,$valueName) {
+	function __construct($propertyName,$valueName=null) {
 		if (is_resource($propertyName) && get_resource_type($propertyName) === '_p_ValueMetaDataKey') {
 			$this->_cPtr=$propertyName;
 			return;
@@ -730,12 +726,12 @@ class ValueMetaDataSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -765,12 +761,12 @@ class ComponentMetaDataCollectionSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -812,12 +808,12 @@ class PropertyMetaDataCollectionSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -859,12 +855,12 @@ class ProfileMetaDataCollectionSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -906,12 +902,12 @@ class ValueMetaDataCollectionSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -953,12 +949,12 @@ class MetaDataSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -1096,12 +1092,12 @@ class EngineBaseSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -1213,12 +1209,12 @@ class ConfigBaseSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -1244,10 +1240,6 @@ class ConfigBaseSwig {
 
 	function setTempDirectories($tempDirs) {
 		ConfigBaseSwig_setTempDirectories($this->_cPtr,$tempDirs);
-	}
-
-	function setFreeData($shouldFree) {
-		ConfigBaseSwig_setFreeData($this->_cPtr,$shouldFree);
 	}
 
 	function getUseUpperPrefixHeaders() {
@@ -1281,12 +1273,12 @@ class ConfigDeviceDetectionSwig extends ConfigBaseSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		ConfigBaseSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return ConfigBaseSwig::__get($var);
 	}
 
@@ -1327,12 +1319,12 @@ class EvidenceBaseSwig extends MapStringStringSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		MapStringStringSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return MapStringStringSwig::__get($var);
 	}
 
@@ -1354,12 +1346,12 @@ class EvidenceDeviceDetectionSwig extends EvidenceBaseSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		EvidenceBaseSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return EvidenceBaseSwig::__get($var);
 	}
 
@@ -1381,12 +1373,12 @@ class EngineDeviceDetectionSwig extends EngineBaseSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		EngineBaseSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return EngineBaseSwig::__get($var);
 	}
 
@@ -1418,12 +1410,12 @@ class ResultsDeviceDetectionSwig extends ResultsBaseSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		ResultsBaseSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return ResultsBaseSwig::__get($var);
 	}
 
@@ -1452,12 +1444,12 @@ class ResultsHashSwig extends ResultsDeviceDetectionSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		ResultsDeviceDetectionSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return ResultsDeviceDetectionSwig::__get($var);
 	}
 
@@ -1469,32 +1461,56 @@ class ResultsHashSwig extends ResultsDeviceDetectionSwig {
 		$this->_cPtr=$h;
 	}
 
-	function getDeviceId() {
-		return ResultsHashSwig_getDeviceId($this->_cPtr);
+	function getDeviceId($resultIndex=null) {
+		switch (func_num_args()) {
+		case 0: $r=ResultsHashSwig_getDeviceId($this->_cPtr); break;
+		default: $r=ResultsHashSwig_getDeviceId($this->_cPtr,$resultIndex);
+		}
+		return $r;
 	}
 
-	function getRank() {
-		return ResultsHashSwig_getRank($this->_cPtr);
+	function getDifference($resultIndex=null) {
+		switch (func_num_args()) {
+		case 0: $r=ResultsHashSwig_getDifference($this->_cPtr); break;
+		default: $r=ResultsHashSwig_getDifference($this->_cPtr,$resultIndex);
+		}
+		return $r;
 	}
 
-	function getDifference() {
-		return ResultsHashSwig_getDifference($this->_cPtr);
+	function getMethod($resultIndex=null) {
+		switch (func_num_args()) {
+		case 0: $r=ResultsHashSwig_getMethod($this->_cPtr); break;
+		default: $r=ResultsHashSwig_getMethod($this->_cPtr,$resultIndex);
+		}
+		return $r;
 	}
 
-	function getDrift() {
-		return ResultsHashSwig_getDrift($this->_cPtr);
+	function getDrift($resultIndex=null) {
+		switch (func_num_args()) {
+		case 0: $r=ResultsHashSwig_getDrift($this->_cPtr); break;
+		default: $r=ResultsHashSwig_getDrift($this->_cPtr,$resultIndex);
+		}
+		return $r;
+	}
+
+	function getTrace() {
+		return ResultsHashSwig_getTrace($this->_cPtr);
+	}
+
+	function getMatchedNodes() {
+		return ResultsHashSwig_getMatchedNodes($this->_cPtr);
 	}
 
 	function getIterations() {
 		return ResultsHashSwig_getIterations($this->_cPtr);
 	}
 
-	function getMethod() {
-		return ResultsHashSwig_getMethod($this->_cPtr);
+	function getUserAgent($resultIndex) {
+		return ResultsHashSwig_getUserAgent($this->_cPtr,$resultIndex);
 	}
 
-	function getMatchedNodes() {
-		return ResultsHashSwig_getMatchedNodes($this->_cPtr);
+	function getUserAgents() {
+		return ResultsHashSwig_getUserAgents($this->_cPtr);
 	}
 }
 
@@ -1503,12 +1519,12 @@ class CollectionConfigSwig {
 	protected $_pData=array();
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		$this->_pData[$var] = $value;
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return $this->_pData[$var];
 	}
 
@@ -1554,12 +1570,12 @@ class ConfigHashSwig extends ConfigDeviceDetectionSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		ConfigDeviceDetectionSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return ConfigDeviceDetectionSwig::__get($var);
 	}
 
@@ -1608,8 +1624,40 @@ class ConfigHashSwig extends ConfigDeviceDetectionSwig {
 		ConfigHashSwig_setConcurrency($this->_cPtr,$concurrency);
 	}
 
+	function setUsePerformanceGraph($use) {
+		ConfigHashSwig_setUsePerformanceGraph($this->_cPtr,$use);
+	}
+
+	function setUsePredictiveGraph($use) {
+		ConfigHashSwig_setUsePredictiveGraph($this->_cPtr,$use);
+	}
+
+	function setTraceRoute($trace) {
+		ConfigHashSwig_setTraceRoute($this->_cPtr,$trace);
+	}
+
 	function getStrings() {
 		$r=ConfigHashSwig_getStrings($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new CollectionConfigSwig($r);
+		}
+		return $r;
+	}
+
+	function getProperties() {
+		$r=ConfigHashSwig_getProperties($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new CollectionConfigSwig($r);
+		}
+		return $r;
+	}
+
+	function getValues() {
+		$r=ConfigHashSwig_getValues($this->_cPtr);
 		if (is_resource($r)) {
 			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
 			if (class_exists($c)) return new $c($r);
@@ -1628,8 +1676,8 @@ class ConfigHashSwig extends ConfigDeviceDetectionSwig {
 		return $r;
 	}
 
-	function getDevices() {
-		$r=ConfigHashSwig_getDevices($this->_cPtr);
+	function getNodes() {
+		$r=ConfigHashSwig_getNodes($this->_cPtr);
 		if (is_resource($r)) {
 			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
 			if (class_exists($c)) return new $c($r);
@@ -1638,8 +1686,8 @@ class ConfigHashSwig extends ConfigDeviceDetectionSwig {
 		return $r;
 	}
 
-	function getNodes() {
-		$r=ConfigHashSwig_getNodes($this->_cPtr);
+	function getProfileOffsets() {
+		$r=ConfigHashSwig_getProfileOffsets($this->_cPtr);
 		if (is_resource($r)) {
 			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
 			if (class_exists($c)) return new $c($r);
@@ -1656,8 +1704,20 @@ class ConfigHashSwig extends ConfigDeviceDetectionSwig {
 		return ConfigHashSwig_getDifference($this->_cPtr);
 	}
 
+	function getUsePerformanceGraph() {
+		return ConfigHashSwig_getUsePerformanceGraph($this->_cPtr);
+	}
+
+	function getUsePredictiveGraph() {
+		return ConfigHashSwig_getUsePredictiveGraph($this->_cPtr);
+	}
+
 	function getConcurrency() {
 		return ConfigHashSwig_getConcurrency($this->_cPtr);
+	}
+
+	function getTraceRoute() {
+		return ConfigHashSwig_getTraceRoute($this->_cPtr);
 	}
 }
 
@@ -1665,12 +1725,12 @@ class EngineHashSwig extends EngineDeviceDetectionSwig {
 	public $_cPtr=null;
 
 	function __set($var,$value) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_alter_newobject($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_alter_newobject($this->_cPtr,$value);
 		EngineDeviceDetectionSwig::__set($var,$value);
 	}
 
 	function __get($var) {
-		if ($var === 'thisown') return swig_DeviceDetectionHashEngineModule_get_newobject($this->_cPtr);
+		if ($var === 'thisown') return swig_FiftyOneDegreesHashEngine_get_newobject($this->_cPtr);
 		return EngineDeviceDetectionSwig::__get($var);
 	}
 
@@ -1679,7 +1739,7 @@ class EngineHashSwig extends EngineDeviceDetectionSwig {
 		return EngineDeviceDetectionSwig::__isset($var);
 	}
 
-	function __construct($fileName_or_data,$config_or_length,$properties_or_config,$properties=null) {
+	function __construct($fileName_or_data,$config_or_length=null,$properties_or_config=null,$properties=null) {
 		if (is_resource($fileName_or_data) && get_resource_type($fileName_or_data) === '_p_EngineHash') {
 			$this->_cPtr=$fileName_or_data;
 			return;
@@ -1690,9 +1750,62 @@ class EngineHashSwig extends EngineDeviceDetectionSwig {
 		}
 	}
 
-	function process($evidence_or_userAgent,$drift=null,$difference=null) {
+	function getPublishedTime() {
+		$r=EngineHashSwig_getPublishedTime($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new Date($r);
+		}
+		return $r;
+	}
+
+	function getUpdateAvailableTime() {
+		$r=EngineHashSwig_getUpdateAvailableTime($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new Date($r);
+		}
+		return $r;
+	}
+
+	function getDataFilePath() {
+		return EngineHashSwig_getDataFilePath($this->_cPtr);
+	}
+
+	function getDataFileTempPath() {
+		return EngineHashSwig_getDataFileTempPath($this->_cPtr);
+	}
+
+	function refreshData($fileName_or_data=null,$length=null) {
+		switch (func_num_args()) {
+		case 0: EngineHashSwig_refreshData($this->_cPtr); break;
+		case 1: EngineHashSwig_refreshData($this->_cPtr,$fileName_or_data); break;
+		default: EngineHashSwig_refreshData($this->_cPtr,$fileName_or_data,$length);
+		}
+	}
+
+	function process($evidence_or_userAgent) {
+		$r=EngineHashSwig_process($this->_cPtr,$evidence_or_userAgent);
 		if (!is_resource($r)) return $r;
 		return new ResultsHashSwig($r);
+	}
+
+	function processBase($evidence) {
+		$r=EngineHashSwig_processBase($this->_cPtr,$evidence);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new ResultsBaseSwig($r);
+		}
+		return $r;
+	}
+
+	function processDeviceDetection($evidence_or_userAgent) {
+		$r=EngineHashSwig_processDeviceDetection($this->_cPtr,$evidence_or_userAgent);
+		if (!is_resource($r)) return $r;
+		return new ResultsDeviceDetectionSwig($r);
 	}
 }
 
