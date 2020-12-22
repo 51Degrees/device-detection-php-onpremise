@@ -25,6 +25,7 @@
     "autoload": {
         "classmap": [
             "DeviceDetectionOnPremise.php",
+            "Messages.php",
             "SwigData.php",
             "SwigHelpers.php"
         ]

@@ -1,6 +1,6 @@
 ![51Degrees](https://51degrees.com/DesktopModules/FiftyOne/Distributor/Logo.ashx?utm_source=github&utm_medium=repository&utm_content=readme_main&utm_campaign=php-open-source "Data rewards the curious") **PHP Pipeline API**
 
-[Developer Documentation](https://docs.51degrees.com?utm_source=github&utm_medium=repository&utm_content=documentation&utm_campaign=php-open-source "developer documentation")
+[Developer Documentation](https://51degrees.com/documentation/4.2/index.html?utm_source=github&utm_medium=repository&utm_content=documentation&utm_campaign=php-open-source "developer documentation")
 
 ## Introduction
 This project contains the on-premise version of 51Degrees Device Detection for the Pipeline API.
@@ -46,13 +46,20 @@ make
 sudo make install
 ```
 
-If the SWIG wrapper files need to be regenerated due to new code in the 'device-detection-cxx' submodule, add `SWIG=1` to the `./configure` step.
+If the SWIG wrapper files need to be regenerated due to new code in the 'device-detection-cxx'
+ submodule, add `SWIG=1` to the `./configure` step. Note that for backwards compatibility with
+ PHP 5, SWIG 3.0.12 is used for the pregenerated files in this repository. Newer versions of
+ SWIG can be used, provided the extension is being build only for PHP 7.
 
-The Hash engine extension will then be installed into the PHP extensions directory and can then be added to the active php.ini file.
+The Hash engine extension will then be installed into the PHP extensions directory and can 
+then be added to the active php.ini file.
 
 ## Data File
 
-In order to perform device detection, you will need to use a 51Degrees data file. This repository includes a free, 'lite' file in the 'device-detection-data' sub-module that has a significantly reduced set of properties. To obtain a file with a more complete set of device properties see the (51Degrees website)[https://51degrees.com/pricing]. 
+In order to perform device detection, you will need to use a 51Degrees data file. This repository 
+includes a free, 'lite' file in the 'device-detection-data' sub-module that has a significantly 
+reduced set of properties. To obtain a file with a more complete set of device properties see the 
+(51Degrees website)[https://51degrees.com/pricing]. 
 If you want to use the lite file, you will need to install (GitLFS)[https://git-lfs.github.com/]:
 
 ``` bash
@@ -68,14 +75,19 @@ git lfs pull
 
 ## Configuration
 
-The minimum configuration needed for the extensions is to add it to the active php.ini file, and set the data file. For example:
+The minimum configuration needed for the extensions is to add it to the active php.ini file, 
+and set the data file. For example:
 
-```
-extension=/usr/lib/php/20170718/FiftyOneDegreesHashEngine.so
-FiftyOneDegreesHashEngine.data_file=/home/51Degrees/51Degrees-LiteV4.1.hash
-```
-
+<pre>
+<code>extension=/usr/lib/php/<span style="background-color: #FFFF00">20170718</span>/FiftyOneDegreesHashEngine.so
+FiftyOneDegreesHashEngine.data_file=/<span style="background-color: #FFFF00">path to your file</span>/51Degrees-LiteV4.1.hash
+</code>
+</pre>
 is enough to set up the Hash extension with default configuration options.
+
+NOTE: Make sure to check the highlighted parts. The first is dependent on the
+PHP version. This location will be printed when installing. The second is the
+path to where you have stored your 51Degrees data file.
 
 ### More Options
 
@@ -87,6 +99,10 @@ is enough to set up the Hash extension with default configuration options.
 | `performance_profile` | `string` | The performance profile to build the engine with. Available options are `"HighPerformance"`, `"MaxPerformance"`, `"Balanced"`, `"BalancedTemp"`, `"LowMemory"`, `"Default"` | `"Default"` |
 | `difference` | `int` | The difference value to allow when matching (`-1` to disable). | `0` |
 | `drift` | `int` | The drift to allow when matching (`-1` to disable). | `0` |
+| `use_predictive_graph` | `string` | True if the predictive optimized graph should be used for processing. | `true` |
+| `use_performance_graph` | `string` | True if the performance optimized graph should be used for processing. | `false` |
+| `update_matched_useragent` | `string` | True if the detection should record the matched characters from the target User-Agent. | `true` |
+| `max_matched_useragent_length` | `int` | Number of characters to consider in the matched User-Agent. Ignored if `update_matched_useragent` is false. | `500` |
 
 ## Examples
 
@@ -102,7 +118,7 @@ This will create the vendor directory containing autoload.php.
 Now navigate to the examples directory and start a PHP server with the relevant file. For example:
 
 ```
-PHP -S localhost:3000 gettingstarted.php
+php -S localhost:3000 gettingstarted.php
 ```
 
 This will start a local web server listening on port 3000. 
@@ -111,8 +127,61 @@ Open your web browser and browse to http://localhost:3000/ to see the example in
 
 ## Tests
 
+### PHPUnit
+
 This repo has tests for the examples. To run the tests, make sure PHPUnit is installed then, in the root of this repo, call:
 
 ```
 phpunit --log-junit test-results.xml
+```
+
+### Performance
+
+Performance tests for the engine can be found in the `performance-tests` directory. 
+To build this, the dependencies listed on [ApacheBench](https://github.com/51degrees/apachebench)
+must be installed.
+
+To build the tests, enter the `performance-tests` directory and run the following.
+
+```
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+Once the build is completed, ensure that the `php.ini` file is correctly configured, and run 
+the tests from the build directory with:
+
+```
+./runPerf.sh
+```
+
+This will give two output files: `calibrate.out` and `process.out`. These detail the performance 
+for a calibration page where there is no pipeline processing, and for a page which processes the 
+request through a pipeline containing the device detection on-premise engine, and fetches 
+properties.
+
+## Development
+
+When making changes to this repository, it may be necessary to link to a local development 
+version of pipeline dependencies. For information on this, 
+see [Composer local path](https://getcomposer.org/doc/05-repositories.md#path).
+
+For exmaple, if a development version of `51degrees/fiftyone.pipeline.core` 
+was stored locally, the location would be added with:
+
+```
+"repositories": [
+	{
+		"type": "path",
+		"url": "../../path/to/packages/pipeline-php-core"
+	}
+]
+```
+
+then the dependency changed to:
+
+```
+"51degrees/fiftyone.pipeline.core": "*"
 ```

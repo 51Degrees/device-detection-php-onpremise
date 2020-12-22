@@ -19,8 +19,9 @@
  * including the attribution notice(s) required under Article 5 of the EUPL
  * in the end user terms of the application under an appropriate heading,
  * such notice(s) shall fulfill the requirements of that article.
- * ********************************************************************* /*
-/*
+ * ********************************************************************* */
+
+/**
  * @example hash/failureToMatch.php
  * 
  * This example shows how the hasValue function can help make sure 
@@ -48,7 +49,7 @@
  * We don't know for sure. The reason given is:
  * The results contained a null profile for the component which the required property belongs to.
  * ```
-*/
+ */
 
 // First we include the deviceDetectionPipelineBuilder
 

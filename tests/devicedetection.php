@@ -31,6 +31,7 @@ $_SERVER["REMOTE_ADDR"] = "0.0.0.0";
 use PHPUnit\Framework\TestCase;
 use fiftyone\pipeline\core\PipelineBuilder;
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
+use fiftyone\pipeline\devicedetection\Messages;
 
 class exampleTests extends TestCase
 {
@@ -53,7 +54,10 @@ class exampleTests extends TestCase
         
 		$this->assertFalse($result->device->ismobile->hasValue);
         $this->assertEquals($result->device->ismobile->noValueMessage, 
-            "The results contained a null profile for the component which the required property belongs to.");
+            "No matching profiles could be found for the supplied evidence. "
+                . "A 'best guess' can be returned by configuring more lenient "
+                . "matching rules. See "
+                . "https://51degrees.com/documentation/4.1/_device_detection__features__false_positive_control.html");
     }
 
     public function testPropertyValueGood()
@@ -130,12 +134,33 @@ class exampleTests extends TestCase
     }
     
     public function testWebIntegration()
-	{
+    {
 
         include __DIR__ . "/../examples/hash/webIntegration.php";
-        
+
         $this->assertTrue(true);
 
-	}
+    }
 
+    /**
+     * Check that when a cache is configured for the engine, an exception is
+     * throw with an appropriate message.
+     */
+    public function testSetCache()
+    {
+        $exception = null;
+        $deviceDetection = new DeviceDetectionOnPremise();
+
+        try {
+           $deviceDetection->setCache(null);
+           $this->fail();
+        }
+        catch (\Exception $ex) {
+            $exception = $ex;
+        }
+        $this->assertNotNull($ex);
+        $this->assertEquals(
+            Messages::CACHE_ERROR,
+            $exception->getMessage());
+    }
 }

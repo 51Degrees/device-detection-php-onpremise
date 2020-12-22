@@ -53,6 +53,11 @@ public:
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.drift", "0", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.difference", "", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.allow_unmatched", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.use_predictive_graph", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.use_performance_graph", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.update_matched_useragent", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.max_matched_useragent_length", NULL, PHP_INI_ALL, NULL)
+
     PHP_INI_END()
 %}
 
@@ -68,6 +73,10 @@ EngineHash *engine;
     int drift = INI_INT("FiftyOneDegreesHashEngine.drift");
     int difference = INI_INT("FiftyOneDegreesHashEngine.difference");
     char *allowUnmatched = INI_STR("FiftyOneDegreesHashEngine.allow_unmatched");
+    char *usePredictiveGraph = INI_STR("FiftyOneDegreesHashEngine.use_predictive_graph");
+    char *usePerformanceGraph = INI_STR("FiftyOneDegreesHashEngine.use_performance_graph");
+    char *updateMatchedUa = INI_STR("FiftyOneDegreesHashEngine.update_matched_useragent");
+    int maxUaLength= INI_INT("FiftyOneDegreesHashEngine.max_matched_useragent_length");
 
     config = new ConfigHash();
     // Set the performance profile.
@@ -103,7 +112,22 @@ EngineHash *engine;
     if (allowUnmatched != NULL) {
         config->setAllowUnmatched(strcmp(allowUnmatched, "true") == 0);
     }
-    
+    // Set use predictive graph.
+    if (usePredictiveGraph != NULL) {
+        config->setUsePredictiveGraph(strcmp(usePredictiveGraph, "true") == 0);
+    }
+    // Set use performance graph.
+    if (usePerformanceGraph != NULL) {
+        config->setUsePerformanceGraph(strcmp(usePerformanceGraph, "true") == 0);
+    }
+    // Set update matched User-Agent.
+	if (updateMatchedUa != NULL) {
+		config->setUpdateMatchedUserAgent(strcmp(updateMatchedUa, "true") == 0);
+	}
+	// Set max matched User-Agent length.
+	if (maxUaLength != 0) {
+		config->setMaxMatchedUserAgentLength(maxUaLength);
+	}
     // Set the required properties.
     if (propertyList != NULL) {
         properties = new RequiredPropertiesConfig(propertyList);

@@ -69,7 +69,10 @@ class DeviceDetectionOnPremise extends Engine {
                 "available" => $property->getAvailable()
             ];
         }
-       
+        foreach ($this->getMetricProperties() as $name => $property) {
+            $properties[$name] = $property;
+        }
+        
         $this->properties = $properties;
 
         parent::__construct(...func_get_args());
@@ -101,8 +104,8 @@ class DeviceDetectionOnPremise extends Engine {
             $evidenceInternal->set($key, $value);
 
         }
-
-        $result = $this->engine->processDeviceDetection($evidenceInternal);
+        
+        $result = $this->engine->process($evidenceInternal);
 
         $data = new SwigData($this, $result);
             
@@ -110,5 +113,62 @@ class DeviceDetectionOnPremise extends Engine {
 
     }
 
+    private function getMetricProperties() {
+        $dataFiles = array("Lite", "Premium", "Enterprise");
+        $metricProperties = array(
+            "matchednodes" => [
+                "name" => "MatchedNodes",
+                "type" => "Integer",
+                "dataFiles" => $dataFiles,
+                "description" => "Indicates the number of hash nodes matched within the evidence.",
+                "category" => "DeviceMetrics",
+                "available" => true],
+            "difference" => [
+                "name" => "Difference",
+                "type" => "Integer",
+                "dataFiles" => $dataFiles,
+                "description" => "Used when detection method is not Exact or None. This is an integer value and the larger the value the less confident the detector is in this result.",
+                "category" => "DeviceMetrics",
+                "available" => true],
+            "drift" => [
+                "name" => "Drift",
+                "type" => "Integer",
+                "dataFiles" => $dataFiles,
+                "description" => "Total difference in character positions where the substrings hashes were found away from where they were expected.",
+                "category" => "DeviceMetrics",
+                "available" => true],
+            "deviceid" => [
+                "name" => "DeviceId",
+                "type" => "String",
+                "dataFiles" => $dataFiles,
+                "description" => "Consists of four components separated by a hyphen symbol: Hardware-Platform-Browser-IsCrawler where each Component represents an ID of the corresponding Profile.",
+                "category" => "DeviceMetrics",
+                "available" => true],
+            "useragents" => [
+                "name" => "UserAgents",
+                "type" => "Array",
+                "dataFiles" => $dataFiles,
+                "description" => "The matched User-Agents.",
+                "category" => "DeviceMetrics",
+                "available" => true],
+            "method" => [
+                "name" => "Method",
+                "type" => "String",
+                "dataFiles" => $dataFiles,
+                "description" => "Provides information about the algorithm that was used to perform detection for a particular User-Agent.",
+                "category" => "DeviceMetrics",
+                "available" => true]
+            );
+        return $metricProperties;
+    }
+    
+   /**
+    * Add a cache to an engine
+    * @param Cache (cache with get and set methods)
+    */
+    public function setCache($cache)
+    {
+        throw new \Exception(Messages::CACHE_ERROR);
+    }    
 }
 
