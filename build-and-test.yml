@@ -84,3 +84,21 @@ steps:
     mergeTestResults: false
     testRunTitle: '$(phpVersion)'
   condition: always()
+  
+  
+- script: |
+    cd performance-tests
+    sudo apt-get install cmake apache2-dev libapr1-dev libaprutil1-dev
+    mkdir build
+    cd build
+    cmake ..
+    cmake --build .
+    cd ..
+  displayName: 'Build Performance Tests'
+
+- script: |
+    cd performance-tests/build
+    ./runPerf.sh
+    cd ..
+  displayName: 'Run Performance Tests'
+  failOnStderr: true

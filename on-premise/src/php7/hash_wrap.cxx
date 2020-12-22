@@ -1211,6 +1211,11 @@ SWIGINTERN EngineHash *new_EngineHash__SWIG_2(){
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.drift", "0", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.difference", "", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.allow_unmatched", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.use_predictive_graph", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.use_performance_graph", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.update_matched_useragent", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.max_matched_useragent_length", NULL, PHP_INI_ALL, NULL)
+
     PHP_INI_END()
 
 
@@ -1882,7 +1887,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_VectorStringSwig__SWIG_1) {
   }
   
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg1 = (std::vector< std::string >::size_type) zval_get_long(&args[0]);
   /*@SWIG@*/;
   
@@ -1991,7 +1996,7 @@ ZEND_NAMED_FUNCTION(_wrap_VectorStringSwig_reserve) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (std::vector< std::string >::size_type) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -2141,7 +2146,7 @@ ZEND_NAMED_FUNCTION(_wrap_VectorStringSwig_get) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -2184,7 +2189,7 @@ ZEND_NAMED_FUNCTION(_wrap_VectorStringSwig_set) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -2381,7 +2386,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_RequiredPropertiesConfigSwig__SWIG_2) {
   }
   
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,57,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,57,CONVERT_STRING_IN@*/
   if (Z_ISNULL(args[0])) {
     arg1 = (char *) 0;
   } else {
@@ -4223,7 +4228,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsBaseSwig_getPropertyName) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -4354,7 +4359,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsBaseSwig_getValues__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -4526,7 +4531,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsBaseSwig_getValueAsString__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -4698,7 +4703,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsBaseSwig_getValueAsBool__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -4870,7 +4875,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsBaseSwig_getValueAsInteger__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -5042,7 +5047,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsBaseSwig_getValueAsDouble__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -7083,7 +7088,7 @@ ZEND_NAMED_FUNCTION(_wrap_ComponentMetaDataCollectionSwig_getByIndex) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -7319,7 +7324,7 @@ ZEND_NAMED_FUNCTION(_wrap_PropertyMetaDataCollectionSwig_getByIndex) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -7492,7 +7497,7 @@ ZEND_NAMED_FUNCTION(_wrap_ProfileMetaDataCollectionSwig_getByKey) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -7556,7 +7561,7 @@ ZEND_NAMED_FUNCTION(_wrap_ProfileMetaDataCollectionSwig_getByIndex) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -7795,7 +7800,7 @@ ZEND_NAMED_FUNCTION(_wrap_ValueMetaDataCollectionSwig_getByIndex) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -9123,7 +9128,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineBaseSwig_refreshData__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,57,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,57,CONVERT_STRING_IN@*/
   if (Z_ISNULL(args[1])) {
     arg2 = (char *) 0;
   } else {
@@ -9195,7 +9200,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineBaseSwig_refreshData__SWIG_2) {
   }
   
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg3 = (long) zval_get_long(&args[2]);
   /*@SWIG@*/;
   
@@ -9886,7 +9891,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setUseUpperPrefixHeaders) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -9947,7 +9952,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setUseTempFile) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -10008,7 +10013,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigBaseSwig_setReuseTempFile) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -10423,7 +10428,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigDeviceDetectionSwig_setUpdateMatchedUserAgent) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -10484,7 +10489,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigDeviceDetectionSwig_setMaxMatchedUserAgentLength
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -10545,7 +10550,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigDeviceDetectionSwig_setAllowUnmatched) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -11142,7 +11147,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineDeviceDetectionSwig_processDeviceDetection__SWIG
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,57,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,57,CONVERT_STRING_IN@*/
   if (Z_ISNULL(args[1])) {
     arg2 = (char *) 0;
   } else {
@@ -11362,7 +11367,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsDeviceDetectionSwig_getUserAgent) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -11644,7 +11649,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDeviceId__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -11802,7 +11807,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDifference__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -11960,7 +11965,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getMethod__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -12118,7 +12123,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getDrift__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -12392,7 +12397,7 @@ ZEND_NAMED_FUNCTION(_wrap_ResultsHashSwig_getUserAgent) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -12563,7 +12568,7 @@ ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_setCapacity) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -12624,7 +12629,7 @@ ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_setConcurrency) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint16_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -12685,7 +12690,7 @@ ZEND_NAMED_FUNCTION(_wrap_CollectionConfigSwig_setLoaded) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -13296,7 +13301,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDrift) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -13357,7 +13362,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setDifference) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (int32_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -13418,7 +13423,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setConcurrency) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (uint16_t) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -13479,7 +13484,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setUsePerformanceGraph) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -13540,7 +13545,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setUsePredictiveGraph) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -13601,7 +13606,7 @@ ZEND_NAMED_FUNCTION(_wrap_ConfigHashSwig_setTraceRoute) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,2,CONVERT_BOOL_IN@*/
   arg2 = (bool) zval_is_true(&args[1]);
   /*@SWIG@*/;
   
@@ -14488,7 +14493,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_EngineHashSwig__SWIG_1) {
   }
   
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg2 = (long) zval_get_long(&args[1]);
   /*@SWIG@*/;
   
@@ -14850,7 +14855,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_refreshData__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,57,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,57,CONVERT_STRING_IN@*/
   if (Z_ISNULL(args[1])) {
     arg2 = (char *) 0;
   } else {
@@ -14922,7 +14927,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_refreshData__SWIG_2) {
   }
   
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,6,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,6,CONVERT_INT_IN@*/
   arg3 = (long) zval_get_long(&args[2]);
   /*@SWIG@*/;
   
@@ -15103,7 +15108,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_process__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,57,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,57,CONVERT_STRING_IN@*/
   if (Z_ISNULL(args[1])) {
     arg2 = (char *) 0;
   } else {
@@ -15342,7 +15347,7 @@ ZEND_NAMED_FUNCTION(_wrap_EngineHashSwig_processDeviceDetection__SWIG_1) {
   
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:/usr/share/swig3.0/php/utils.i,57,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.12/php/utils.i,57,CONVERT_STRING_IN@*/
   if (Z_ISNULL(args[1])) {
     arg2 = (char *) 0;
   } else {
@@ -16198,6 +16203,10 @@ SWIG_php_minit {
     int drift = INI_INT("FiftyOneDegreesHashEngine.drift");
     int difference = INI_INT("FiftyOneDegreesHashEngine.difference");
     char *allowUnmatched = INI_STR("FiftyOneDegreesHashEngine.allow_unmatched");
+    char *usePredictiveGraph = INI_STR("FiftyOneDegreesHashEngine.use_predictive_graph");
+    char *usePerformanceGraph = INI_STR("FiftyOneDegreesHashEngine.use_performance_graph");
+    char *updateMatchedUa = INI_STR("FiftyOneDegreesHashEngine.update_matched_useragent");
+    int maxUaLength= INI_INT("FiftyOneDegreesHashEngine.max_matched_useragent_length");
 
     config = new ConfigHash();
     // Set the performance profile.
@@ -16233,7 +16242,22 @@ SWIG_php_minit {
     if (allowUnmatched != NULL) {
         config->setAllowUnmatched(strcmp(allowUnmatched, "true") == 0);
     }
-    
+    // Set use predictive graph.
+    if (usePredictiveGraph != NULL) {
+        config->setUsePredictiveGraph(strcmp(usePredictiveGraph, "true") == 0);
+    }
+    // Set use performance graph.
+    if (usePerformanceGraph != NULL) {
+        config->setUsePerformanceGraph(strcmp(usePerformanceGraph, "true") == 0);
+    }
+    // Set update matched User-Agent.
+	if (updateMatchedUa != NULL) {
+		config->setUpdateMatchedUserAgent(strcmp(updateMatchedUa, "true") == 0);
+	}
+	// Set max matched User-Agent length.
+	if (maxUaLength != 0) {
+		config->setMaxMatchedUserAgentLength(maxUaLength);
+	}
     // Set the required properties.
     if (propertyList != NULL) {
         properties = new RequiredPropertiesConfig(propertyList);
