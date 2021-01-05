@@ -1,3 +1,5 @@
+# 51Degrees PHP Device Detection On-Premise
+
 ![51Degrees](https://51degrees.com/DesktopModules/FiftyOne/Distributor/Logo.ashx?utm_source=github&utm_medium=repository&utm_content=readme_main&utm_campaign=php-open-source "Data rewards the curious") **PHP Pipeline API**
 
 [Developer Documentation](https://51degrees.com/documentation/4.2/index.html?utm_source=github&utm_medium=repository&utm_content=documentation&utm_campaign=php-open-source "developer documentation")
@@ -59,8 +61,8 @@ then be added to the active php.ini file.
 In order to perform device detection, you will need to use a 51Degrees data file. This repository 
 includes a free, 'lite' file in the 'device-detection-data' sub-module that has a significantly 
 reduced set of properties. To obtain a file with a more complete set of device properties see the 
-(51Degrees website)[https://51degrees.com/pricing]. 
-If you want to use the lite file, you will need to install (GitLFS)[https://git-lfs.github.com/]:
+[51Degrees website](https://51degrees.com/pricing). 
+If you want to use the lite file, you will need to install [GitLFS](https://git-lfs.github.com/):
 
 ``` bash
 sudo apt-get install git-lfs
