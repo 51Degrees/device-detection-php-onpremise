@@ -71,7 +71,7 @@ $device = new DeviceDetectionOnPremise(array(
     // between the training data and the target User-Agent string.
     // For a more detailed description of the differences between
     // performance and predictive, see 
-    // <a href="https://51degrees.com/documentation/4.1/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance">Hash Algorithm</a>
+    // <a href="https://51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance">Hash Algorithm</a>
     "usePredictiveGraph" => true,
     "usePerformanceGraph" => false
 ));
