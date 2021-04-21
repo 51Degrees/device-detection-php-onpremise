@@ -2,6 +2,10 @@ trigger: none
 
 pool:
   vmImage: 'ubuntu-18.04'
+
+variables: 
+  - group: InternalKeys
+
 strategy:
   matrix:
     PHP 5:
