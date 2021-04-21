@@ -4,8 +4,8 @@ PHP_ADD_LIBRARY(stdc++, , FIFTYONEDEGREESHASHENGINE_LIBADD)
 PHP_ARG_ENABLE(FiftyOneDegreesHashEngine, whether to enable 51Degrees Hash engine,
 [ --enable-FiftyOneDegreesHashEngine   Enable 51Degrees Hash Device Detection])
 
-CFLAGS="$CFLAGS -lrt -std=gnu11"
-CXXFLAGS="${CXXFLAGS} -std=gnu++11 -fpermissive -Wno-write-strings"
+CFLAGS="$CFLAGS -lrt -std=gnu11 -Wall -Werror -Wno-missing-braces -Wno-unused-variable -Wno-strict-aliasing"
+CXXFLAGS="${CXXFLAGS} -std=gnu++11 -fpermissive -Wall -Werror -Wno-write-strings -Wno-delete-non-virtual-dtor -Wno-unused-label"
 PHP_SUBST([CFLAGS])
 PHP_SUBST([CXXFLAGS])
 

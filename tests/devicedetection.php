@@ -35,6 +35,7 @@ use fiftyone\pipeline\devicedetection\Messages;
 
 class exampleTests extends TestCase
 {
+    protected $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
 
     public function testPropertyValueBad()
 	{
@@ -57,7 +58,7 @@ class exampleTests extends TestCase
             "No matching profiles could be found for the supplied evidence. "
                 . "A 'best guess' can be returned by configuring more lenient "
                 . "matching rules. See "
-                . "https://51degrees.com/documentation/4.1/_device_detection__features__false_positive_control.html");
+                . "https://51degrees.com/documentation/_device_detection__features__false_positive_control.html");
     }
 
     public function testPropertyValueGood()
@@ -67,13 +68,11 @@ class exampleTests extends TestCase
 
         $builder = new PipelineBuilder();
 
-        $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
-
         $pipeline = $builder->add($deviceDetection)->build();
 
         $flowData = $pipeline->createFlowData();
 
-        $flowData->evidence->set("header.user-agent", $iPhoneUA);
+        $flowData->evidence->set("header.user-agent", $this->iPhoneUA);
 
         $result = $flowData->process();
         
@@ -88,13 +87,11 @@ class exampleTests extends TestCase
 
         $builder = new PipelineBuilder();
 
-        $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
-
         $pipeline = $builder->add($deviceDetection)->build();
 
         $flowData = $pipeline->createFlowData();
 
-        $flowData->evidence->set("header.user-agent", $iPhoneUA);
+        $flowData->evidence->set("header.user-agent", $this->iPhoneUA);
 
         $result = $flowData->process();
 
@@ -104,6 +101,129 @@ class exampleTests extends TestCase
 		$this->assertEquals($properties["ismobile"]["type"], "Boolean");
 		$this->assertEquals($properties["ismobile"]["category"], "Device");
         
+    }
+
+    public function testAvailableProperties()
+    {
+
+        $deviceDetection = new DeviceDetectionOnPremise();
+
+        $builder = new PipelineBuilder();
+
+        $pipeline = $builder->add($deviceDetection)->build();
+
+        $flowData = $pipeline->createFlowData();
+
+        $flowData->evidence->set("header.user-agent", $this->iPhoneUA);
+
+        $result = $flowData->process();
+
+        $properties = $pipeline->getElement("device")->getProperties();
+
+        foreach ($properties as &$property)
+        {
+            $key = strtolower($property["name"]);
+
+            $apv = $result->device->getInternal($key);
+
+            $this->assertNotNull($apv, $key);
+
+            if ($apv->hasValue) {
+
+                $this->assertNotNull($apv->value, $key);
+
+            } else {
+
+                $this->assertNotNull($apv->noValueMessage, $key);
+
+            }
+        }
+    }
+
+    public function testValueTypes()
+    {
+
+        $deviceDetection = new DeviceDetectionOnPremise();
+
+        $builder = new PipelineBuilder();
+
+        $pipeline = $builder->add($deviceDetection)->build();
+
+        $flowData = $pipeline->createFlowData();
+
+        $flowData->evidence->set("header.user-agent", $this->iPhoneUA);
+
+        $result = $flowData->process();
+
+        $properties = $pipeline->getElement("device")->getProperties();
+
+        foreach ($properties as &$property)
+        {
+            $key = strtolower($property["name"]);
+ 
+            // TODO: Skip 'useragents' and 'method' property. These are returned 
+            // as an int() by the SWIG interface but should be an Array and a 
+            // String respectively. 
+            if ($key == "useragents" || $key == "method") { 
+                continue;
+            }
+
+            $apv = $result->device->getInternal($key);
+
+            $expectedType = $property["type"];
+            
+            $this->assertNotNull($apv, $key);
+
+            $value = $apv->value;
+
+            switch ($expectedType) {
+                case "Boolean":
+                    if (method_exists($this, 'assertInternalType')) {
+                        $this->assertInternalType("boolean", $value, $key);
+                    } else {
+                        $this->assertIsBool($value, $key);
+                    }
+                    break;
+                case 'String':
+                    if (method_exists($this, 'assertInternalType')) {
+                        $this->assertInternalType("string", $value, $key);
+                    } else {
+                        $this->assertIsString($value, $key);
+                    }
+                    break;
+                case 'JavaScript':
+                    if (method_exists($this, 'assertInternalType')) {
+                        $this->assertInternalType("string", $value, $key);
+                    } else {
+                        $this->assertIsString($value, $key);
+                    }
+                    break;
+                case 'Integer':
+                    if (method_exists($this, 'assertInternalType')) {
+                        $this->assertInternalType("integer", $value, $key);
+                    } else {
+                        $this->assertIsInt($value, $key);
+                    }
+                    break;
+                case 'Double':
+                    if (method_exists($this, 'assertInternalType')) {
+                        $this->assertInternalType("double", $value, $key);
+                    } else {
+                        $this->assertIsFloat($value, $key);
+                    }
+                    break;
+                case 'Array':
+                    if (method_exists($this, 'assertInternalType')) {
+                        $this->assertInternalType("array", $value, $key);
+                    } else {
+                        $this->assertIsArray($value, $key);
+                    }
+                    break;
+                default:
+                    $this->fail("expected type for " . $key . " was " . $expectedType);
+                    break;
+            }
+        }
     }
 
     public function testFailureToMatch()

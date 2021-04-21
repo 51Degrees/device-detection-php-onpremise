@@ -9,7 +9,7 @@ variables:
     value: $(System.AccessToken)
     
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-18.04'
 
 steps:
 # The lines below are needed to allow the pipeline access to the
