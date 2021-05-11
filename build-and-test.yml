@@ -24,6 +24,12 @@ steps:
   persistCredentials: true
 
 - script: |
+    sudo add-apt-repository -y ppa:ondrej/php
+    sudo apt-get update -y
+  displayName: 'Add PHP 5 repo'
+  condition: eq(variables['phpVersion'], '5.6')
+  
+- script: |
     sudo apt-get update -y
     sudo apt-get install php$(phpVersion)-dev re2c
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
@@ -57,7 +63,6 @@ steps:
     wget -O phpunit https://phar.phpunit.de/phpunit-5.phar
     chmod +x phpunit
     sudo mv phpunit /usr/local/bin/phpunit
-    sudo apt-get update -y
     sudo apt-get install php5.6-xml
     sudo apt-get install php5.6-mbstring
   displayName: 'install PHPUnit 5'
