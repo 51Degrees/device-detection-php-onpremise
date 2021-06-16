@@ -32,6 +32,7 @@ use fiftyone\pipeline\engines\AspectDataDictionary;
 use fiftyone\pipeline\engines\Engine;
 use fiftyone\pipeline\devicedetection\SwigHelpers;
 use fiftyone\pipeline\devicedetection\SwigData;
+use fiftyone\pipeline\core\BasicListEvidenceKeyFilter;
 
 class DeviceDetectionOnPremise extends Engine {
 
@@ -50,14 +51,14 @@ class DeviceDetectionOnPremise extends Engine {
 
             $this->setRestrictedProperties(explode(",", $requiredProperties));
 
+
         }
 
         // Make properties list
 
         $propertiesInternal = $this->engine->getMetaData()->getProperties();
 
-        $properties = [];
-       
+        $properties = [];      
         for ($i = 0; $i < $propertiesInternal->getSize(); $i++) {
             $property = $propertiesInternal->getByIndex($i);
             $properties[strtolower($property->getName())] = [
@@ -69,11 +70,23 @@ class DeviceDetectionOnPremise extends Engine {
                 "available" => $property->getAvailable()
             ];
         }
+
         foreach ($this->getMetricProperties() as $name => $property) {
             $properties[$name] = $property;
-        }
-        
+        }    
+   
         $this->properties = $properties;
+
+        // Make evidence list
+        $evidences = $this->engine->getKeys();
+        $evidenceKeysList = [];
+        for ($i = 0; $i < $evidences->size(); $i++) {
+            $evidence = strtolower($evidences->get($i));
+            $evidence = str_replace("http_", "", $evidence);
+            $evidence = str_replace("http_x-", "", $evidence);
+            array_push($evidenceKeysList, $evidence);
+        }      
+        $this->evidenceKeys = $evidenceKeysList;
 
         parent::__construct(...func_get_args());
 
@@ -89,6 +102,17 @@ class DeviceDetectionOnPremise extends Engine {
             case "string[]": return "Array";
             default: return "String";
         }
+    }
+
+    /**
+     * Instance of EvidenceKeyFilter based on the evidence keys fetched
+     * from the cloud service by the private getEvidenceKeys() method
+     *
+     * @return BasicListEvidenceKeyFilter
+     **/
+    public function getEvidenceKeyFilter()
+    {   
+        return new BasicListEvidenceKeyFilter($this->evidenceKeys);
     }
 
     public function processInternal($flowData) {
