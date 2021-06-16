@@ -1,3 +1,12 @@
 [submodule "on-premise/device-detection-cxx"]
 	path = on-premise/device-detection-cxx
 	url=../device-detection-cxx
+[submodule "pipeline-php-core"]
+	path = pipeline-php-core
+	url = ../pipeline-php-core
+[submodule "pipeline-php-engines"]
+	path = pipeline-php-engines
+	url = ../pipeline-php-engines
+[submodule "ci/common-ci"]
+	path = ci/common-ci
+	url = ../common-ci

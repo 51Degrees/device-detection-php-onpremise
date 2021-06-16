@@ -178,45 +178,45 @@ class exampleTests extends TestCase
 
             switch ($expectedType) {
                 case "Boolean":
-                    if (method_exists($this, 'assertInternalType')) {
-                        $this->assertInternalType("boolean", $value, $key);
-                    } else {
+                    if (method_exists($this, 'assertIsBool')) {
                         $this->assertIsBool($value, $key);
+                    } else {
+                        $this->assertInternalType("boolean", $value, $key);
                     }
                     break;
                 case 'String':
-                    if (method_exists($this, 'assertInternalType')) {
-                        $this->assertInternalType("string", $value, $key);
-                    } else {
+                    if (method_exists($this, 'assertIsString')) {
                         $this->assertIsString($value, $key);
+                    } else {
+                        $this->assertInternalType("string", $value, $key);
                     }
                     break;
                 case 'JavaScript':
-                    if (method_exists($this, 'assertInternalType')) {
-                        $this->assertInternalType("string", $value, $key);
-                    } else {
+                    if (method_exists($this, 'assertIsString')) {
                         $this->assertIsString($value, $key);
+                    } else {
+                        $this->assertInternalType("string", $value, $key);
                     }
                     break;
                 case 'Integer':
-                    if (method_exists($this, 'assertInternalType')) {
-                        $this->assertInternalType("integer", $value, $key);
-                    } else {
+                    if (method_exists($this, 'assertIsInt')) {
                         $this->assertIsInt($value, $key);
+                    } else {
+                        $this->assertInternalType("integer", $value, $key);
                     }
                     break;
                 case 'Double':
-                    if (method_exists($this, 'assertInternalType')) {
-                        $this->assertInternalType("double", $value, $key);
-                    } else {
+                    if (method_exists($this, 'assertIsFloat')) {
                         $this->assertIsFloat($value, $key);
+                    } else {
+                        $this->assertInternalType("double", $value, $key);
                     }
                     break;
                 case 'Array':
-                    if (method_exists($this, 'assertInternalType')) {
-                        $this->assertInternalType("array", $value, $key);
-                    } else {
+                    if (method_exists($this, 'assertIsArray')) {
                         $this->assertIsArray($value, $key);
+                    } else {
+                        $this->assertInternalType("array", $value, $key);
                     }
                     break;
                 default:
@@ -262,6 +262,14 @@ class exampleTests extends TestCase
 
     }
 
+    public function testUserAgentClientHints()
+    {
+
+        include __DIR__ . "/../examples/hash/userAgentClientHints.php";
+
+        $this->assertTrue(true);
+
+    }
     /**
      * Check that when a cache is configured for the engine, an exception is
      * throw with an appropriate message.

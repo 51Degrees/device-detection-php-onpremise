@@ -1,0 +1,13 @@
+trigger: none
+
+# Include shared variables
+variables:
+- template: shared-variables.yml
+
+stages:
+- template: shared-build-and-test-stage.yml
+  parameters:
+    # Development buildType parameter indicates that build and test 
+    # stage will use submodule references for pipeline dependencies.
+    buildType: 'Development'
+    imageName: $(linuxImage)
