@@ -1,0 +1,43 @@
+trigger: 
+  - master
+  - develop
+  - release/*
+
+# Don't trigger for a pull request
+pr: none
+
+# Schedule to run overnight
+schedules:
+- cron: "0 20 * * *"
+  displayName: Daily overnight build
+  branches:
+    include:
+    - develop
+ 
+# Add the common-ci git repo as a resource to access common templates.
+resources:
+  repositories:
+  - repository: ciTemplates # Id of the repository used to reference to in this script
+    type: git
+    name: common-ci # Name of the actual repository
+
+
+variables:
+# Include shared variables
+- template: shared-variables.yml
+    
+stages:
+- template: shared-build-and-test-stage.yml
+  parameters:
+    # Production buildType parameter indicates that build and test 
+    # stage will use released packages for pipeline dependencies.
+    buildType: 'Production'
+    imageName: $(linuxImage)
+
+- stage: Tagging
+  
+  jobs:
+  - template: shared-create-tag-job.yml@ciTemplates
+    parameters:
+      imageName: $(linuxImage)
+
