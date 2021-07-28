@@ -1739,17 +1739,6 @@ class EngineHashSwig extends EngineDeviceDetectionSwig {
 		return EngineDeviceDetectionSwig::__isset($var);
 	}
 
-	function __construct($fileName_or_data,$config_or_length=null,$properties_or_config=null,$properties=null) {
-		if (is_resource($fileName_or_data) && get_resource_type($fileName_or_data) === '_p_EngineHash') {
-			$this->_cPtr=$fileName_or_data;
-			return;
-		}
-		switch (func_num_args()) {
-		case 3: $this->_cPtr=new_EngineHashSwig($fileName_or_data,$config_or_length,$properties_or_config); break;
-		default: $this->_cPtr=new_EngineHashSwig($fileName_or_data,$config_or_length,$properties_or_config,$properties);
-		}
-	}
-
 	function getPublishedTime() {
 		$r=EngineHashSwig_getPublishedTime($this->_cPtr);
 		if (is_resource($r)) {
@@ -1806,6 +1795,20 @@ class EngineHashSwig extends EngineDeviceDetectionSwig {
 		$r=EngineHashSwig_processDeviceDetection($this->_cPtr,$evidence_or_userAgent);
 		if (!is_resource($r)) return $r;
 		return new ResultsDeviceDetectionSwig($r);
+	}
+
+	function __construct($fileName_or_data=null,$config_or_length=null,$properties_or_config=null,$properties=null) {
+		if (is_resource($fileName_or_data) && get_resource_type($fileName_or_data) === '_p_EngineHash') {
+			$this->_cPtr=$fileName_or_data;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_EngineHashSwig(); break;
+		case 1: $this->_cPtr=new_EngineHashSwig($fileName_or_data); break;
+		case 2: $this->_cPtr=new_EngineHashSwig($fileName_or_data,$config_or_length); break;
+		case 3: $this->_cPtr=new_EngineHashSwig($fileName_or_data,$config_or_length,$properties_or_config); break;
+		default: $this->_cPtr=new_EngineHashSwig($fileName_or_data,$config_or_length,$properties_or_config,$properties);
+		}
 	}
 }
 
