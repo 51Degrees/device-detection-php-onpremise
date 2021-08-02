@@ -19,6 +19,7 @@ To install on Linux you will need the following dependencies installed:
 - php
 - php-dev
 - make
+- libatomic
 
 These can be installed through apt using:
 
