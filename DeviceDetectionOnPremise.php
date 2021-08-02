@@ -186,13 +186,37 @@ class DeviceDetectionOnPremise extends Engine {
         return $metricProperties;
     }
     
-   /**
-    * Add a cache to an engine
-    * @param Cache (cache with get and set methods)
-    */
+    /**
+     * Add a cache to an engine
+     * @param {Cache} cache with get and set methods
+     */
     public function setCache($cache)
     {
         throw new \Exception(Messages::CACHE_ERROR);
+    }    
+    
+    /**
+     * Ask the engine to start using the specified data file
+     * for detections.
+     * This can be used in 3 different scenarios:
+     * 1. The data file that was originally used to create the engine has 
+     * been updated on disk. In this case, no parameters are needed.
+     * 2. A new data file is available, but it is in a different location
+     * to the original. In this case, the parameter should be the new data
+     * file location.
+     * 3. A new data file is available in memory. The first parameter will
+     * be the variable holding the in-memory data file. The second will
+     * be the size of the data file in bytes.
+     * @param {Object} data file path or the variable holding the in-memory data file
+     * @param {Integer} length of the in-memory data file in bytes
+     */
+    public function refreshData($fileName_or_data=null,$length=null)
+    {
+        switch(func_num_args()) {
+        case 0: $this->engine->refreshData(); break;
+        case 1: $this->engine->refreshData($fileName_or_data); break;
+        default: $this->engine->refreshData($fileName_or_data, $length);
+        }
     }    
 }
 

@@ -6,14 +6,6 @@ trigger:
 # Don't trigger for a pull request
 pr: none
 
-# Schedule to run overnight
-schedules:
-- cron: "0 20 * * *"
-  displayName: Daily overnight build
-  branches:
-    include:
-    - develop
- 
 # Add the common-ci git repo as a resource to access common templates.
 resources:
   repositories:
@@ -27,12 +19,6 @@ variables:
 - template: shared-variables.yml
     
 stages:
-- template: shared-build-and-test-stage.yml
-  parameters:
-    # Production buildType parameter indicates that build and test 
-    # stage will use released packages for pipeline dependencies.
-    buildType: 'Production'
-    imageName: $(linuxImage)
 
 - stage: Tagging
   

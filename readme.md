@@ -19,6 +19,7 @@ To install on Linux you will need the following dependencies installed:
 - php
 - php-dev
 - make
+- libatomic
 
 These can be installed through apt using:
 
@@ -48,13 +49,23 @@ make
 sudo make install
 ```
 
+The Hash engine extension will then be installed into the PHP extensions directory and can 
+then be added to the active php.ini file.
+
+#### Regenerating swig wrapper files.
+
+Note - this step should not normally need to be performed outside 51Degrees.
+
 If the SWIG wrapper files need to be regenerated due to new code in the 'device-detection-cxx'
  submodule, add `SWIG=1` to the `./configure` step. Note that for backwards compatibility with
  PHP 5, SWIG 3.0.12 is used for the pregenerated files in this repository. Newer versions of
  SWIG can be used, provided the extension is being build only for PHP 7.
 
-The Hash engine extension will then be installed into the PHP extensions directory and can 
-then be added to the active php.ini file.
+### Windows 
+
+Although building extensions on Windows is possible, we recommend using the 
+[Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 
+and following the instructions for Linux above.
 
 ## Data File
 

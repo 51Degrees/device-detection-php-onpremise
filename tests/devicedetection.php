@@ -270,6 +270,16 @@ class exampleTests extends TestCase
         $this->assertTrue(true);
 
     }
+    
+    public function testManualDataUpdate()
+    {
+
+        include __DIR__ . "/../examples/hash/manualDataUpdate.php";
+
+        $this->assertTrue(true);
+
+    }
+
     /**
      * Check that when a cache is configured for the engine, an exception is
      * throw with an appropriate message.
