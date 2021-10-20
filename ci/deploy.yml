@@ -23,7 +23,7 @@ variables:
 - template: shared-variables.yml
 - name: deployRunTests
   value: 'On'
- 
+
 stages:
 - template: shared-build-and-test-stage.yml
   parameters:

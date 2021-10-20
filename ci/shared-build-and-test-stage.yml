@@ -36,6 +36,8 @@ stages:
             phpVersion: 7.3
           PHP 7.4:
             phpVersion: 7.4
+          PHP 8.0:
+            phpVersion: 8.0
 
       steps:
       - checkout: self
@@ -78,9 +80,25 @@ stages:
         # Install Device Detection OnPremise extension
       - script: |
           cd on-premise
+
           phpize
+          if [ $? -ne 0 ]; then
+              echo "phpize command failed when building Device Detection extension."
+              exit 1
+          fi
+
           ./configure
+          if [ $? -ne 0 ]; then
+              echo "configure command failed when building Device Detection extension."
+              exit 1
+          fi
+
           sudo make install
+          if [ $? -ne 0 ]; then
+              echo "make install command failed when building Device Detection extension."
+              exit 1
+          fi
+
           cd ..
         displayName: 'Install Device Detection OnPremise extension'
         # Commented out due to a warning when compiling common-cxx.
