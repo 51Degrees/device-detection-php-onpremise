@@ -160,7 +160,7 @@ echo "</br><strong>Detection results:</strong></br>";
 echo "<div id=\"content\">";
 echo "<p>\n";
 echo "    Hardware Vendor: " . (isset($device->hardwarevendor) && $device->hardwarevendor->hasValue ? $device->hardwarevendor->value : "Unknown (" . (isset($device->hardwarevendor) ? $device->hardwarevendor->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Hardware Name: " . (isset($device->hardwarename) && $device->hardwarename->hasValue ? $device->hardwarename->value : "Unknown (" . (isset($device->hardwarename) ? $device->hardwarename->noValueMessage : "property unavailable" ) .")") . "<br />\n";
+echo "    Hardware Name: " . (isset($device->hardwarename) && $device->hardwarename->hasValue ? implode(",", $device->hardwarename->value) : "Unknown (" . (isset($device->hardwarename) ? $device->hardwarename->noValueMessage : "property unavailable" ) .")") . "<br />\n";
 echo "    Device Type: " . (isset($device->devicetype) && $device->devicetype->hasValue ? $device->devicetype->value  : "Unknown (" . (isset($device->devicetype) ? $device->devicetype->noValueMessage : "property unavailable" ) .")") . "<br />\n";
 echo "    Platform Vendor: " . (isset($device->platformvendor) && $device->platformvendor->hasValue ? $device->platformvendor->value : "Unknown (" . (isset($device->platformvendor) ? $device->platformvendor->noValueMessage : "property unavailable" ) .")") . "<br />\n";
 echo "    Platform Name: " . (isset($device->platformname) && $device->platformname->hasValue ? $device->platformname->value : "Unknown (" . (isset($device->platformname) ? $device->platformname->noValueMessage : "property unavailable" ) .")") . "<br />\n";
@@ -168,8 +168,3 @@ echo "    Platform Version: " . (isset($device->platformversion) && $device->pla
 echo "    Browser Vendor: " . (isset($device->browservendor) && $device->browservendor->hasValue ? $device->browservendor->value : "Unknown (" . (isset($device->browservendor) ? $device->browservendor->noValueMessage : "property unavailable" ) .")") . "<br />\n";
 echo "    Browser Name: " . (isset($device->browsername) && $device->browsername->hasValue ? $device->browsername->value : "Unknown (" . (isset($device->browsername) ? $device->browsername->noValueMessage : "property unavailable" ) .")") . "<br />\n";
 echo "    Browser Version: " . (isset($device->browserversion) && $device->browserversion->hasValue ? $device->browserversion->value : "Unknown (" . (isset($device->browserversion) ? $device->browserversion->noValueMessage : "property unavailable" ) .")") . "\n";
-echo "    Screen Width (pixels): " . (isset($device->screenpixelswidth) && $device->screenpixelswidth->hasValue ? $device->screenpixelswidth->value : "Unknown (" . (isset($device->screenpixelswidth) ? $device->screenpixelswidth->noValueMessage : "property unavailable" ) .")") . "\n";
-echo "    Screen Height (pixels): " . (isset($device->screenpixelsheight) && $device->screenpixelsheight->hasValue ? $device->screenpixelsheight->value : "Unknown (" . (isset($device->screenpixelsheight) ? $device->screenpixelsheight->noValueMessage : "property unavailable" ) .")") . "\n";
-echo "</p>\n";
-echo "</div><br>\n";
-
