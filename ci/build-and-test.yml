@@ -12,7 +12,8 @@ schedules:
 variables:
 - template: shared-variables.yml
 - group: CIAutomation
-
+- group: InternalKeys
+    
 resources:
   repositories:
   - repository: ciTemplates # Id of the repository used to reference to in this script
@@ -20,6 +21,11 @@ resources:
     name: common-ci # Name of the actual repository
 
 stages:
+
+- template: data-stage.yml
+  parameters:
+    runTests: variables['RunTests']
+    
 - template: shared-build-and-test-stage.yml
   parameters:
     # Development buildType parameter indicates that build and test 

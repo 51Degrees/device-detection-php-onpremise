@@ -13,8 +13,10 @@ parameters:
   default: 'On'
 
 stages:
+    
 - stage: Build_and_Test
-
+  dependsOn: [Data]
+  
   jobs:
     - job: Build_and_Test
       displayName: Build and Test
@@ -142,7 +144,19 @@ stages:
           sudo apt-get install -y php5.6-mbstring
         displayName: 'install PHPUnit 5'
         condition: eq(variables['phpVersion'], '5.6')
-        
+
+      - task: DownloadBuildArtifacts@0
+        displayName: 'Download Data Files'
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'enterpriseFile'
+          downloadPath: '$(System.ArtifactsDirectory)'
+
+      - script: |   
+          mv $(System.ArtifactsDirectory)/enterpriseFile/Enterprise-HashV41.hash  $(Build.SourcesDirectory)/on-premise/device-detection-cxx/device-detection-data/Enterprise-HashV41.hash
+        displayName: 'Move Data Files'
+      
       - script: |
           export PHPVERSIONEXACT=`php-config --version | grep -o '^[0-9]\.[0-9]'`
           sudo sed -i 's,^enable_dl =.*$,enable_dl = On,' /etc/php/$PHPVERSIONEXACT/cli/php.ini
@@ -152,15 +166,21 @@ stages:
       - script: |
           export PHPVERSIONEXACT=`php-config --version | grep -o '^[0-9]\.[0-9]'`
           echo extension=`pwd`/on-premise/modules/FiftyOneDegreesHashEngine.so | sudo tee -a /etc/php/$PHPVERSIONEXACT/cli/php.ini
-          echo FiftyOneDegreesHashEngine.data_file=`pwd`/on-premise/device-detection-cxx/device-detection-data/51Degrees-LiteV4.1.hash | sudo tee -a /etc/php/$PHPVERSIONEXACT/cli/php.ini
+          echo FiftyOneDegreesHashEngine.data_file=`pwd`/on-premise/device-detection-cxx/device-detection-data/Enterprise-HashV41.hash | sudo tee -a /etc/php/$PHPVERSIONEXACT/cli/php.ini
           echo FiftyOneDegreesHashEngine.allow_unmatched=false | sudo tee -a /etc/php/$PHPVERSIONEXACT/cli/php.ini
         displayName: 'Set php ini settings'
         failOnStderr: true
+
+      - script: |
+          export PHPVERSIONEXACT=`php-config --version | grep -o '^[0-9]\.[0-9]'`
+          cp /etc/php/$PHPVERSIONEXACT/cli/php.ini tests/php.ini
+          ls -lhtr tests
+        displayName: 'Copy php ini to tests folder'
         
       - script: |
           phpunit --log-junit test-results.xml
         displayName: 'Run tests with phpunit'
-        failOnStderr: true
+        failOnStderr: false
         
       # Publish Test Results to Azure Pipelines/TFS
       - task: PublishTestResults@2
