@@ -25,7 +25,7 @@ stages:
     steps:
     
     - script: |
-        curl "https://distributor.51degrees.com/api/v2/download?LicenseKeys=$(licensekey)&Type=HashV41&Download=True&Product=V4Enterprise" --output Enterprise-HashV41.hash.gz
+        curl "https://distributor.51degrees.com/api/v2/download?LicenseKeys=$(DeviceDetectionLicenseKey_Enterprise)&Type=HashV41&Download=True&Product=V4Enterprise" --output Enterprise-HashV41.hash.gz
       displayName: 'Download Enterprise Data File'
 
     - task: ExtractFiles@1
