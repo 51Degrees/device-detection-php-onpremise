@@ -21,7 +21,6 @@ resources:
 variables:
   # Include shared variables
 - template: shared-variables.yml
-- group: InternalKeys
 - name: deployRunTests
   value: 'On'
 
@@ -29,7 +28,7 @@ stages:
 
 - template: data-stage.yml
   parameters:
-    runTests: variables['RunTests']
+    runTests: variables['deployRunTests']
     
 - template: shared-build-and-test-stage.yml
   parameters:
