@@ -35,6 +35,14 @@
  * FiftyOneDegreesHashEngine.data_file = // location of the data file
  * ```
  * 
+ * When running under process manager such as Apache MPM or php-fpm, make sure
+ * to set performance_profile to MaxPerformance by making the following addition
+ * to php.ini file. More details can be found in <a href="https://github.com/51Degrees/device-detection-php-onpremise/blob/master/readme.md">README</a>.
+ * 
+ * ```
+ * FiftyOneDegreesHashEngine.performance_profile = MaxPerformance
+ * ```
+ * 
  * Expected output
  * 
  * ```

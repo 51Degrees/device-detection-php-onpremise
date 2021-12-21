@@ -133,7 +133,7 @@ path to where you have stored your 51Degrees data file.
 | Option | Type | Description | Default |
 | ------ | ---- | ----------- | ------- |
 | `required_properties` | `string` | List of properties which are required. Properties not in this list will not be returned. | `""` (all properties) |
-| `performance_profile` | `string` | The performance profile to build the engine with. Available options are `"HighPerformance"`, `"MaxPerformance"`, `"Balanced"`, `"BalancedTemp"`, `"LowMemory"`, `"Default"` | `"Default"` |
+| `performance_profile` | `string` | The performance profile to build the engine with. Available options are `"HighPerformance"`, `"MaxPerformance"`, `"Balanced"`, `"BalancedTemp"`, `"LowMemory"`, `"Default"`. (`NOTE`: Under environment where `PHP` processes are managed by a process manager such as with `Apache MPM` or `php-fpm`, Only `MaxPerformance` should be used. More details can be seen in [Running Under Process Manager](#running-under-process-manager). | `"Default"` |
 | `difference` | `int` | The difference value to allow when matching (`-1` to disable). | `0` |
 | `drift` | `int` | The drift to allow when matching (`-1` to disable). | `0` |
 | `use_predictive_graph` | `string` | True if the predictive optimized graph should be used for processing. | `true` |
@@ -141,6 +141,18 @@ path to where you have stored your 51Degrees data file.
 | `concurrency` | `int` | Maximum number of potential concurrent threads that the engine will be used with. We recommend that this should not be set higher than the number of CPUs available on your machine and this should never be set to be less than or equal to 0. `NOTE`: If a value which is less than or equal to 0 is specified, default value will be used. | `10` |
 | `update_matched_useragent` | `string` | True if the detection should record the matched characters from the target User-Agent. | `true` |
 | `max_matched_useragent_length` | `int` | Number of characters to consider in the matched User-Agent. Ignored if `update_matched_useragent` is false. | `500` |
+
+### Running Under Process Manager
+
+When `PHP` program is run under a process manager such as `Apache MPM`, `php-fpm` or any other process manager, `MaxPerformance` profile must be specified for `performance_profile` option. `HighPerformance` can also be used but the performance cannot be compared to `MaxPerformance` profile.
+
+The reason is that, in other profiles such as `Balanced`, `BalancedTemp`, `LowMemory` or `Default`, only a part of the data file is loaded into memory so from time to time, calls to read data from disk are required. This call use file handles from a file handle pool which was designed to optimise the performance. However, this pool was created when Device Detection engine module is loaded in the main process, so when process manager spawn child processes in response to incoming requests by forking the main process, this pool is copied to the child processes, causing the file handles to be shared. When multiple processes call to load data from file using shared file handles, problems could occur such as file position being changed unwantedly by other child processes. Thus, we recommend the `MaxPerformance` to be used as no call to data file is required.
+
+While this is an issue in multi-processing environment, it is not a problem in multi-threading environment as the file handles are not shared and are managed by the file handle pool.
+
+#### Apache MPM
+
+When running under Apache MPM, only `prefork` mode is supported, since `dl()` call is required to load Device Detection engine module and it is not supported under multi-threading environment which `worker` and `event` mode does.
 
 ## Examples
 
