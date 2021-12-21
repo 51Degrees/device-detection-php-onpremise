@@ -55,6 +55,7 @@ public:
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.allow_unmatched", NULL, PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.use_predictive_graph", NULL, PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.use_performance_graph", NULL, PHP_INI_ALL, NULL)
+    PHP_INI_ENTRY("FiftyOneDegreesHashEngine.concurrency", "10", PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.update_matched_useragent", NULL, PHP_INI_ALL, NULL)
     PHP_INI_ENTRY("FiftyOneDegreesHashEngine.max_matched_useragent_length", NULL, PHP_INI_ALL, NULL)
 
@@ -75,6 +76,7 @@ EngineHash *engine;
     char *allowUnmatched = INI_STR("FiftyOneDegreesHashEngine.allow_unmatched");
     char *usePredictiveGraph = INI_STR("FiftyOneDegreesHashEngine.use_predictive_graph");
     char *usePerformanceGraph = INI_STR("FiftyOneDegreesHashEngine.use_performance_graph");
+    int concurrency = INI_INT("FiftyOneDegreesHashEngine.concurrency");
     char *updateMatchedUa = INI_STR("FiftyOneDegreesHashEngine.update_matched_useragent");
     int maxUaLength= INI_INT("FiftyOneDegreesHashEngine.max_matched_useragent_length");
 
@@ -119,6 +121,13 @@ EngineHash *engine;
     // Set use performance graph.
     if (usePerformanceGraph != NULL) {
         config->setUsePerformanceGraph(strcmp(usePerformanceGraph, "true") == 0);
+    }
+	// Set concurrency.
+    if (concurrency <= 0) {
+        config->setConcurrency(10);
+    }
+    else {
+        config->setConcurrency(concurrency);
     }
     // Set update matched User-Agent.
 	if (updateMatchedUa != NULL) {

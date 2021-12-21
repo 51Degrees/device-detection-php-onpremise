@@ -61,6 +61,30 @@ If the SWIG wrapper files need to be regenerated due to new code in the 'device-
  PHP 5, SWIG 3.0.12 is used for the pregenerated files in this repository. Newer versions of
  SWIG can be used, provided the extension is being build only for PHP 7.
 
+Currently, The generation of SWIG wrapper files is using a specific revision of SWIG and is done
+using the following steps:
+
+Checkout and install SWIG:
+
+```
+git clone https://github.com/swig/swig.git
+cd swig
+git checkout fd96627b2fc65353c03b160efd60fdce864d386c
+./autogen.sh
+./configure
+make
+sudo make install
+```
+
+Generate wrapper files:
+
+```
+$:~/device-detection-php-onpremise
+cd on-premise
+phpize
+swig -v -c++ -php7 -module FiftyOneDegreesHashEngine -outdir src/php8 -o src/php8/hash_wrap.cxx hash-php.i
+```
+
 ### Windows 
 
 Although building extensions on Windows is possible, we recommend using the 
@@ -114,6 +138,7 @@ path to where you have stored your 51Degrees data file.
 | `drift` | `int` | The drift to allow when matching (`-1` to disable). | `0` |
 | `use_predictive_graph` | `string` | True if the predictive optimized graph should be used for processing. | `true` |
 | `use_performance_graph` | `string` | True if the performance optimized graph should be used for processing. | `false` |
+| `concurrency` | `int` | Maximum number of potential concurrent threads that the engine will be used with. We recommend that this should not be set higher than the number of CPUs available on your machine and this should never be set to be less than or equal to 0. `NOTE`: If a value which is less than or equal to 0 is specified, default value will be used. | `10` |
 | `update_matched_useragent` | `string` | True if the detection should record the matched characters from the target User-Agent. | `true` |
 | `max_matched_useragent_length` | `int` | Number of characters to consider in the matched User-Agent. Ignored if `update_matched_useragent` is false. | `500` |
 
