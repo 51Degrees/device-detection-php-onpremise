@@ -24,6 +24,7 @@
     "type": "library",
     "autoload": {
         "classmap": [
+            "Constants.php",
             "DeviceDetectionOnPremise.php",
             "Messages.php",
             "SwigData.php",

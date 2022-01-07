@@ -32,6 +32,7 @@ use PHPUnit\Framework\TestCase;
 use fiftyone\pipeline\core\PipelineBuilder;
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\devicedetection\Messages;
+use fiftyone\pipeline\devicedetection\Constants;
 
 class exampleTests extends TestCase
 {
@@ -138,6 +139,32 @@ class exampleTests extends TestCase
 
             }
         }
+    }
+
+    public function testMatchMetricsDescription()
+	{
+
+        $deviceDetection = new DeviceDetectionOnPremise();
+
+        $builder = new PipelineBuilder();
+
+        $pipeline = $builder->add($deviceDetection)->build();
+
+        $flowData = $pipeline->createFlowData();
+
+        $flowData->evidence->set("header.user-agent", $this->iPhoneUA);
+
+        $result = $flowData->process();
+
+        $properties = $pipeline->getElement("device")->getProperties();
+
+		$this->assertEquals($properties["matchednodes"]["description"], Constants::MATCHED_NODES_DESCRIPTION);
+		$this->assertEquals($properties["difference"]["description"], Constants::DIFFERENCE_DESCRIPTION);
+		$this->assertEquals($properties["drift"]["description"], Constants::DRIFT_DESCRIPTION);
+		$this->assertEquals($properties["deviceid"]["description"], Constants::DEVICE_ID_DESCRIPTION);
+		$this->assertEquals($properties["useragents"]["description"], Constants::USER_AGENTS_DESCRIPTION);
+		$this->assertEquals($properties["iterations"]["description"], Constants::ITERATIONS_DESCRIPTION);
+		$this->assertEquals($properties["method"]["description"], Constants::METHOD_DESCRIPTION);
     }
 
     public function testValueTypes()
