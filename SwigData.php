@@ -83,6 +83,11 @@ class SwigData extends AspectData {
                                 null,
                                 $this->result->getDifference());
                         break;
+                    case "Iterations":
+                        $result = new AspectPropertyValue(
+                                null,
+                                $this->result->getIterations());
+                        break;
                 }
             }
             else {
