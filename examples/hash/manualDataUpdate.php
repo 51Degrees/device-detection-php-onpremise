@@ -25,7 +25,7 @@
  * @example hash/manualDataUpdate.php
  * 
  * This example shows how to get the device detection engine to refresh
- * it's internal data structures when a new data file is available.
+ * its internal data structures when a new data file is available.
  * 
  * This can be done asynchronously, without the need to restart the machine.
  *
@@ -41,12 +41,16 @@
  * 
  * When running under process manager such as Apache MPM or php-fpm, make sure
  * to set performance_profile to MaxPerformance by making the following addition
- * to php.ini file. More details can be found in <a href="https://github.com/51Degrees/device-detection-php-onpremise/blob/master/readme.md">README</a>.
+ * to php.ini. More details can be found in <a href="https://github.com/51Degrees/device-detection-php-onpremise/blob/master/readme.md">README</a>.
  * 
  * ```
  * FiftyOneDegreesHashEngine.performance_profile = MaxPerformance
  * ```
  * 
+ * Under process managers, refreshing internal data will not work as it is required
+ * to be performed on both main process and child processes. There is not a proven
+ * solution to do so yet, so we recommend a full server restart to be performed instead. 
+ *
  * Expected output:
  *
  * ```
