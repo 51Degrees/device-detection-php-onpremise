@@ -256,44 +256,28 @@ class exampleTests extends TestCase
     public function testFailureToMatch()
 	{
 
-        include __DIR__ . "/../examples/hash/failureToMatch.php";
+        include __DIR__ . "/../examples/onpremise/failureToMatch.php";
 
 		$this->assertTrue(true);
 
     }
 
-	public function testGettingStarted()
+	public function testGettingStartedConsole()
 	{
 
-        include __DIR__ . "/../examples/hash/gettingstarted.php";
+        include __DIR__ . "/../examples/onpremise/gettingStartedConsole.php";
         
         $this->assertTrue(true);
 
     }
+
+    // TODO - add test for getting started web
     
     public function testMetaData()
 	{
 
-        include __DIR__ . "/../examples/hash/metadata.php";
+        include __DIR__ . "/../examples/onpremise/metadata.php";
         
-        $this->assertTrue(true);
-
-    }
-    
-    public function testWebIntegration()
-    {
-
-        include __DIR__ . "/../examples/hash/webIntegration.php";
-
-        $this->assertTrue(true);
-
-    }
-
-    public function testUserAgentClientHints()
-    {
-
-        include __DIR__ . "/../examples/hash/userAgentClientHints.php";
-
         $this->assertTrue(true);
 
     }
@@ -301,7 +285,7 @@ class exampleTests extends TestCase
     public function testManualDataUpdate()
     {
 
-        include __DIR__ . "/../examples/hash/manualDataUpdate.php";
+        include __DIR__ . "/../examples/onpremise/manualDataUpdate.php";
 
         $this->assertTrue(true);
 

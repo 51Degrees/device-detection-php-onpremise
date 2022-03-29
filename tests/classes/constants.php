@@ -40,12 +40,12 @@ class Constants {
 			. "Mobile/15E148 Safari/604.1";
 	const CURL_UA = "curl/7.80.0";
 
-	const SUPER_ACCEPT_CH = array("Sec-CH-UA", "Sec-CH-UA-Full-Version", "Sec-CH-UA-Model", 
-                            "Sec-CH-UA-Mobile", "Sec-CH-UA-Arch", "Sec-CH-UA-Platform",  
-                            "Sec-CH-UA-Platform-Version");
-	const PLATFORM_ACCEPT_CH = array("SEC-CH-UA-Platform", "SEC-CH-UA-Platform-Version");
-	const HARDWARE_ACCEPT_CH = array("SEC-CH-UA-Model", "SEC-CH-UA-Mobile", "SEC-CH-UA-Arch");
-	const BROWSER_ACCEPT_CH = array("SEC-CH-UA", "SEC-CH-UA-Full-Version");
+	// Lists of key headers that are expected to be requested in Accept-CH if the browser
+	// supports UACH.
+	const SUPER_ACCEPT_CH = array("Sec-CH-UA", "Sec-CH-UA-Model", "Sec-CH-UA-Platform");
+	const PLATFORM_ACCEPT_CH = array("SEC-CH-UA-Platform");
+	const HARDWARE_ACCEPT_CH = array("SEC-CH-UA-Model");
+	const BROWSER_ACCEPT_CH = array("SEC-CH-UA");
 	const EMPTY_ACCEPT_CH = array();
 	
 	const URL = "http://localhost:3000/";

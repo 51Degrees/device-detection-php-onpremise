@@ -22,11 +22,11 @@
  * ********************************************************************* */
 
 /**
- * @example hash/userAgentClientHints-Web.php
+ * @example onpremise/userAgentClientHints-Web.php
  *
  * @include{doc} example-web-integration-client-hints.txt
  *
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/hash/userAgentClientHints-Web.php).
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/userAgentClientHints-Web.php).
 
  * In this example we create an on premise 51Degrees device detection pipeline, 
  * in order to do this you will need a copy of the 51Degrees on-premise library 

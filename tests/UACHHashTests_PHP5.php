@@ -42,14 +42,14 @@ class UACHHashTests_PHP5 extends TestCase{
         shell_exec('echo FiftyOneDegreesHashEngine.required_properties=  ' . $propertiesShell . ' >> tests/php.ini');
         
         // start server
-        self::$process = new Process('php -c tests/php.ini -S localhost:3000 examples/hash/userAgentClientHints-Web.php');
+        self::$process = new Process('php -c tests/php.ini -S localhost:3000 examples/onpremise/userAgentClientHints-Web.php');
         self::$process->start();      
         if (self::$process->status()){
             shell_exec("lsof -i tcp:3000 1>/dev/null 2>&1" );
             shell_exec("sleep 3" );
-            echo "User Agent Client Hints Hash Web example has started running.\n";
+            echo "User Agent Client Hints On-Premise Web example has started running.\n";
         }else{
-            throw new Exception("Could not start the User Agent Client Hints-Hash Web example. \n");
+            throw new Exception("Could not start the User Agent Client Hints On-Premise Web example. \n");
         } 
     }
 
@@ -58,7 +58,7 @@ class UACHHashTests_PHP5 extends TestCase{
         // stop server
 		sleep(3);
         if(self::$process->stop()) {
-            echo "\nProcess stopped for User Agent Client Hints-Hash Web example. \n";        
+            echo "\nProcess stopped for User Agent Client Hints On-Premise Web example. \n";        
         }
         return;		
     }
@@ -138,18 +138,21 @@ class UACHHashTests_PHP5 extends TestCase{
             $this->assertFalse(isset($responseHeaders['Accept-CH']));
         } 
         else 
-        {   $this->assertTrue(isset($responseHeaders['Accept-CH']));           
+        {   
+            $this->assertTrue(isset($responseHeaders['Accept-CH']));
             
-            $actualValue = explode(',', $responseHeaders['Accept-CH']);            
-            $this->assertEquals(count($expectedValue), count($actualValue));
-                       
+            $actualValue = explode(',', $responseHeaders['Accept-CH']);
+            
+            // We don't require the expected list of values to match exactly, as the headers 
+            // used by detection change over time. However, we do make sure that the most 
+            // critical ones are present in Accept-CH.
             foreach($expectedValue as $e) {           
                 $lowerCasedExpectedValue = strtolower($e);
                 $lowerCasedActualArray = array_map('strtolower', array_map('trim', $actualValue));
-                $this->assertTrue(in_array($lowerCasedExpectedValue, $lowerCasedActualArray));           
+                $this->assertTrue(in_array($lowerCasedExpectedValue, $lowerCasedActualArray));
             }
         } 
-                              
+
     }
 
     /**

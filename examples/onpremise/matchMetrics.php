@@ -22,11 +22,11 @@
  * ********************************************************************* */
 
 /**
- * @example hash/matchMetrics.php
+ * @example onpremise/matchMetrics.php
  * 
  * @include{doc} example-match-metrics-hash.txt
  * 
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/hash/matchMetrics.php).
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/matchMetrics.php).
  * 
  * @include{doc} example-require-datafile.txt
  * 

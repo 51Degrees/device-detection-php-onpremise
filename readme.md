@@ -160,6 +160,9 @@ To reload the data file, *refreshData()* needs to be called as described in this
 
 ## Examples
 
+Before running the examples, the configuration for the native module MUST be
+added to the php.ini file. See [Configuration](#configuration).
+
 To run the examples, you will need PHP and composer installed.
 Once these are available, install the dependencies required by the examples. 
 Navigate to the repository root and execute:
@@ -172,7 +175,7 @@ This will create the vendor directory containing autoload.php.
 Now navigate to the examples directory and start a PHP server with the relevant file. For example:
 
 ```
-php -S localhost:3000 gettingstarted.php
+php -S localhost:3000 gettingStartedWeb.php
 ```
 
 This will start a local web server listening on port 3000. 
