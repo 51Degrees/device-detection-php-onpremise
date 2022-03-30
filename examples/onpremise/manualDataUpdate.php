@@ -22,15 +22,17 @@
  * ********************************************************************* */
 
  /**
- * @example hash/gettingstarted.php
+ * @example onpremise/manualDataUpdate.php
  * 
- * This example shows how a simple device detection pipeline that checks
- * if a User-Agent is a mobile device
+ * This example shows how to get the device detection engine to refresh
+ * its internal data structures when a new data file is available.
+ * 
+ * This can be done asynchronously, without the need to restart the machine.
  *
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/hash/gettingStarted.php).
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/manualDataUpdate.php).
 
- * In this example we create an on premise 51Degrees device detection pipeline, 
- * in order to do this you will need a copy of the 51Degrees on-premise library 
+ * In this example we create an on premise 51Degrees device detection pipeline.
+ * In order to do this you will need a copy of the 51Degrees on-premise library 
  * and need to make the following additions to your php.ini file
  * 
  * ```
@@ -39,15 +41,24 @@
  * 
  * When running under process manager such as Apache MPM or php-fpm, make sure
  * to set performance_profile to MaxPerformance by making the following addition
- * to php.ini file. More details can be found in <a href="https://github.com/51Degrees/device-detection-php-onpremise/blob/master/readme.md">README</a>.
+ * to php.ini. More details can be found in <a href="https://github.com/51Degrees/device-detection-php-onpremise/blob/master/readme.md">README</a>.
  * 
  * ```
  * FiftyOneDegreesHashEngine.performance_profile = MaxPerformance
  * ```
  * 
+ * Under process managers, refreshing internal data will not work as it is required
+ * to be performed on both main process and child processes. There is not a proven
+ * solution to do so yet, so we recommend a full server restart to be performed instead. 
+ *
  * Expected output:
  *
  * ```
+ * Is User-Agent 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114' a mobile?
+ * true
+ * Is User-Agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36' a mobile?
+ * false
+ * Reloading data file...
  * Is User-Agent 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114' a mobile?
  * true
  * Is User-Agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36' a mobile?
@@ -60,16 +71,16 @@ require(__dir__ . "/../../vendor/autoload.php");
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\core\PipelineBuilder;
 
-$device = new DeviceDetectionOnPremise();
+$deviceEngine = new DeviceDetectionOnPremise();
 
 $pipeline = new PipelineBuilder();
 
-$pipeline = $pipeline->add($device)->build();
+$pipeline = $pipeline->add($deviceEngine)->build();
 
 // Here we create a function that checks if a supplied User-Agent is a 
 // mobile device
 
-function gettingstarted_checkifmobile($userAgent = "", $pipeline){
+function manualDataUpdate_checkifmobile($userAgent = "", $pipeline){
 
     // We create the flowData object that is used to add evidence to and read data from 
     $flowData = $pipeline->createFlowData();
@@ -106,10 +117,23 @@ function gettingstarted_checkifmobile($userAgent = "", $pipeline){
     print("</br>\n");
 }
 
+
 // Some example User-Agents to test
 
 $desktopUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36';
 $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
 
-gettingstarted_checkifmobile($desktopUA, $pipeline);
-gettingstarted_checkifmobile($iPhoneUA, $pipeline);
+manualDataUpdate_checkifmobile($desktopUA, $pipeline);
+manualDataUpdate_checkifmobile($iPhoneUA, $pipeline);
+print("Reloading data file...");
+// Update the device detection engine with the data file from the
+// same location.
+// In this example, we haven't actually copied a new data file in,
+// so this will have no effect.
+// In practice, this function should be called after the data file
+// on disk has been overwritten with a newer one.
+// There are variations, which allow refreshing from a different
+// file path or from an in-memory representation of the data file.
+$deviceEngine->refreshData();
+manualDataUpdate_checkifmobile($desktopUA, $pipeline);
+manualDataUpdate_checkifmobile($iPhoneUA, $pipeline);

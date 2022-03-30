@@ -4,7 +4,7 @@
  * Copyright 2019 51 Degrees Mobile Experts Limited, 5 Charlotte Close,
  * Caversham, Reading, Berkshire, United Kingdom RG4 7BY.
  *
- * This Original Work is licensed under the European Union Public Licence (EUPL) 
+ * This Original Work is licensed under the European Union Public Licence (EUPL)
  * v.1.2 and is subject to its terms as set out below.
  *
  * If a copy of the EUPL was not distributed with this file, You can obtain
@@ -14,29 +14,29 @@
  * amended by the European Commission) shall be deemed incompatible for
  * the purposes of the Work and the provisions of the compatibility
  * clause in Article 5 of the EUPL shall not apply.
- * 
- * If using the Work as, or as part of, a network application, by 
+ *
+ * If using the Work as, or as part of, a network application, by
  * including the attribution notice(s) required under Article 5 of the EUPL
- * in the end user terms of the application under an appropriate heading, 
+ * in the end user terms of the application under an appropriate heading,
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
- /**
- * @example hash/manualDataUpdate.php
+/**
+ * @example onpremise/failureToMatch.php
  * 
- * This example shows how to get the device detection engine to refresh
- * it's internal data structures when a new data file is available.
+ * This example shows how the hasValue function can help make sure 
+ * that meaningful values are returned when checking properties 
+ * returned from the device detection engine.
  * 
- * This can be done asynchronously, without the need to restart the machine.
- *
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/hash/manualDataUpdate.php).
-
- * In this example we create an on premise 51Degrees device detection pipeline.
- * In order to do this you will need a copy of the 51Degrees on-premise library 
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/failureToMatch.php).
+ * 
+ * In this example we create an on premise 51Degrees device detection pipeline, 
+ * in order to do this you will need a copy of the 51Degrees on-premise library 
  * and need to make the following additions to your php.ini file
- * 
+ *
  * ```
  * FiftyOneDegreesHashEngine.data_file = // location of the data file
+ * FiftyOneDegreesHashEngine.allow_unmatched = false
  * ```
  * 
  * When running under process manager such as Apache MPM or php-fpm, make sure
@@ -48,35 +48,36 @@
  * ```
  * 
  * Expected output:
+ * 
+ * ```
+ * Does User-Agent 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114' represent a mobile device?:
+ * Yes
  *
+ * Does User-Agent 'nonsense ua...' represent a mobile device?:
+ * We don't know for sure. The reason given is:
+ * The results contained a null profile for the component which the required property belongs to.
  * ```
- * Is User-Agent 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114' a mobile?
- * true
- * Is User-Agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36' a mobile?
- * false
- * Reloading data file...
- * Is User-Agent 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114' a mobile?
- * true
- * Is User-Agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36' a mobile?
- * false
- * ```
- **/
+ */
+
+// First we include the deviceDetectionPipelineBuilder
+
 
 require(__dir__ . "/../../vendor/autoload.php");
 
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\core\PipelineBuilder;
 
-$deviceEngine = new DeviceDetectionOnPremise();
+$device = new DeviceDetectionOnPremise();
 
 $pipeline = new PipelineBuilder();
 
-$pipeline = $pipeline->add($deviceEngine)->build();
+$pipeline = $pipeline->add($device)->build();
+
 
 // Here we create a function that checks if a supplied User-Agent is a 
 // mobile device
 
-function manualDataUpdate_checkifmobile($userAgent = "", $pipeline){
+function failuretomatch_checkifmobile($userAgent = "", $pipeline) {
 
     // We create the flowData object that is used to add evidence to and read data from 
     $flowData = $pipeline->createFlowData();
@@ -90,7 +91,7 @@ function manualDataUpdate_checkifmobile($userAgent = "", $pipeline){
 
     // First we check if the property we're looking for has a meaningful result
 
-    print("Is User-Agent '<b>" . $userAgent . "</b>' a mobile device?:");
+    print("Does User-Agent '<b>" . $userAgent . "</b>' represent a mobile device?:");
     print("</br>\n");
 
     if($result->device->ismobile->hasValue){
@@ -103,33 +104,25 @@ function manualDataUpdate_checkifmobile($userAgent = "", $pipeline){
 
     } else {
 
+        print("We don't know for sure. The reason given is:");
+        print("</br>\n");
         // If it doesn't have a meaningful result, we echo out the reason why 
         // it wasn't meaningful
         print($result->device->ismobile->noValueMessage);
+        print("</br>\n");
 
     }
 
     print("</br>\n");
     print("</br>\n");
+
 }
 
 
 // Some example User-Agents to test
 
-$desktopUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36';
 $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
+failuretomatch_checkifmobile($iPhoneUA, $pipeline);
 
-manualDataUpdate_checkifmobile($desktopUA, $pipeline);
-manualDataUpdate_checkifmobile($iPhoneUA, $pipeline);
-print("Reloading data file...");
-// Update the device detection engine with the data file from the
-// same location.
-// In this example, we haven't actually copied a new data file in,
-// so this will have no effect.
-// In practice, this function should be called after the data file
-// on disk has been overwritten with a newer one.
-// There are variations, which allow refreshing from a different
-// file path or from an in-memory representation of the data file.
-$deviceEngine->refreshData();
-manualDataUpdate_checkifmobile($desktopUA, $pipeline);
-manualDataUpdate_checkifmobile($iPhoneUA, $pipeline);
+$badUserAgent = 'nonsense ua...';
+failuretomatch_checkifmobile($badUserAgent, $pipeline);

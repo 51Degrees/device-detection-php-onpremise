@@ -154,7 +154,14 @@ While this is an issue in multi-processing environment, it is not a problem in m
 
 When running under Apache MPM, only `prefork` mode is supported, since `dl()` call is required to load Device Detection engine module and it is not supported under multi-threading environment which `worker` and `event` mode does.
 
+#### Refresh Internal Data
+
+To reload the data file, *refreshData()* needs to be called as described in this [example](http://51degrees.com/documentation/4.3/_examples__device_detection__manual_data_reload__on_premise_hash.html) . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.
+
 ## Examples
+
+Before running the examples, the configuration for the native module MUST be
+added to the php.ini file. See [Configuration](#configuration).
 
 To run the examples, you will need PHP and composer installed.
 Once these are available, install the dependencies required by the examples. 
@@ -168,7 +175,7 @@ This will create the vendor directory containing autoload.php.
 Now navigate to the examples directory and start a PHP server with the relevant file. For example:
 
 ```
-php -S localhost:3000 gettingstarted.php
+php -S localhost:3000 gettingStartedWeb.php
 ```
 
 This will start a local web server listening on port 3000. 

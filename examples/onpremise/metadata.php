@@ -22,10 +22,10 @@
  * ********************************************************************* */
 
 /**
- * @example hash/metadata.php
+ * @example onpremise/metadata.php
  * This example shows how to get properties from a pipeline's processed flowData based on * their metadata and the getProperties() method.
  * 
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/hash/metadata.php).
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/metadata.php).
  * 
  * In this example we create an on premise 51Degrees device detection pipeline, 
  * in order to do this you will need a copy of the 51Degrees on-premise library 
