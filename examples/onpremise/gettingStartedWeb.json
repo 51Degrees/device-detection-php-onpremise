@@ -1,0 +1,20 @@
+{
+    "PipelineOptions": {
+        "Elements": [
+            {
+                "BuilderName": "fiftyone\\pipeline\\devicedetection\\DeviceDetectionOnPremise"
+            },
+            {
+                "BuilderName": "fiftyone\\pipeline\\core\\JsonBundlerElement"
+            },
+            {
+                "BuilderName": "fiftyone\\pipeline\\core\\JavascriptBuilderElement",
+                "BuildParameters": {
+                    "endpoint": "/json",
+                    "minify": true,
+                    "enableCookies": true
+                }
+            }
+        ]
+    }
+}

@@ -48,6 +48,11 @@ stages:
         persistCredentials: true
 
       - script: |
+          sudo composer self-update --2.2
+        displayName: 'Use Composer 2.2'
+        condition: eq(variables['phpVersion'], '5.6')
+
+      - script: |
           sudo add-apt-repository ppa:ondrej/php
           sudo apt-get update -y
         displayName: 'Intall PHP 5'

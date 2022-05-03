@@ -34,8 +34,8 @@
  * - 51degrees/fiftyone.devicedetection
  */ 
 
-require(__DIR__ . "/exampleUtils.php");
-require(__DIR__ . "/../../vendor/autoload.php");
+require_once(__DIR__ . "/exampleUtils.php");
+require_once(__DIR__ . "/../../vendor/autoload.php");
 
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\core\PipelineBuilder;
@@ -49,7 +49,7 @@ class GettingStartedConsole
      * pipelines in general see the documentation at
      * http://51degrees.com/documentation/4.3/_concepts__configuration__builders__index.html
      */
-    public function run($logger)
+    public function run($logger, callable $output)
     {
         $engine = new DeviceDetectionOnPremise(array(
             // We use the low memory profile as its performance is
@@ -60,18 +60,21 @@ class GettingStartedConsole
             // http://51degrees.com/documentation/4.3/_features__usage_sharing.html
             "performanceProfile" => "LowMemory",
         ));
-        $pipeline = (new PipelineBuilder())->add($engine)->build();
+        $pipeline = (new PipelineBuilder())
+            ->add($engine)
+            ->addLogger($logger)
+            ->build();
 
-        ExampleUtils::checkDataFile($pipeline, $logger);
+        ExampleUtils::checkDataFile($pipeline->getElement("device"), $logger);
         
         // carry out some sample detections
         foreach ($this->evidenceValues as &$values)
         {
-            $this->analyseEvidence($values, $pipeline, $logger);
+            $this->analyseEvidence($values, $pipeline, $output);
         }
     }
 
-    private function analyseEvidence($evidence, $pipeline, $logger)
+    private function analyseEvidence($evidence, $pipeline, callable $output)
     {
 
         // FlowData is a data structure that is used to convey
@@ -92,7 +95,7 @@ class GettingStartedConsole
             $message[] = "\t$key: $value";
         }
         
-        $logger->log("info", implode("\n", $message));
+        $output(implode("\n", $message));
 
         // Add the evidence values to the flow data
         $data->evidence->setArray($evidence);
@@ -118,7 +121,7 @@ class GettingStartedConsole
         $this->outputValue("Platform Version", $device->platformversion, $message);
         $this->outputValue("Browser Name", $device->browsername, $message);
         $this->outputValue("Browser Version", $device->browserversion, $message);
-        $logger->log("info", implode("\n", $message));
+        $output(implode("\n", $message));
     }
     
     function outputValue($name, $value, &$message)
@@ -171,15 +174,18 @@ class GettingStartedConsole
         );
 };
 
-function main($argv)
-{
-    // Configure a logger to output to the console.
-    $logger = ExampleUtils::getLogger("Getting Started Console");
-
-    (new GettingStartedConsole())->run($logger);
-}
-
+// Only declare and call the main function if this is being run directly.
+// This prevents main from being run where examples are run as part of
+// PHPUnit tests.
 if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))
 {
+    function main($argv)
+    {
+        // Configure a logger to output to the console.
+        $logger = Logger("info");
+
+        (new GettingStartedConsole())->run($logger, ["ExampleUtils", "output"]);
+    }
+
     main(isset($argv) ? array_slice($argv, 1) : null);
 }
