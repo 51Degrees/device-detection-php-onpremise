@@ -34,7 +34,7 @@ use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\devicedetection\Messages;
 use fiftyone\pipeline\devicedetection\Constants;
 
-class exampleTests extends TestCase
+class DeviceDetectionTests extends TestCase
 {
     protected $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
 
@@ -261,27 +261,7 @@ class exampleTests extends TestCase
 		$this->assertTrue(true);
 
     }
-
-	public function testGettingStartedConsole()
-	{
-
-        include __DIR__ . "/../examples/onpremise/gettingStartedConsole.php";
         
-        $this->assertTrue(true);
-
-    }
-
-    // TODO - add test for getting started web
-    
-    public function testMetaData()
-	{
-
-        include __DIR__ . "/../examples/onpremise/metadata.php";
-        
-        $this->assertTrue(true);
-
-    }
-    
     public function testManualDataUpdate()
     {
 

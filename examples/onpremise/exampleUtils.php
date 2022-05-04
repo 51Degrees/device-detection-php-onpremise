@@ -25,30 +25,24 @@ require(__DIR__ . "/../../vendor/autoload.php");
 
 use fiftyone\pipeline\core\Logger;
 
-class ExampleLogger extends Logger
-{
-    public function logInternal($log)
-    {
-        $message = $this->settings["name"].":".$log["level"].": ".$log["message"]."\n";
-
-        if (php_sapi_name() == "cli")
-        {
-            echo $message;
-        }
-        else
-        {
-            echo "<pre>$message</pre>";
-        }
-    }
-}
-
 class ExampleUtils
 {
     // If data file is older than this number of days then a warning will 
     // be displayed.
     const DATA_FILE_AGE_WARNING = 30;
  
-    
+    public static function output($message)
+    {
+        if (php_sapi_name() == "cli")
+        {
+            echo $message."\n";
+        }
+        else
+        {
+            echo "<pre>$message\n</pre>";
+        }
+    }
+
     public static function getDataFileDate($engine)
     {
         $date = $engine->engine->getPublishedTime();
@@ -72,10 +66,8 @@ class ExampleUtils
      * details about the data file as well as meta-data 
      * describing things such as the available properties.
      */
-    public static function checkDataFile($pipeline, $logger)
+    public static function checkDataFile($engine, $logger)
     {
-        $engine = $pipeline->getElement("device");
-
         if (isset($engine))
         {
             $dataFileDate = ExampleUtils::getDataFileDate($engine);
@@ -122,11 +114,6 @@ class ExampleUtils
         {
             return "";
         }
-    }
-    
-    public static function getLogger($name)
-    {
-        return new ExampleLogger("info", array("name" => $name));
     }
     
     public static function getHumanReadable($device, $name)

@@ -80,6 +80,7 @@ require(__DIR__ . "/../../vendor/autoload.php");
 
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\core\PipelineBuilder;
+use fiftyone\pipeline\core\Logger;
 use fiftyone\pipeline\core\Utils;
 
 class GettingStartedWeb
@@ -88,6 +89,7 @@ class GettingStartedWeb
     {
         $pipeline = (new PipelineBuilder())
             ->buildFromConfig($configFile)
+            ->addLogger($logger)
             ->build();
         
         $this->processRequest($pipeline, $output);
@@ -129,9 +131,9 @@ class GettingStartedWeb
 function main($argv)
 {
     // Configure a logger to output to the console.
-    $logger = ExampleUtils::getLogger("Getting Started Web");
+    $logger = new Logger("info");
 
-    $configFile = __DIR__ . "/pipeline.json";
+    $configFile = __DIR__ . "/gettingStartedWeb.json";
 
     (new GettingStartedWeb())->run($configFile, $logger, function($message) { echo $message; });
 }

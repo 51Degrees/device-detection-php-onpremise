@@ -2,6 +2,9 @@
   <testsuites>
     <testsuite name="Tests">
       <file>tests/devicedetection.php</file>
+      <file>tests/examples.php</file>
+      <file phpVersion="7.1.0" phpVersionOperator='&gt;'>tests/examplesWeb.php</file>
+      <file phpVersion="6.0.0" phpVersionOperator='&lt;'>tests/examplesWeb_PHP5.php</file>
       <file phpVersion="7.1.0" phpVersionOperator='&gt;'>tests/UACHHashTests.php</file>
       <file phpVersion="6.0.0" phpVersionOperator='&lt;'>tests/UACHHashTests_PHP5.php</file>
     </testsuite>

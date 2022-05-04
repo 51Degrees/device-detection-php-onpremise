@@ -22,8 +22,8 @@
  * ********************************************************************* */
 
 require(__DIR__ . "/../vendor/autoload.php");
-require __DIR__ . '/classes/process.php';
-require __DIR__ . '/classes/constants.php';
+require_once(__DIR__ . '/classes/process.php');
+require_once(__DIR__ . '/classes/constants.php');
 
 use PHPUnit\Framework\TestCase;
 
