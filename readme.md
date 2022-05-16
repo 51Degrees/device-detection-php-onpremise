@@ -19,12 +19,12 @@ To install on Linux you will need the following dependencies installed:
 - php
 - php-dev
 - make
-- libatomic
+- libatomic1
 
 These can be installed through apt using:
 
 ``` bash
-sudo apt-get install g++ php php-dev make
+sudo apt-get install g++ php php-dev make libatomic1
 ```
 
 We need to ensure that the necessary sub-modules, containing the native C code, have been cloned.
@@ -54,12 +54,13 @@ then be added to the active php.ini file.
 
 #### Regenerating swig wrapper files.
 
-Note - this step should not normally need to be performed outside 51Degrees.
+**Note** - this step should not normally need to be performed outside 51Degrees. 
+We include the instructions here for the rare case where it is necessary.
 
 If the SWIG wrapper files need to be regenerated due to new code in the 'device-detection-cxx'
  submodule, add `SWIG=1` to the `./configure` step. Note that for backwards compatibility with
  PHP 5, SWIG 3.0.12 is used for the pregenerated files in this repository. Newer versions of
- SWIG can be used, provided the extension is being build only for PHP 7.
+ SWIG can be used, provided the extension is being built only for PHP 7.
 
 Currently, The generation of SWIG wrapper files is using a specific revision of SWIG and is done
 using the following steps:
@@ -180,6 +181,18 @@ php -S localhost:3000 gettingStartedWeb.php
 
 This will start a local web server listening on port 3000. 
 Open your web browser and browse to http://localhost:3000/ to see the example in action.
+
+The table below describes the examples that are available.
+
+| Example                                | Description |
+|----------------------------------------|-------------|
+| gettingStartedConsole                  | How to use the 51Degrees on-premise device detection API to determine details about a device based on its User-Agent and User-Agent Client Hints HTTP header values. |
+| gettingStartedWeb                      | How to use the 51Degrees Cloud service to determine details about a device as part of a simple ASP.NET website. |
+| metadataConsole                        | How to access the meta-data that relates to the device detection algorithm. |
+| manualDataUpdate                       | How to update the device detection data file when a new one is available. |
+| matchMetrics                           | Demonstrate the metrics that supply information such as confidence in the result. |
+| failureToMatch                         | Demonstrates the functionality available when device detection is unable to identify the details of the device. |
+| userAgentClientHints-Web               | Legacy example. Retained for the associated automated tests. See GettingStarted-Web instead. |
 
 
 ## Tests
