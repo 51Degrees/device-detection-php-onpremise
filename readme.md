@@ -9,36 +9,53 @@ This project contains the on-premise version of 51Degrees Device Detection for t
 
 When using on-premise device detection engines in the PHP pipeline, the appropriate extensions will need to be installed.
 
-## Installing
+## Dependencies
 
-### Linux
+For runtime dependencies, see our [dependencies](http://51degrees.com/documentation/_info__dependencies.html) page.
+The [tested versions](https://51degrees.com/documentation/_info__tested_versions.html) page shows 
+the PHP versions that we currently test against. The software may run fine against other versions, 
+but additional caution should be applied.
 
-To install on Linux you will need the following dependencies installed:
+### Data file
 
-- g++
-- php
-- php-dev
-- make
-- libatomic1
+In order to perform device detection on-premise, you will need to use a 51Degrees data file. 
+(This is not required for cloud users) This repository includes a free, 'lite' file in the 
+'device-detection-data' sub-module that has a significantly reduced set of properties. To obtain 
+a file with a more complete set of device properties see the [51Degrees website](https://51degrees.com/pricing). 
+If you want to use the lite file, you will need to install [GitLFS](https://git-lfs.github.com/):
 
-These can be installed through apt using:
-
-``` bash
-sudo apt-get install g++ php php-dev make libatomic1
+```
+sudo apt-get install git-lfs
+git lfs install
 ```
 
-We need to ensure that the necessary sub-modules, containing the native C code, have been cloned.
-If cloning for the first time, use:
+Then, navigate to 'on-premise/device-detection-cxx/device-detection-data' and execute:
 
-``` bash
-git clone --recurse-submodules -j8 https://github.com/51Degrees/device-detection-php-onpremise.git
+```
+git lfs pull
 ```
 
-If you have already cloned the repository and want to fetch the sub modules, use:
+## Install
 
-``` bash
-git submodule update --init --recursive
-```
+Device detection on-premise uses a native binary. (i.e. compiled from C code to target a specific 
+platform/architecture). This section explains how to build the binary and how to build the PHP 
+extension that uses it.
+
+### Pre-requisites
+
+- php & php-dev
+  - `sudo apt-get install php php-dev` 
+- Install C build tools:
+  - Windows:
+    - You will need either Visual Studio 2019 or the [C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) installed.
+      - Minimum platform toolset version is `v142`
+      - Minimum Windows SDK version is `10.0.18362.0`
+  - Linux/MacOS:
+    - `sudo apt-get install g++ make libatomic1`
+- Pull git submodules:
+  - `git submodule update --init --recursive`
+
+### Build Steps
 
 Now, we can create the extension. Navigate to the `on-premise` directory and install it with:
 
@@ -52,7 +69,7 @@ sudo make install
 The Hash engine extension will then be installed into the PHP extensions directory and can 
 then be added to the active php.ini file.
 
-#### Regenerating swig wrapper files.
+### Regenerating swig wrapper files.
 
 **Note** - this step should not normally need to be performed outside 51Degrees. 
 We include the instructions here for the rare case where it is necessary.
@@ -92,25 +109,6 @@ Although building extensions on Windows is possible, we recommend using the
 [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 
 and following the instructions for Linux above.
 
-## Data File
-
-In order to perform device detection, you will need to use a 51Degrees data file. This repository 
-includes a free, 'lite' file in the 'device-detection-data' sub-module that has a significantly 
-reduced set of properties. To obtain a file with a more complete set of device properties see the 
-[51Degrees website](https://51degrees.com/pricing). 
-If you want to use the lite file, you will need to install [GitLFS](https://git-lfs.github.com/):
-
-``` bash
-sudo apt-get install git-lfs
-git lfs install
-```
-
-Then, navigate to `on-premise/device-detection-cxx/device-detection-data` and execute:
-
-``` bash
-git lfs pull
-```
-
 ## Configuration
 
 The minimum configuration needed for the extensions is to add it to the active php.ini file, 
@@ -128,8 +126,6 @@ PHP version. This location will be printed when installing. The second is the
 path to where you have stored your 51Degrees data file.
 
 ### More Options
-
-#### Hash
 
 | Option | Type | Description | Default |
 | ------ | ---- | ----------- | ------- |
@@ -157,7 +153,7 @@ When running under Apache MPM, only `prefork` mode is supported, since `dl()` ca
 
 #### Refresh Internal Data
 
-To reload the data file, *refreshData()* needs to be called as described in this [example](http://51degrees.com/documentation/4.3/_examples__device_detection__manual_data_reload__on_premise_hash.html) . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.
+To reload the data file, *refreshData()* needs to be called as described in this [example](http://51degrees.com/documentation/_examples__device_detection__manual_data_reload__on_premise_hash.html) . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.
 
 ## Examples
 
@@ -193,7 +189,6 @@ The table below describes the examples that are available.
 | matchMetrics                           | Demonstrate the metrics that supply information such as confidence in the result. |
 | failureToMatch                         | Demonstrates the functionality available when device detection is unable to identify the details of the device. |
 | userAgentClientHints-Web               | Legacy example. Retained for the associated automated tests. See GettingStarted-Web instead. |
-
 
 ## Tests
 
