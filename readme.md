@@ -19,9 +19,9 @@ but additional caution should be applied.
 ### Data file
 
 In order to perform device detection on-premise, you will need to use a 51Degrees data file. 
-(This is not required for cloud users) This repository includes a free, 'lite' file in the 
-'device-detection-data' sub-module that has a significantly reduced set of properties. To obtain 
-a file with a more complete set of device properties see the [51Degrees website](https://51degrees.com/pricing). 
+This repository includes a free, 'lite' file in the 'device-detection-data' sub-module, which has 
+a significantly reduced set of properties. To obtain a file with a more complete set of device 
+properties see the [51Degrees website](https://51degrees.com/pricing). 
 If you want to use the lite file, you will need to install [GitLFS](https://git-lfs.github.com/):
 
 ```
