@@ -67,7 +67,9 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => SwigHelpers::vectorToArray($property->getDataFilesWherePresent()),
                 "category" => $property->getCategory(),
                 "description" => $property->getDescription(),
-                "available" => $property->getAvailable()
+                "available" => $property->getAvailable(),
+                "isList" => $property->getIsList(),
+                "component" => $this->getComponentName($property)
             ];
         }
 
@@ -90,6 +92,11 @@ class DeviceDetectionOnPremise extends Engine {
 
         parent::__construct(...func_get_args());
 
+    }
+
+    private function getComponentName($property) {
+        $component = $this->engine->getMetaData()->getComponentForProperty($property);
+        return $component->getName();
     }
 
     private function getPropertyType($property) {
@@ -146,6 +153,8 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => $dataFiles,
                 "description" => Constants::MATCHED_NODES_DESCRIPTION,
                 "category" => "DeviceMetrics",
+                "component" => "MatchMetrics",
+                "isList" => false,
                 "available" => true],
             "difference" => [
                 "name" => "Difference",
@@ -153,6 +162,8 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => $dataFiles,
                 "description" => Constants::DIFFERENCE_DESCRIPTION,
                 "category" => "DeviceMetrics",
+                "component" => "MatchMetrics",
+                "isList" => false,
                 "available" => true],
             "drift" => [
                 "name" => "Drift",
@@ -160,6 +171,8 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => $dataFiles,
                 "description" => Constants::DRIFT_DESCRIPTION,
                 "category" => "DeviceMetrics",
+                "component" => "MatchMetrics",
+                "isList" => false,
                 "available" => true],
             "deviceid" => [
                 "name" => "DeviceId",
@@ -167,6 +180,8 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => $dataFiles,
                 "description" => Constants::DEVICE_ID_DESCRIPTION,
                 "category" => "DeviceMetrics",
+                "component" => "MatchMetrics",
+                "isList" => false,
                 "available" => true],
             "useragents" => [
                 "name" => "UserAgents",
@@ -174,6 +189,8 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => $dataFiles,
                 "description" => Constants::USER_AGENTS_DESCRIPTION,
                 "category" => "DeviceMetrics",
+                "component" => "MatchMetrics",
+                "isList" => true,
                 "available" => true],
             "iterations" => [
                 "name" => "Iterations",
@@ -181,6 +198,8 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => $dataFiles,
                 "description" => Constants::ITERATIONS_DESCRIPTION,
                 "category" => "DeviceMetrics",
+                "component" => "MatchMetrics",
+                "isList" => false,
                 "available" => true],
             "method" => [
                 "name" => "Method",
@@ -188,6 +207,8 @@ class DeviceDetectionOnPremise extends Engine {
                 "dataFiles" => $dataFiles,
                 "description" => Constants::METHOD_DESCRIPTION,
                 "category" => "DeviceMetrics",
+                "component" => "MatchMetrics",
+                "isList" => false,
                 "available" => true]
             );
         return $metricProperties;

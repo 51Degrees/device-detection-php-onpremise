@@ -74,9 +74,14 @@ class SwigData extends AspectData {
                                 $this->result->getDeviceId());
                         break;
                     case "UserAgents":
+                        $useragents = array();
+                        $count = $this->result->getUserAgents();
+                        for ($i = 0; $i < $count; $i++) {
+                            $useragents[] = $this->result->getUserAgent($i);
+                        }
                         $result = new AspectPropertyValue(
                                 null,
-                                $this->result->getUserAgents());
+                                $useragents);
                         break;
                     case "Method":
                         $result = new AspectPropertyValue(

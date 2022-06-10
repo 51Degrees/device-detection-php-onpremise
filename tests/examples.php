@@ -25,6 +25,7 @@
 require(__DIR__ . "/../vendor/autoload.php");
 require(__DIR__ . "/../examples/onpremise/gettingStartedConsole.php");
 require(__DIR__ . "/../examples/onpremise/metadataConsole.php");
+require(__DIR__ . "/../examples/onpremise/matchMetrics.php");
 
 use PHPUnit\Framework\TestCase;
 use fiftyone\pipeline\core\Logger;
@@ -43,6 +44,13 @@ class ExampleTests extends TestCase
         $logger = new Logger("info");
         $output = array();
         (new MetaDataConsole())->run($logger, function($str) use (&$output) { $output[] = $str; });
+        $this->assertTrue(count($output) > 0);
+    }
+    public function testMatchMetrics()
+    {
+        $logger = new Logger("info");
+        $output = array();
+        (new MatchMetrics())->run(true, $logger, function($str) use (&$output) { $output[] = $str; });
         $this->assertTrue(count($output) > 0);
     }
 }
