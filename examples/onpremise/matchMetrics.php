@@ -23,123 +23,194 @@
 
 /**
  * @example onpremise/matchMetrics.php
- * 
- * @include{doc} example-match-metrics-hash.txt
- * 
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/matchMetrics.php).
- * 
- * @include{doc} example-require-datafile.txt
- * 
- * In this example we create an on premise 51Degrees device detection pipeline, 
- * in order to do this you will need a copy of the 51Degrees on-premise library 
- * and need to make the following additions to your php.ini file
+ * The example illustrates the various metrics that can be obtained about the device detection
+ * process, for example, the degree of certainty about the result. Running the example outputs
+ * those properties and values..
  *
- * ```
- * FiftyOneDegreesHashEngine.data_file = // location of the data file
- * ```
- * 
- * When running under process manager such as Apache MPM or php-fpm, make sure
- * to set performance_profile to MaxPerformance by making the following addition
- * to php.ini file. More details can be found in <a href="https://github.com/51Degrees/device-detection-php-onpremise/blob/master/readme.md">README</a>.
- * 
- * ```
- * FiftyOneDegreesHashEngine.performance_profile = MaxPerformance
- * ```
- * 
- * Expected output
- * 
- * ```
- * User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36
- * Matched User-Agent:
- * Id: 15364-38914-97847-0
- * Difference: 0
- * Drift: 0
- * Method: 0
- * 
- * 
- * User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114
- * Matched User-Agent:
- * Id: 12280-81243-82102-0
- * Difference: 0
- * Drift: 0
- * Method: 0
- * ```
+ * There is a (discussion)[//51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance]
+ * of metrics and controlling performance on our web site. See also the (performance options)
+ * [//51degrees.com/documentation/_device_detection__features__performance_options.html]
+ * page.
+ * # Location
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/matchMetrics.php). 
+ *
  */
 
-require(__dir__ . "/../../vendor/autoload.php");
+require_once(__DIR__ . "/exampleUtils.php");
+require_once(__DIR__ . "/../../vendor/autoload.php");
 
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\core\PipelineBuilder;
+use fiftyone\pipeline\core\Logger;
 
-$device = new DeviceDetectionOnPremise(array(
-    // Prefer low memory profile where all data streamed from disk 
-    // on-demand. Experiment with other profiles.
-    "performanceProfile" => "LowMemory",
-    // Only use the predictive graph to better handle variances 
-    // between the training data and the target User-Agent string.
-    // For a more detailed description of the differences between
-    // performance and predictive, see 
-    // <a href="https://51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance">Hash Algorithm</a>
-    "usePredictiveGraph" => true,
-    "usePerformanceGraph" => false
-));
+class MatchMetrics
+{
+    /**
+     * Run the example
+     * @param showDescs show descriptions of properties
+     * @param logger for pipeline logging
+     * @param out an output stream
+     */
+    public function run($showDescs, $logger, callable $output)
+    {
+        $engine = new DeviceDetectionOnPremise(array(
+            // You can improve matching performance by specifying only those
+            // properties you wish to use. If you don't specify any properties
+            // you will get all those available in the data file tier that
+            // you have used. The free "Lite" tier contains fewer than 20.
+            // Since we are specifying properties here, we will only see
+            // those properties, along with the match metric properties
+            // in the output.
+            // Set the values required in the php.ini file using the
+            // FiftyOneDegreesHashEngine.required_properties option.
+            // If using the full on-premise data file more properties will be
+            // present in the data file. See https://51degrees.com/pricing
+        ));
+        $pipeline = (new PipelineBuilder())
+            ->add($engine)
+            ->addLogger($logger)
+            ->build();
 
-$pipeline = new PipelineBuilder();
-
-$pipeline = $pipeline->add($device)->build();
-
-
-function check_metrics($userAgent, $pipeline){
-
-    // We create the flowData object that is used to add evidence to and 
-    // read data from 
-    $flowData = $pipeline->createFlowData();
-
-    // We set the User-Agent
-    $flowData->evidence->set("header.user-agent", $userAgent);
-
-    // Now we process the flowData
-    $result = $flowData->process();
-    $device = $result->device;
+        ExampleUtils::checkDataFile($pipeline->getElement("device"), $logger);
     
-    echo "User-Agent:         " . $userAgent . "</br>\n";
-    // Obtain the matched User-Agent: the matched substrings in the
-    // User-Agent separated with underscored.
-    echo "Matched User-Agent: " .
-        $device->useragents->value[0] . "</br>\n";
-    // Obtains the matched Device ID: the IDs of the matched profiles
-    // separated with hyphens. Notice how the value changes depending
-    // on the properties that are used with the builder. Profile IDs are
-    // replaced with zeros when there are no properties associated with
-    // the corresponding component available.
-    echo "Id: " . $device->deviceId->value . "</br>\n";
-    // Obtain difference: The total difference in hash code values
-    // between the matched substrings and the actual substrings. The
-    // maximum difference to allow when finding a match can be set
-    // through the configuration structure.
-    echo "Difference: " . $device->difference->value . "</br>\n";
-    // Obtain drift: The maximum drift for a matched substring from the
-    // character position where it was expected to be found. The maximum
-    // drift to allow when finding a match can be set through the
-    // configuration structure.
-    echo "Drift: " . $device->drift->value . "</br>\n";
-    // Output the method that was used to obtain the result. Play with
-    // the setUsePredictiveGraph and setUsePerformanceGraph values to
-    // see the different results.
-    echo "Method: " . $device->method->value . "</br>\n";
-    
-    echo "</br>\n";
-    echo "</br>\n";
+        // FlowData is a data structure that is used to convey
+        // information required for detection and the results of the
+        // detection through the pipeline.
+        // Information required for detection is called "evidence"
+        // and usually consists of a number of HTTP Header field
+        // values, in this case represented by a dictionary of header
+        // name/value entries.
+        $data = $pipeline->createFlowData();
 
+        // Process a single evidence to retrieve the values
+        // associated with the user-agent and other evidence such as sec-ch-* for the
+        // selected properties.
+        $data->evidence->setArray($this->evidenceValues);
+        $data->process();
+
+        // Now that it's been processed, the flow data will have
+        // been populated with the result. In this case, we want
+        // information about the device, which we can get by
+        // asking for a result matching named "device"
+        $device = $data->device;
+
+        $output("--- Compare evidence with what was matched ---");
+        $output("");
+        $output("Evidence");
+        // output the evidence in reverse value length order
+        uasort($this->evidenceValues, function($a, $b) {
+            return strlen($b) - strlen($a);
+        });
+        foreach ($this->evidenceValues as $key => $value)
+        {
+            $output("    $key: $value");
+        }
+
+        // Obtain the matched User-Agents: the matched substrings in the
+        // User-Agents are separated with underscores - output in forward length order.
+        $output("Matches");
+        $useragents = $device->useragents->value;
+        usort($useragents, function($a, $b) {
+            return strlen($a) - strlen($b);
+        });
+        foreach($useragents as $useragent)
+        {
+            $output("    Matched User-Agent: $useragent");
+        }
+
+        $output("");
+
+        $output("--- Listing all available properties, by component, by property " .
+            "name ---");
+        $output("For a discussion of what the match properties mean, see: " .
+            "https://51degrees.com/documentation/_device_detection__hash" .
+            ".html#DeviceDetection_Hash_DataSetProduction_Performance");
+
+        // retrieve the available properties from the hash engine. The properties
+        // available depends on
+        // a) the use of FiftyOneDegreesHashEngine.required_properties option in the
+        // php.ini file.
+        // which controls which properties will be extracted, and also affects
+        // the performance of extraction
+        // b) the tier of data file being used. The Lite data file contains fewer
+        // than 20 of the >200 available properties
+        $availableProperties =
+            $pipeline->getElement("device")->getProperties();
+
+
+        // create a Map keyed on the component name of the properties available
+        // components being hardware, browser, OS and Crawler.
+        $categoryMap = array();
+        foreach ($availableProperties as $property)
+        {
+            $component = $property["component"];
+            if (array_key_exists($component, $categoryMap) === false)
+            {
+                $categoryMap[$component] = array();
+            }
+            $categoryMap[$component][] = $property;
+        }
+
+        // iterate the map created above
+        foreach ($categoryMap as $component => $componentProperties)
+        {
+            $output($component);
+            foreach ($componentProperties as $property)
+            {
+                $name = $property["name"];
+                $description = $property["description"];
+
+                // while we get the available properties and their metadata from the
+                // pipeline we get the values for the last detection from flowData
+                $value = $device->$name;
+
+                // output property names, values and descriptions
+                // some property values are lists. $property["isList"] will be true
+                if ($value->hasValue && is_array($value->value)) {
+                    $output("    $name: ".count($value->value)." Values");
+                    foreach ($value->value as $x)
+                    {
+                        $output("        : $x");
+                    }
+                }
+                else
+                {
+                    $output("    $name: $value->value");
+                }
+                if ($showDescs === true) {
+                    $output("        $description");
+                }
+            }
+        }
+    }
+
+    // Evidence values from a windows 11 device using a browser
+    // that supports User-Agent Client Hints.
+    private $evidenceValues = array(
+        "header.user-agent" =>
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ".
+            "AppleWebKit/537.36 (KHTML, like Gecko) ".
+            "Chrome/98.0.4758.102 Safari/537.36",
+        "header.sec-ch-ua-mobile" => "?0",
+        "header.sec-ch-ua" =>
+            "\" Not A; Brand\";v=\"99\", \"Chromium\";v=\"98\", ".
+            "\"Google Chrome\";v=\"98\"",
+        "header.sec-ch-ua-platform" => "\"Windows\"",
+        "header.sec-ch-ua-platform-version" => "\"14.0.0\"");
+};
+
+// Only declare and call the main function if this is being run directly.
+// This prevents main from being run where examples are run as part of
+// PHPUnit tests.
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))
+{
+    function main($argv)
+    {
+        // Configure a logger to output to the console.
+        $logger = new Logger("info");
+
+        (new MatchMetrics())->run(false, $logger, ["ExampleUtils", "output"]);
+    }
+
+    main(isset($argv) ? array_slice($argv, 1) : null);
 }
-
-
-// Some example User-Agents to test
-
-$desktopUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36';
-$iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
-
-// Run the function multiple times, creating a new flowData from the pipeline 
-// each time
-check_metrics($desktopUA, $pipeline);
-check_metrics($iPhoneUA, $pipeline);

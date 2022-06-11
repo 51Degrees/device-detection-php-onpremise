@@ -182,7 +182,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))
     function main($argv)
     {
         // Configure a logger to output to the console.
-        $logger = Logger("info");
+        $logger = new Logger("info");
 
         (new GettingStartedConsole())->run($logger, ["ExampleUtils", "output"]);
     }
