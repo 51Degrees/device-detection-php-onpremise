@@ -27,9 +27,9 @@
  * process, for example, the degree of certainty about the result. Running the example outputs
  * those properties and values..
  *
- * There is a (discussion)[//51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance]
+ * There is a (discussion)[https://51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance]
  * of metrics and controlling performance on our web site. See also the (performance options)
- * [//51degrees.com/documentation/_device_detection__features__performance_options.html]
+ * [https://51degrees.com/documentation/_device_detection__features__performance_options.html]
  * page.
  * # Location
  * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/matchMetrics.php). 
