@@ -7,6 +7,3 @@
 [submodule "pipeline-php-engines"]
 	path = pipeline-php-engines
 	url = ../pipeline-php-engines
-[submodule "ci/common-ci"]
-	path = ci/common-ci
-	url = ../common-ci
