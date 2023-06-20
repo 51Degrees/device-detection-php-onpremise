@@ -62,7 +62,7 @@ class UACHHashTests extends TestCase{
     }
             
     // Data Provider for testAcceptCH
-	public function provider_testAcceptCH()
+	public static function provider_testAcceptCH()
     {  
         $properties = array(Constants::ALL_PROPERTIES, Constants::PLATFORM_PROPERTIES, Constants::HARDWARE_PROPERTIES, Constants::BROWSER_PROPERTIES, Constants::BASE_PROPERTIES);
 
