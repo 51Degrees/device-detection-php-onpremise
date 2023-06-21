@@ -42,7 +42,7 @@
 		}
 	],
     "require": {
-        "51degrees/fiftyone.pipeline.core": "@dev",
-        "51degrees/fiftyone.pipeline.engines": "@dev"
+        "51degrees/fiftyone.pipeline.core": "dev-main as 4",
+        "51degrees/fiftyone.pipeline.engines": "dev-main"
     }
 }
