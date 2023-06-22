@@ -4,7 +4,7 @@
       "Image": "ubuntu-latest",
       "Language": "php",
       "LanguageVersion": "8.2",
-      "RunPerformance": false,
+      "RunPerformance": true,
       "PackageRequirement": true
     }
 ]
