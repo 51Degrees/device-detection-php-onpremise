@@ -40,7 +40,7 @@ class ExampleWebTests extends TestCase {
         self::$process = new Process('php -S localhost:3000 examples/onpremise/gettingStartedWeb.php');
         self::$process->start();      
         if (self::$process->status()){
-			shell_exec("lsof -i tcp:3000 1>/dev/null 2>&1" );
+            sleep(1);
             echo "Getting Started Web example has started running.\n";
         }else{
             throw new Exception("Could not start the Getting Started Web example. \n");
