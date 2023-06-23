@@ -28,7 +28,7 @@ use fiftyone\pipeline\core\PipelineBuilder;
 use fiftyone\pipeline\core\JavascriptBuilderElement;
 use fiftyone\pipeline\core\JsonBundlerElement;
 
-function process(&$pipeline, $server, $cookies = null, $query = null) {
+function process($pipeline, $server, $cookies = null, $query = null) {
     // We create the flowData object that is used to add evidence to and read
     // data from
     $flowData = $pipeline->createFlowData();
@@ -45,7 +45,7 @@ function process(&$pipeline, $server, $cookies = null, $query = null) {
 }
 
 $device = new DeviceDetectionOnPremise();
-$builder = new PipelineBuilder(array());
+$builder = new PipelineBuilder(array("addJavaScriptBuilder" => false));
 $pipeline = $builder->add($device)->build();
 
 $server = array(
