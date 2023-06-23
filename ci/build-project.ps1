@@ -7,7 +7,7 @@ Push-Location $RepoName/on-premise
 try {
     phpize || $(throw "phpize failed")
     ./configure || $(throw "configure failed")
-    make "-j$(nproc)" || $(throw "make failed")
+    make "-j$([Environment]::ProcessorCount)" || $(throw "make failed")
 } finally {
     Pop-Location
 }
