@@ -6,5 +6,14 @@
       "LanguageVersion": "8.2",
       "RunPerformance": true,
       "PackageRequirement": true
+    },
+    {
+      "Name": "macOS_PHP_8.2",
+      "Image": "macos-latest",
+      "Language": "php",
+      "LanguageVersion": "8.2",
+      "RunPerformance": true,
+      "PackageRequirement": true
     }
+
 ]
