@@ -6,7 +6,7 @@ PHP_ARG_ENABLE(FiftyOneDegreesHashEngine, whether to enable 51Degrees Hash engin
 
 CFLAGS="$CFLAGS -std=gnu11 -Wall -Werror -Wno-missing-braces -Wno-unused-variable -Wno-strict-aliasing"
 CXXFLAGS="${CXXFLAGS} -std=gnu++11 -fpermissive -Wall -Werror -Wno-write-strings -Wno-delete-non-virtual-dtor -Wno-unused-label -Wno-unused-variable"
-LDFLAGS="$LDFLAGS -lrt -latomic"
+LDFLAGS="$LDFLAGS -latomic"
 PHP_SUBST([CFLAGS])
 PHP_SUBST([CXXFLAGS])
 PHP_SUBST([LDFLAGS])
