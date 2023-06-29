@@ -1,10 +1,10 @@
 # API Specific CI/CD Approach
-This API is a different from the common-ci approach.
+This API complies with the `common-ci` approach.
 
-Build and Test stage takes `buildType` parameter that can have two values either `Development` or `Production`.
+The following secrets are required:
+* `DEVICE_DETECTION_KEY` - [license key](https://51degrees.com/pricing) for downloading assets (TAC hashes file and TAC CSV data file)
+    * Example: `V3RYL0NGR4ND0M57R1NG`
 
-`Development:` Build and test stage will use submodule references for dependencies where the dependency is relative to the local file system, so git references need to be updated to refer to the updated dependencies.
-`Production:` Build and test stage will use the publically released packages so in this case composer.json will need to be updated
-to get the updated packages.
-
-By default build-and-test.yml uses the submodules reference and tag-repository.yml uses the public packages.
+The following secrets are optional:
+* `DEVICE_DETECTION_URL` - URL for downloading the enterprise TAC hashes file
+    * Default: `https://distributor.51degrees.com/api/v2/download?LicenseKeys=DEVICE_DETECTION_KEY&Type=HashV41&Download=True&Product=V4TAC`
