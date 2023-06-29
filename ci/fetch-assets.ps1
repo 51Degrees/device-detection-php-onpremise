@@ -21,7 +21,7 @@ $downloads = @{
         ./steps/fetch-hash-assets.ps1 -RepoName $RepoName -LicenseKey $DeviceDetection -Url $DeviceDetectionUrl
         Move-Item -Path $RepoName/$file -Destination $assets
     }
-    "20000 User Agents.csv" = {Invoke-WebRequest -Uri "https://storage.googleapis.com/51degrees-assets/$DeviceDetection/20000%20User%20Agents.csv" -OutFile $assets/$file}
+    "20000 User Agents.csv" = {Invoke-WebRequest -Uri "https://media.githubusercontent.com/media/51Degrees/device-detection-data/main/20000%20User%20Agents.csv" -OutFile $assets/$file}
 }
 
 foreach ($file in $downloads.Keys) {

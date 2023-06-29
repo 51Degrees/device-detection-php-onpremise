@@ -6,15 +6,15 @@ on:
       dryrun:
         default: 'true'
         description: Dry Run
-    # schedule:
-    #   - cron: '0 1 * * *'
+  schedule:
+    - cron: '0 1 * * *'
 
 jobs:
   Nightly_Documentation_Update:
-    uses: postindustria-tech/common-ci/.github/workflows/nightly-documentation-update.yml@main
+    uses: 51Degrees/common-ci/.github/workflows/nightly-documentation-update.yml@main
     with:
       repo-name: ${{ github.event.repository.name }}
       org-name: ${{ github.event.repository.owner.login }}
-      dryrun: ${{ inputs.dryrun }}
+      dryrun: ${{ inputs.dryrun || false }}
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      token: ${{ secrets.ACCESS_TOKEN }}
