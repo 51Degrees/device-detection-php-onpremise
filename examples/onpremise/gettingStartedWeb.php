@@ -113,18 +113,28 @@ class GettingStartedWeb
         // More info on this can be found at
         // https://51degrees.com/blog/user-agent-client-hints
         Utils::setResponseHeader($flowdata);
+       
+
+        if (parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) === "/js") {
+            header('Content-Type: application/javascript');
+            // Needed for CORS requests.
+            header('Access-Control-Allow-Origin: *');
+            $output($flowdata->javascriptbuilder->javascript);
+            return;
+        }
 
         // First we make a JSON route that will be called from the client side
         // and will return a JSON encoded property database using any additional
         // evidence provided by the client.
         if (parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) === "/json") {
             header('Content-Type: application/json');
+            // Needed for CORS requests.
+            header('Access-Control-Allow-Origin: *');
             $output(json_encode($flowdata->jsonbundler->json));
             return;
         }
 
         include_once(__DIR__."/static/page.php");
-
     }
 }
 
@@ -132,6 +142,7 @@ function main($argv)
 {
     // Configure a logger to output to the console.
     $logger = new Logger("info");
+    $logger->log("information", "Hello World");
 
     $configFile = __DIR__ . "/gettingStartedWeb.json";
 

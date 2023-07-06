@@ -2,7 +2,10 @@
     "PipelineOptions": {
         "Elements": [
             {
-                "BuilderName": "fiftyone\\pipeline\\devicedetection\\DeviceDetectionOnPremise"
+                "BuilderName": "fiftyone\\pipeline\\devicedetection\\DeviceDetectionOnPremise",
+                "BuildParameters": {
+                    "Properties": "DeviceId,JavascriptHardwareProfile,HardwareVendor,HardwareModel,HardwareName,IsMobile,JavascriptGetHighEntropyValues,Promise,Fetch,DeviceType,PlatformVendor,PlatformName,PlatformVersion,BrowserVendor,BrowserName,BrowserVersion,ScreenPixelsWidth,ScreenPixelsHeight,ScreenPixelsWidthJavascript,ScreenPixelsHeightJavascript"
+                }
             },
             {
                 "BuilderName": "fiftyone\\pipeline\\core\\JsonBundlerElement"
