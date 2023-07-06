@@ -102,7 +102,7 @@ class GettingStartedWeb
 
         // Add any information from the request (headers, cookies and additional 
         // client side provided information)
-        $flowdata->evidence->setFromWebRequest();
+        $flowdata->evidence->setFromWebRequest($_SERVER, $_COOKIE, array_merge($_GET, $_POST));
 
         // Process the flowdata
         $flowdata->process();
