@@ -116,7 +116,6 @@ class GettingStartedWeb
 
 function main($argv)
 { 
-    setcookie("51D_ProfileIds", 122587);
     // Configure a logger to output to the console.
     $logger = new Logger("info");
 
