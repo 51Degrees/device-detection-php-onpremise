@@ -102,6 +102,11 @@ class GettingStartedWeb
 
         // Add any information from the request (headers, cookies and additional 
         // client side provided information)
+        
+        // Force the profile id to show that adding this to the form is detected
+        // correctly.
+        // $_POST["51D_ProfileIds"] = "122587";
+
         $flowdata->evidence->setFromWebRequest($_SERVER, $_COOKIE, array_merge($_GET, $_POST));
 
         // Process the flowdata
