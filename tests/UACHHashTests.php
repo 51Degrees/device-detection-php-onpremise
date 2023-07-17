@@ -36,21 +36,19 @@ class UACHHashTests extends TestCase{
 
     public static function setUpTest($properties)
     {
-        // add properties to php.ini configuration file.
-        $propertiesShell=escapeshellarg($properties);        
-        shell_exec('sed -i "s,^FiftyOneDegreesHashEngine.required_properties=.*$, ," tests/php.ini');
-        shell_exec('echo FiftyOneDegreesHashEngine.required_properties=  ' . $propertiesShell . ' >> tests/php.ini');
-        
+        // escape properties before passing them to the shell
+        $propertiesShell = escapeshellarg($properties);
+
         // start server
-        self::$process = new Process('php -c tests/php.ini -S localhost:3000 examples/onpremise/userAgentClientHints-Web.php');
-        self::$process->start();      
+        self::$process = new Process("php -dFiftyOneDegreesHashEngine.required_properties=$propertiesShell -S localhost:3000 examples/onpremise/userAgentClientHints-Web.php");
+        self::$process->start();
         if (self::$process->status()){
-            shell_exec("lsof -i tcp:3000 1>/dev/null 2>&1" );
-            shell_exec("sleep 5" );
+            shell_exec("lsof -i tcp:3000 1>/dev/null 2>&1");
+            sleep(1);
             echo "User Agent Client Hints On-Premise Web example has started running.\n";
         }else{
-            throw new Exception("Could not start the User Agent Client Hints On-Premise Web example. \n");
-        } 
+            throw new Exception("Could not start the User Agent Client Hints On-Premise Web example.\n");
+        }
     }
 
     public function tearDown() : void
@@ -62,7 +60,7 @@ class UACHHashTests extends TestCase{
     }
             
     // Data Provider for testAcceptCH
-	public function provider_testAcceptCH()
+	public static function provider_testAcceptCH()
     {  
         $properties = array(Constants::ALL_PROPERTIES, Constants::PLATFORM_PROPERTIES, Constants::HARDWARE_PROPERTIES, Constants::BROWSER_PROPERTIES, Constants::BASE_PROPERTIES);
 

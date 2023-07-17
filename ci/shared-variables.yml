@@ -1,3 +1,0 @@
-variables:
-- name: linuxImage
-  value: 'ubuntu-18.04'
