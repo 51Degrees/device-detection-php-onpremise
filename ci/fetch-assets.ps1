@@ -1,7 +1,6 @@
 param (
     [Parameter(Mandatory=$true)]
     [string]$RepoName,
-    [Parameter(Mandatory=$true)]
     [string]$DeviceDetection,
     [string]$DeviceDetectionUrl
 )
@@ -18,6 +17,10 @@ $assets = New-Item -ItemType Directory -Path assets -Force
 
 $downloads = @{
     "TAC-HashV41.hash" = {
+        if (!$DeviceDetection) {
+            Write-Output "::warning file=$($MyInvocation.ScriptName),line=$($MyInvocation.ScriptLineNumber),title=No License Key::A device detection license was not provided, so On-Premise Data file will not be downloaded."
+            return
+        }
         ./steps/fetch-hash-assets.ps1 -RepoName $RepoName -LicenseKey $DeviceDetection -Url $DeviceDetectionUrl
         Move-Item -Path $RepoName/$file -Destination $assets
     }
