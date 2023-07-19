@@ -44,7 +44,7 @@ class DeviceDetectionTests extends TestCase
 
         $builder1 = new PipelineBuilder();
 
-        $badUA = 'w5higsnrg';
+        $badUA = 'complete_nonsense';
 
         $pipeline1 = $builder1->add($deviceDetection)->build();
 
