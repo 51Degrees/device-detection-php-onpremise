@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       dryrun:
-        default: 'true'
+        default: false
+        type: boolean
         description: Dry Run
   schedule:
     - cron: '0 1 1 * *'
