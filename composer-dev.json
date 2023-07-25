@@ -1,25 +1,25 @@
 {
     "name": "51degrees/fiftyone.devicedetection",
     "description": "Device detection engines for 51Degrees Pipeline API - Get hardware and software details of the device connecting to your website or service",
-	"authors" : [
-		{
-			"name": "Filip Hnízdo",
+    "authors" : [
+        {
+            "name": "Filip Hnízdo",
             "email": "filip@octophin.com",
             "homepage": "https://octophindigital.com/"
         },
-		{
-			"name": "Steve Ballantine",
+        {
+            "name": "Steve Ballantine",
             "email": "stephen@51degrees.com"
         },
-		{
-			"name": "Ben Shilito",
+        {
+            "name": "Ben Shilito",
             "email": "ben@51degrees.com"
         },
-		{
-			"name": "Joseph Dix",
+        {
+            "name": "Joseph Dix",
             "email": "joseph@51degrees.com"
         }
-	],
+    ],
     "license": "EUPL-1.2",    
     "type": "library",
     "autoload": {
@@ -31,18 +31,28 @@
             "SwigHelpers.php"
         ]
     },
-	"repositories": [
-		{
-			"type": "path",
-			"url": "pipeline-php-core"
-		},
-		{
-			"type": "path",
-			"url": "pipeline-php-engines"
-		}
-	],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "pipeline-php-core",
+            "options": {
+                "versions": {
+                    "51degrees/fiftyone.pipeline.core": "4"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "pipeline-php-engines",
+            "options": {
+                "versions": {
+                    "51degrees/fiftyone.pipeline.engines": "4"
+                }
+            }
+        }
+    ],
     "require": {
-        "51degrees/fiftyone.pipeline.core": "dev-main as 4",
-        "51degrees/fiftyone.pipeline.engines": "dev-main"
+        "51degrees/fiftyone.pipeline.core": "*",
+        "51degrees/fiftyone.pipeline.engines": "*"
     }
 }
