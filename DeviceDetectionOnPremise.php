@@ -132,8 +132,9 @@ class DeviceDetectionOnPremise extends Engine {
 
         foreach($evidence as $key => $value){
 
-            $evidenceInternal->set($key, $value);
-
+            if ($this->filterEvidenceKey($key) && is_string($value)) {
+                $evidenceInternal->set($key, $value);
+            }
         }
         
         $result = $this->engine->process($evidenceInternal);
