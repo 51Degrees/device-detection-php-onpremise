@@ -1,3 +1,4 @@
+<?php
 /* *********************************************************************
  * This Original Work is copyright of 51 Degrees Mobile Experts Limited.
  * Copyright 2023 51 Degrees Mobile Experts Limited, Davidson House,
