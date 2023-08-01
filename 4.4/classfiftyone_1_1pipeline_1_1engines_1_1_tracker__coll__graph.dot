@@ -1,0 +1,10 @@
+digraph "fiftyone\pipeline\engines\Tracker"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="fiftyone\\pipeline\\engines\l\\Tracker",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="The tracker class extends the cache class with a track method that checks if a key is in the cache an..."];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="fiftyone\\pipeline\\engines\l\\DataKeyedCache",height=0.2,width=0.4,color="black",URL="$classfiftyone_1_1pipeline_1_1engines_1_1_data_keyed_cache.html",tooltip="A simple cache class which has a get and set method Can be added to an engine to cache its results fo..."];
+}
