@@ -46,6 +46,21 @@
       "LanguageVersion": "8.0",
       "RunPerformance": true,
       "PackageRequirement": true
+    },
+    {
+      "Name": "Ubuntu_PHP_7.4",
+      "Image": "ubuntu-latest",
+      "Language": "php",
+      "LanguageVersion": "7.4",
+      "RunPerformance": true,
+      "PackageRequirement": true
+    },
+    {
+      "Name": "macOS_PHP_7.4",
+      "Image": "macos-latest",
+      "Language": "php",
+      "LanguageVersion": "7.4",
+      "RunPerformance": true,
+      "PackageRequirement": true
     }
-
 ]
