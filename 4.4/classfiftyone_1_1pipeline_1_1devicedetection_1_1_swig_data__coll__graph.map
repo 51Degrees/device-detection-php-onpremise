@@ -1,0 +1,5 @@
+<map id="fiftyone\pipeline\devicedetection\SwigData" name="fiftyone\pipeline\devicedetection\SwigData">
+<area shape="rect" id="node1" title=" " alt="" coords="5,184,240,225"/>
+<area shape="rect" id="node2" href="$classfiftyone_1_1pipeline_1_1engines_1_1_aspect_data.html" title="aspectData extends elementData by adding the option of a missing property service It also allows prop..." alt="" coords="31,95,214,136"/>
+<area shape="rect" id="node3" href="$classfiftyone_1_1pipeline_1_1core_1_1_element_data.html" title="Stores information created by a FlowElement based on FlowData." alt="" coords="43,5,202,47"/>
+</map>
