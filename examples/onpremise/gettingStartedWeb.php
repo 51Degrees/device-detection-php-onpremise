@@ -88,9 +88,8 @@ class GettingStartedWeb
     public function run($configFile, $logger, $output)
     {
         $pipeline = (new PipelineBuilder())
-            ->buildFromConfig($configFile)
             ->addLogger($logger)
-            ->build();
+            ->buildFromConfig($configFile);
         
         $this->processRequest($pipeline, $output);
     }
