@@ -14,4 +14,7 @@ $env:PHP_INI_SCAN_DIR = "$sep$PWD/$RepoName"
 
 ./php/run-unit-tests.ps1 -RepoName $RepoName
 
+# Run configuration tests
+& $RepoName/configuration-tests/testConcurrencySetting.ps1 -BaseIniFilePath $PWD/$RepoName/php.ini || $(throw "configuration tests failed")
+
 exit $LASTEXITCODE
