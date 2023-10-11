@@ -21,36 +21,40 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
-/**
- * @example onpremise/gettingStartedConsole.php
- * 
- * @include{doc} example-getting-started-onpremise.txt
- * 
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/gettingStartedConsole.php). 
- * 
- * @include{doc} example-require-datafile.txt
- *
- * Required Composer Dependencies:
- * - 51degrees/fiftyone.devicedetection
- */ 
+namespace fiftyone\pipeline\devicedetection;
 
-require_once(__DIR__ . "/../../vendor/autoload.php");
+class SwigHelpers {
+    /**
+     * Helper to convert a swig vector into a standard JavaScript array
+     * @param {Object} vector
+    */
+    static function vectorToArray($vector) {
 
-use fiftyone\pipeline\core\Logger;
-use fiftyone\pipeline\devicedetection\examples\onpremise\classes\GettingStartedConsole;
+        $output = [];
 
-// Only declare and call the main function if this is being run directly.
-// This prevents main from being run where examples are run as part of
-// PHPUnit tests.
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))
-{
-    function main($argv)
-    {
-        // Configure a logger to output to the console.
-        $logger = new Logger("info");
+        for ($i = 0; $i < $vector->size(); $i++) {
+            $output[] = $vector->get($i);
+        }
 
-        (new GettingStartedConsole())->run($logger, ["fiftyone\\pipeline\\devicedetection\\examples\\onpremise\\classes\\ExampleUtils", "output"]);
+        return $output;
+
+    }
+    /**
+     * Helper to convert a PHP array to a swig vector
+     * @param {Object} vector
+    */
+    static function arrayToVector($array) {
+
+        $vector = new \VectorStringSwig();
+
+        foreach ($array as $item) {
+
+            $vector->push($item);
+
+        };
+
+        return $vector;
+
     }
 
-    main(isset($argv) ? array_slice($argv, 1) : null);
 }
