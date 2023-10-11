@@ -56,7 +56,7 @@
  * 
  **/
 
-require(__dir__ . "/../../vendor/autoload.php");
+require(__DIR__ . "/../../vendor/autoload.php");
 
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\core\PipelineBuilder;
