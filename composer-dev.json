@@ -23,13 +23,9 @@
     "license": "EUPL-1.2",    
     "type": "library",
     "autoload": {
-        "classmap": [
-            "Constants.php",
-            "DeviceDetectionOnPremise.php",
-            "Messages.php",
-            "SwigData.php",
-            "SwigHelpers.php"
-        ]
+        "psr-4": {
+            "fiftyone\\pipeline\\devicedetection\\": "src/"
+        }
     },
     "repositories": [
         {
