@@ -37,7 +37,7 @@
     "autoload-dev": {
         "psr-4": {
             "fiftyone\\pipeline\\devicedetection\\tests\\": "tests/",
-            "fiftyone\\pipeline\\devicedetection\\examples\\onpremise\\classes\\": "examples/onpremise/classes"
+            "fiftyone\\pipeline\\devicedetection\\examples\\onpremise\\classes\\": "examples/onpremise/classes/"
         }
     }
 }
