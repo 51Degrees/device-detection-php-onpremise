@@ -26,7 +26,7 @@ namespace fiftyone\pipeline\devicedetection\tests;
 use fiftyone\pipeline\core\Logger;
 use fiftyone\pipeline\devicedetection\examples\onpremise\classes\GettingStartedConsole;
 use fiftyone\pipeline\devicedetection\examples\onpremise\classes\MatchMetrics;
-use fiftyone\pipeline\devicedetection\examples\onpremise\classes\MetadataConsole;
+use fiftyone\pipeline\devicedetection\examples\onpremise\classes\MetaDataConsole;
 use PHPUnit\Framework\TestCase;
 
 class ExampleTests extends TestCase
