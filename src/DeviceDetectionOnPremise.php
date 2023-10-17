@@ -23,16 +23,10 @@
 
 namespace fiftyone\pipeline\devicedetection;
 
-include_once(__DIR__ . "/SwigHelpers.php");
-include_once(__DIR__ . "/SwigData.php");
+include_once(__DIR__ . "/../on-premise/src/php" . explode('.', PHP_VERSION)[0] . "/FiftyOneDegreesHashEngine.php");
 
-include_once(__DIR__ . "/on-premise/src/php" . explode('.', PHP_VERSION)[0] . "/FiftyOneDegreesHashEngine.php");
-
-use fiftyone\pipeline\engines\AspectDataDictionary;
-use fiftyone\pipeline\engines\Engine;
-use fiftyone\pipeline\devicedetection\SwigHelpers;
-use fiftyone\pipeline\devicedetection\SwigData;
 use fiftyone\pipeline\core\BasicListEvidenceKeyFilter;
+use fiftyone\pipeline\engines\Engine;
 
 class DeviceDetectionOnPremise extends Engine {
 
@@ -248,4 +242,3 @@ class DeviceDetectionOnPremise extends Engine {
         }
     }    
 }
-

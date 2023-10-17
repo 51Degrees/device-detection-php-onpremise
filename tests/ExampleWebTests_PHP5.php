@@ -21,16 +21,16 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
-require(__DIR__ . "/../vendor/autoload.php");
-require_once(__DIR__ . '/classes/process.php');
-require_once(__DIR__ . '/classes/constants.php');
+namespace fiftyone\pipeline\devicedetection\tests;
 
+use fiftyone\pipeline\devicedetection\tests\classes\Constants;
+use fiftyone\pipeline\devicedetection\tests\classes\Process;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @requires OS Linux
  */
-class ExampleWebTests extends TestCase {
+class ExampleWebTests_PHP5 extends TestCase {
 
     public static $process;
 
@@ -43,7 +43,7 @@ class ExampleWebTests extends TestCase {
 			shell_exec("lsof -i tcp:3000 1>/dev/null 2>&1" );
             echo "Getting Started Web example has started running.\n";
         }else{
-            throw new Exception("Could not start the Getting Started Web example. \n");
+            throw new \Exception("Could not start the Getting Started Web example. \n");
         } 
     }
 
