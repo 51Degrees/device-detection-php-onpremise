@@ -1,0 +1,4 @@
+var classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_match_metrics =
+[
+    [ "run", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_match_metrics.html#ad73bb23e36737ed40b0995db3f21b6bc", null ]
+];

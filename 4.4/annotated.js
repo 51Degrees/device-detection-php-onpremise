@@ -23,6 +23,17 @@ var annotated =
           [ "Utils", "classfiftyone_1_1pipeline_1_1core_1_1_utils.html", "classfiftyone_1_1pipeline_1_1core_1_1_utils" ]
         ] ],
         [ "devicedetection", null, [
+          [ "examples", null, [
+            [ "onpremise", null, [
+              [ "classes", null, [
+                [ "ExampleUtils", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_example_utils.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_example_utils" ],
+                [ "GettingStartedConsole", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_getting_started_console.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_getting_started_console" ],
+                [ "GettingStartedWeb", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_getting_started_web.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_getting_started_web" ],
+                [ "MatchMetrics", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_match_metrics.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_match_metrics" ],
+                [ "MetaDataConsole", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_meta_data_console.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1examples_1_1onpremise_1_1classes_1_1_meta_data_console" ]
+              ] ]
+            ] ]
+          ] ],
           [ "Constants", "classfiftyone_1_1pipeline_1_1devicedetection_1_1_constants.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1_constants" ],
           [ "DeviceDetectionOnPremise", "classfiftyone_1_1pipeline_1_1devicedetection_1_1_device_detection_on_premise.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1_device_detection_on_premise" ],
           [ "Messages", "classfiftyone_1_1pipeline_1_1devicedetection_1_1_messages.html", "classfiftyone_1_1pipeline_1_1devicedetection_1_1_messages" ],
@@ -61,14 +72,9 @@ var annotated =
     [ "EvidenceDeviceDetectionSwig", "class_evidence_device_detection_swig.html", "class_evidence_device_detection_swig" ],
     [ "ExampleFlowElementA", "class_example_flow_element_a.html", "class_example_flow_element_a" ],
     [ "ExampleFlowElementB", "class_example_flow_element_b.html", "class_example_flow_element_b" ],
-    [ "ExampleUtils", "class_example_utils.html", "class_example_utils" ],
     [ "FiftyOneDegreesHashEngine", "class_fifty_one_degrees_hash_engine.html", "class_fifty_one_degrees_hash_engine" ],
-    [ "GettingStartedConsole", "class_getting_started_console.html", "class_getting_started_console" ],
-    [ "GettingStartedWeb", "class_getting_started_web.html", "class_getting_started_web" ],
     [ "IntegerValueSwig", "class_integer_value_swig.html", "class_integer_value_swig" ],
     [ "MapStringStringSwig", "class_map_string_string_swig.html", "class_map_string_string_swig" ],
-    [ "MatchMetrics", "class_match_metrics.html", "class_match_metrics" ],
-    [ "MetaDataConsole", "class_meta_data_console.html", "class_meta_data_console" ],
     [ "MetaDataSwig", "class_meta_data_swig.html", "class_meta_data_swig" ],
     [ "ProfileMetaDataCollectionSwig", "class_profile_meta_data_collection_swig.html", "class_profile_meta_data_collection_swig" ],
     [ "ProfileMetaDataSwig", "class_profile_meta_data_swig.html", "class_profile_meta_data_swig" ],
