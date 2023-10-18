@@ -21,14 +21,13 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
+namespace fiftyone\pipeline\devicedetection\tests;
 
-require(__DIR__ . "/../vendor/autoload.php");
-require(__DIR__ . "/../examples/onpremise/gettingStartedConsole.php");
-require(__DIR__ . "/../examples/onpremise/metadataConsole.php");
-require(__DIR__ . "/../examples/onpremise/matchMetrics.php");
-
-use PHPUnit\Framework\TestCase;
 use fiftyone\pipeline\core\Logger;
+use fiftyone\pipeline\devicedetection\examples\onpremise\classes\GettingStartedConsole;
+use fiftyone\pipeline\devicedetection\examples\onpremise\classes\MatchMetrics;
+use fiftyone\pipeline\devicedetection\examples\onpremise\classes\MetaDataConsole;
+use PHPUnit\Framework\TestCase;
 
 class ExampleTests extends TestCase
 {

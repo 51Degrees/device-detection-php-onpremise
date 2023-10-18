@@ -21,6 +21,8 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
+namespace fiftyone\pipeline\devicedetection\tests\classes;
+
 class Constants {
 
 	const ALL_PROPERTIES = null;

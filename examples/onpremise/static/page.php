@@ -23,7 +23,12 @@
 ?>
 <head>
     <title>Web Integration Example</title>
-    <style><?php require(__DIR__."/main.css"); ?></style>
+    <style>
+        <?php
+        use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
+        require(__DIR__."/main.css");
+        ?>
+    </style>
 </head>
 
 <div class="main">
