@@ -22,17 +22,22 @@
 	],
     "license": "EUPL-1.2",    
     "type": "library",
-    "autoload": {
-        "classmap": [
-            "Constants.php",
-            "DeviceDetectionOnPremise.php",
-            "Messages.php",
-            "SwigData.php",
-            "SwigHelpers.php"
-        ]
-    },
     "require": {
         "51degrees/fiftyone.pipeline.core": "4.*",
         "51degrees/fiftyone.pipeline.engines": "4.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "fiftyone\\pipeline\\devicedetection\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "fiftyone\\pipeline\\devicedetection\\tests\\": "tests/",
+            "fiftyone\\pipeline\\devicedetection\\examples\\onpremise\\classes\\": "examples/onpremise/classes/"
+        }
     }
 }

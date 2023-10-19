@@ -21,36 +21,19 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
+namespace fiftyone\pipeline\devicedetection;
+
 /**
- * @example onpremise/gettingStartedConsole.php
- * 
- * @include{doc} example-getting-started-onpremise.txt
- * 
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/gettingStartedConsole.php). 
- * 
- * @include{doc} example-require-datafile.txt
- *
- * Required Composer Dependencies:
- * - 51degrees/fiftyone.devicedetection
- */ 
-
-require_once(__DIR__ . "/../../vendor/autoload.php");
-
-use fiftyone\pipeline\core\Logger;
-use fiftyone\pipeline\devicedetection\examples\onpremise\classes\GettingStartedConsole;
-
-// Only declare and call the main function if this is being run directly.
-// This prevents main from being run where examples are run as part of
-// PHPUnit tests.
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))
-{
-    function main($argv)
-    {
-        // Configure a logger to output to the console.
-        $logger = new Logger("info");
-
-        (new GettingStartedConsole())->run($logger, ["fiftyone\\pipeline\\devicedetection\\examples\\onpremise\\classes\\ExampleUtils", "output"]);
-    }
-
-    main(isset($argv) ? array_slice($argv, 1) : null);
+ * Messages which may be reused by the API.
+ */
+class Messages {
+    /**
+     * Error message returned when a cache is configured for the on-premise
+     * engine.
+     */
+    const CACHE_ERROR =
+        "A results cache cannot be configured in the on-premise Hash " .
+        "engine. The overhead of having to manage native object " .
+        "lifetimes when a cache is enabled outweighs the benefit of the " .
+        "cache.";
 }

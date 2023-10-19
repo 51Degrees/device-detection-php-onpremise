@@ -75,57 +75,11 @@
  *
  * ## Class
  */
-require(__DIR__ . "/exampleUtils.php");
+
 require(__DIR__ . "/../../vendor/autoload.php");
 
-use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
-use fiftyone\pipeline\core\PipelineBuilder;
 use fiftyone\pipeline\core\Logger;
-use fiftyone\pipeline\core\Utils;
-
-class GettingStartedWeb
-{
-    public function run($configFile, $logger, $output)
-    {
-        $pipeline = (new PipelineBuilder())
-            ->addLogger($logger)
-            ->buildFromConfig($configFile);
-        
-        $this->processRequest($pipeline, $output);
-    }
-
-    private function processRequest($pipeline, $output)
-    {
-        // Create the flowdata object.
-        $flowdata = $pipeline->createFlowData();
-
-        // Add any information from the request (headers, cookies and additional 
-        // client side provided information)
-        $flowdata->evidence->setFromWebRequest();
-
-        // Process the flowdata
-        $flowdata->process();
-
-        // Some browsers require that extra HTTP headers are explicitly
-        // requested. So set whatever headers are required by the browser in
-        // order to return the evidence needed by the pipeline.
-        // More info on this can be found at
-        // https://51degrees.com/blog/user-agent-client-hints
-        Utils::setResponseHeader($flowdata);
-
-        // First we make a JSON route that will be called from the client side
-        // and will return a JSON encoded property database using any additional
-        // evidence provided by the client.
-        if (parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) === "/json") {
-            header('Content-Type: application/json');
-            $output(json_encode($flowdata->jsonbundler->json));
-            return;
-        }
-
-        include_once(__DIR__."/static/page.php");
-
-    }
-}
+use fiftyone\pipeline\devicedetection\examples\onpremise\classes\GettingStartedWeb;
 
 function main($argv)
 {

@@ -21,16 +21,13 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
-require(__DIR__ . "/../../vendor/autoload.php");
-
-use fiftyone\pipeline\core\Logger;
-
+namespace fiftyone\pipeline\devicedetection\examples\onpremise\classes;
 class ExampleUtils
 {
     // If data file is older than this number of days then a warning will 
     // be displayed.
     const DATA_FILE_AGE_WARNING = 30;
- 
+
     public static function output($message)
     {
         if (php_sapi_name() == "cli")
@@ -48,7 +45,7 @@ class ExampleUtils
         $date = $engine->engine->getPublishedTime();
         return mktime(0, 0, 0, $date->getMonth(), $date->getDay(), $date->getYear());
     }
-    
+
     public static function dataFileIsOld($engine)
     {
         $dataFileDate = ExampleUtils::getDataFileDate($engine);
@@ -63,7 +60,7 @@ class ExampleUtils
     /**
      * Get the 'engine' element within the pipeline that
      * performs device detection. We can use this to get
-     * details about the data file as well as meta-data 
+     * details about the data file as well as meta-data
      * describing things such as the available properties.
      */
     public static function checkDataFile($engine, $logger)
@@ -115,7 +112,7 @@ class ExampleUtils
             return "";
         }
     }
-    
+
     public static function getHumanReadable($device, $name)
     {
         try
@@ -137,7 +134,7 @@ class ExampleUtils
                 return "Unknown (".$value->noValueMessage.")";
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             return "Property not found in the current data file.";
         }
@@ -156,4 +153,3 @@ class ExampleUtils
         return false;
     }
 }
-?>

@@ -24,9 +24,7 @@
 namespace fiftyone\pipeline\devicedetection;
 
 use fiftyone\pipeline\engines\AspectData;
-use fiftyone\pipeline\engines\AspectDataDictionary;
 use fiftyone\pipeline\core\AspectPropertyValue;
-use fiftyone\pipeline\devicedetection\SwigHelpers;
 
 
 class SwigData extends AspectData {
