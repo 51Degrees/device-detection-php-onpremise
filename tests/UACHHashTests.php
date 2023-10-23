@@ -37,7 +37,7 @@ class UACHHashTests extends TestCase{
     public static function setUpTest($properties)
     {
         // escape properties before passing them to the shell
-        $propertiesShell = escapeshellarg($properties);
+        $propertiesShell = escapeshellarg((string) $properties);
 
         // start server
         self::$process = new Process("php -dFiftyOneDegreesHashEngine.required_properties=$propertiesShell -S localhost:3000 examples/onpremise/userAgentClientHints-Web.php");

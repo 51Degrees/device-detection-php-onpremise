@@ -27,8 +27,10 @@ use fiftyone\pipeline\engines\AspectData;
 use fiftyone\pipeline\core\AspectPropertyValue;
 
 
-class SwigData extends AspectData {
-
+class SwigData extends AspectData 
+{
+    private $result;
+    
     public function __construct($engine, $result){
 
         $this->result = $result;

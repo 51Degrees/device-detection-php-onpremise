@@ -77,7 +77,7 @@ $pipeline = $pipeline->add($device)->build();
 // Here we create a function that checks if a supplied User-Agent is a 
 // mobile device
 
-function failuretomatch_checkifmobile($userAgent = "", $pipeline) {
+function failuretomatch_checkifmobile($pipeline, $userAgent = "") {
 
     // We create the flowData object that is used to add evidence to and read data from 
     $flowData = $pipeline->createFlowData();
@@ -122,7 +122,7 @@ function failuretomatch_checkifmobile($userAgent = "", $pipeline) {
 // Some example User-Agents to test
 
 $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
-failuretomatch_checkifmobile($iPhoneUA, $pipeline);
+failuretomatch_checkifmobile($pipeline, $iPhoneUA);
 
 $badUserAgent = 'nonsense ua...';
-failuretomatch_checkifmobile($badUserAgent, $pipeline);
+failuretomatch_checkifmobile($pipeline, $badUserAgent);
