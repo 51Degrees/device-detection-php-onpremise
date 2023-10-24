@@ -80,7 +80,7 @@ $pipeline = $pipeline->add($deviceEngine)->build();
 // Here we create a function that checks if a supplied User-Agent is a 
 // mobile device
 
-function manualDataUpdate_checkifmobile($userAgent = "", $pipeline){
+function manualDataUpdate_checkifmobile($pipeline, $userAgent = ""){
 
     // We create the flowData object that is used to add evidence to and read data from 
     $flowData = $pipeline->createFlowData();
@@ -123,8 +123,8 @@ function manualDataUpdate_checkifmobile($userAgent = "", $pipeline){
 $desktopUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36';
 $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
 
-manualDataUpdate_checkifmobile($desktopUA, $pipeline);
-manualDataUpdate_checkifmobile($iPhoneUA, $pipeline);
+manualDataUpdate_checkifmobile($pipeline, $desktopUA);
+manualDataUpdate_checkifmobile($pipeline, $iPhoneUA);
 print("Reloading data file...");
 // Update the device detection engine with the data file from the
 // same location.
@@ -135,5 +135,5 @@ print("Reloading data file...");
 // There are variations, which allow refreshing from a different
 // file path or from an in-memory representation of the data file.
 $deviceEngine->refreshData();
-manualDataUpdate_checkifmobile($desktopUA, $pipeline);
-manualDataUpdate_checkifmobile($iPhoneUA, $pipeline);
+manualDataUpdate_checkifmobile($pipeline, $desktopUA);
+manualDataUpdate_checkifmobile($pipeline, $iPhoneUA);

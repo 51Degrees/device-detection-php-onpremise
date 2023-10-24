@@ -31,6 +31,8 @@ use fiftyone\pipeline\engines\Engine;
 class DeviceDetectionOnPremise extends Engine {
 
     public $dataKey = "device";
+    public $engine;
+    private $evidenceKeys;
 
     public function __construct(){
 
