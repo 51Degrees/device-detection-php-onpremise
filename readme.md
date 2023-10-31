@@ -153,7 +153,7 @@ When running under Apache MPM, only `prefork` mode is supported, since `dl()` ca
 
 #### Refresh Internal Data
 
-To reload the data file, *refreshData()* needs to be called as described in this [example](http://51degrees.com/documentation/_examples__device_detection__data_file_updates__manual.html) . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.
+To reload the data file, *refreshData()* needs to be called as described in this [example](https://51degrees.com/documentation/_examples__device_detection__data_file_updates__manual.html) . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.
 
 ## Examples
 
