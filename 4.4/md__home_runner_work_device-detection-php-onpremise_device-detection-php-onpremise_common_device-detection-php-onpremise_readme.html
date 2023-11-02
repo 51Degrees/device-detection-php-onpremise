@@ -157,7 +157,7 @@ FiftyOneDegreesHashEngine.data_file=/<span style="background-color: #FFFF00">pat
 <h4>Apache MPM</h4>
 <p>When running under Apache MPM, only <code>prefork</code> mode is supported, since <code>dl()</code> call is required to load Device Detection engine module and it is not supported under multi-threading environment which <code>worker</code> and <code>event</code> mode does.</p>
 <h4>Refresh Internal Data</h4>
-<p>To reload the data file, <em>refreshData()</em> needs to be called as described in this <a href="http://51degrees.com/documentation/_examples__device_detection__data_file_updates__manual.html">example</a> . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.</p>
+<p>To reload the data file, <em>refreshData()</em> needs to be called as described in this <a href="https://51degrees.com/documentation/_examples__device_detection__data_file_updates__manual.html">example</a> . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.</p>
 <h2>Examples</h2>
 <p>Before running the examples, the configuration for the native module MUST be added to the php.ini file. See <a href="#configuration">Configuration</a>.</p>
 <p>To run the examples, you will need PHP and composer installed. Once these are available, install the dependencies required by the examples. Navigate to the repository root and execute:</p>
