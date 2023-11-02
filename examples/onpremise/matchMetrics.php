@@ -27,7 +27,7 @@
  * process, for example, the degree of certainty about the result. Running the example outputs
  * those properties and values..
  *
- * There is a (discussion)[https://51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance]
+ * There is a [discussion](https://51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance)
  * of metrics and controlling performance on our web site. See also the (performance options)
  * [https://51degrees.com/documentation/_device_detection__features__performance_options.html]
  * page.
