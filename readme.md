@@ -197,7 +197,7 @@ The table below describes the examples that are available.
 This repo has tests for the examples. To run the tests, make sure PHPUnit is installed then, in the root of this repo, call:
 
 ```
-phpunit --log-junit test-results.xml
+phpunit --fail-on-warning --display-warnings --log-junit test-results.xml
 ```
 
 ### Performance
