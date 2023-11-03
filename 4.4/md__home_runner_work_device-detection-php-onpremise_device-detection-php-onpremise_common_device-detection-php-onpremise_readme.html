@@ -185,7 +185,7 @@ FiftyOneDegreesHashEngine.data_file=/<span style="background-color: #FFFF00">pat
 </div><h2>Tests</h2>
 <h3>PHPUnit</h3>
 <p>This repo has tests for the examples. To run the tests, make sure PHPUnit is installed then, in the root of this repo, call:</p>
-<div class="c-code__block c-code__block--outline"><div class="c-code__line">phpunit --log-junit test-results.xml</div></div><h3>Performance</h3>
+<div class="c-code__block c-code__block--outline"><div class="c-code__line">phpunit --fail-on-warning --display-warnings --log-junit test-results.xml</div></div><h3>Performance</h3>
 <p>Performance tests for the engine can be found in the <code>performance-tests</code> directory. To build this, the dependencies listed on <a href="https://github.com/51degrees/apachebench">ApacheBench</a> must be installed.</p>
 <p>To build the tests, enter the <code>performance-tests</code> directory and run the following.</p>
 <div class="c-code__block c-code__block--outline"><div class="c-code__line">mkdir build</div><div class="c-code__line">cd build</div><div class="c-code__line">cmake ..</div><div class="c-code__line">cmake --build .</div></div><p>Once the build is completed, ensure that the <code>php.ini</code> file is correctly configured, and run the tests from the build directory with:</p>
