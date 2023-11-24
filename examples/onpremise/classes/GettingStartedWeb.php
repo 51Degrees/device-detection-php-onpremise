@@ -40,32 +40,32 @@ class GettingStartedWeb
     private function processRequest($pipeline, $output)
     {
         // Create the flowdata object.
-        $flowdata = $pipeline->createFlowData();
+        $flowData = $pipeline->createFlowData();
 
         // Add any information from the request (headers, cookies and additional
         // client side provided information)
-        $flowdata->evidence->setFromWebRequest();
+        $flowData->evidence->setFromWebRequest();
 
         // Process the flowdata
-        $flowdata->process();
+        $flowData->process();
 
         // Some browsers require that extra HTTP headers are explicitly
         // requested. So set whatever headers are required by the browser in
         // order to return the evidence needed by the pipeline.
         // More info on this can be found at
         // https://51degrees.com/blog/user-agent-client-hints
-        Utils::setResponseHeader($flowdata);
+        Utils::setResponseHeader($flowData);
 
         // First we make a JSON route that will be called from the client side
         // and will return a JSON encoded property database using any additional
         // evidence provided by the client.
-        if (parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) === "/json") {
+        if (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) === '/json') {
             header('Content-Type: application/json');
-            $output(json_encode($flowdata->jsonbundler->json));
+            $output(json_encode($flowData->jsonbundler->json));
+
             return;
         }
 
-        include_once(__DIR__."/../static/page.php");
-
+        include_once __DIR__ . '/../static/page.php';
     }
 }

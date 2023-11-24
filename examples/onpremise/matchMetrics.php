@@ -25,33 +25,32 @@
  * @example onpremise/matchMetrics.php
  * The example illustrates the various metrics that can be obtained about the device detection
  * process, for example, the degree of certainty about the result. Running the example outputs
- * those properties and values..
+ * those properties and values.
  *
  * There is a [discussion](https://51degrees.com/documentation/_device_detection__hash.html#DeviceDetection_Hash_DataSetProduction_Performance)
- * of metrics and controlling performance on our web site. See also the (performance options)
+ * of metrics and controlling performance on our website. See also the (performance options)
  * [https://51degrees.com/documentation/_device_detection__features__performance_options.html]
  * page.
  * # Location
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/matchMetrics.php). 
- *
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/matchMetrics.php).
  */
 
-require_once(__DIR__ . "/../../vendor/autoload.php");
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use fiftyone\pipeline\core\Logger;
+use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
 use fiftyone\pipeline\devicedetection\examples\onpremise\classes\MatchMetrics;
 
 // Only declare and call the main function if this is being run directly.
 // This prevents main from being run where examples are run as part of
 // PHPUnit tests.
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))
-{
+if (basename(__FILE__) === basename($_SERVER['SCRIPT_FILENAME'])) {
     function main($argv)
     {
         // Configure a logger to output to the console.
-        $logger = new Logger("info");
+        $logger = new Logger('info');
 
-        (new MatchMetrics())->run(false, $logger, ["fiftyone\\pipeline\\devicedetection\\examples\\onpremise\\classes\\ExampleUtils", "output"]);
+        (new MatchMetrics())->run(false, $logger, [ExampleUtils::class, 'output']);
     }
 
     main(isset($argv) ? array_slice($argv, 1) : null);

@@ -33,23 +33,25 @@ class ExampleTests extends TestCase
 {
     public function testGettingStartedConsole()
     {
-        $logger = new Logger("info");
-        $output = array();
-        (new GettingStartedConsole())->run($logger, function($str) use (&$output) { $output[] = $str; });
-        $this->assertTrue(count($output) > 0);
+        $logger = new Logger('info');
+        $output = [];
+        (new GettingStartedConsole())->run($logger, function ($str) use (&$output) { $output[] = $str; });
+        $this->assertGreaterThan(0, count($output));
     }
+
     public function testMetadataConsole()
     {
-        $logger = new Logger("info");
-        $output = array();
-        (new MetaDataConsole())->run($logger, function($str) use (&$output) { $output[] = $str; });
-        $this->assertTrue(count($output) > 0);
+        $logger = new Logger('info');
+        $output = [];
+        (new MetaDataConsole())->run($logger, function ($str) use (&$output) { $output[] = $str; });
+        $this->assertGreaterThan(0, count($output));
     }
+
     public function testMatchMetrics()
     {
-        $logger = new Logger("info");
-        $output = array();
-        (new MatchMetrics())->run(true, $logger, function($str) use (&$output) { $output[] = $str; });
-        $this->assertTrue(count($output) > 0);
+        $logger = new Logger('info');
+        $output = [];
+        (new MatchMetrics())->run(true, $logger, function ($str) use (&$output) { $output[] = $str; });
+        $this->assertGreaterThan(0, count($output));
     }
 }

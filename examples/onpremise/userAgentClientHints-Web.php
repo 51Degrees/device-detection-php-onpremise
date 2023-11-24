@@ -27,11 +27,11 @@
  * @include{doc} example-web-integration-client-hints.txt
  *
  * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/userAgentClientHints-Web.php).
-
- * In this example we create an on premise 51Degrees device detection pipeline, 
- * in order to do this you will need a copy of the 51Degrees on-premise library 
+ *
+ * In this example we create an on premise 51Degrees device detection pipeline,
+ * in order to do this you will need a copy of the 51Degrees on-premise library
  * and need to make the following additions to your php.ini file
- * 
+ *
  * ```
  * FiftyOneDegreesHashEngine.data_file = // location of the data file
  * ```
@@ -39,37 +39,35 @@
  * When running under process manager such as Apache MPM or php-fpm, make sure
  * to set performance_profile to MaxPerformance by making the following addition
  * to php.ini file. More details can be found in <a href="https://github.com/51Degrees/device-detection-php-onpremise/blob/master/readme.md">README</a>.
- * 
+ *
  * ```
  * FiftyOneDegreesHashEngine.performance_profile = MaxPerformance
  * ```
- * 
+ *
  * Expected output:
  * ```
  * User Agent Client Hints Example
- * 
+ *
  * Hardware Vendor: Unknown
  * Hardware Name: Array
  * Device Type: Desktop
- * 
+ *
  * ```
- * 
- **/
+ */
 
-require(__DIR__ . "/../../vendor/autoload.php");
+require __DIR__ . '/../../vendor/autoload.php';
 
-use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 use fiftyone\pipeline\core\PipelineBuilder;
 use fiftyone\pipeline\core\Utils;
+use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 
 $device = new DeviceDetectionOnPremise();
 
-$builder = new PipelineBuilder(array());
+$builder = new PipelineBuilder([]);
 
 $pipeline = $builder->add($device)->build();
 
-// We create the flowData object that is used to add evidence to and read
-// data from 
+// We create the flowData object that is used to add evidence to and read data from
 $flowData = $pipeline->createFlowData();
 
 // We set headers, cookies and more information from the web request
@@ -88,7 +86,7 @@ $device = $flowData->device;
 Utils::setResponseHeader($flowData);
 
 // Generate the HTML
-echo "<h2>User Agent Client Hints Example</h2>";
+echo '<h2>User Agent Client Hints Example</h2>';
 
 echo "
 
@@ -154,25 +152,25 @@ echo "
             <th>Value</th>
         </tr>";
 
-$evidences = $pipeline->getElement("device")->filterEvidence($flowData);
-foreach( $evidences as $key => $value){
-           echo"<tr><td>" . strVal($key) . "</td>";
-           echo "<td>" . strVal($value) . "</td></>";
+$evidences = $pipeline->getElement('device')->filterEvidence($flowData);
+foreach ($evidences as $key => $value) {
+    echo '<tr><td>' . strval($key) . '</td>';
+    echo '<td>' . strval($value) . '</td></>';
 }
 
-echo "</table>";
-echo "</div>";
+echo '</table>';
+echo '</div>';
 
-echo "<div id=description></div>";
-echo "</br><strong>Detection results:</strong></br>";
-echo "<div id=\"content\">";
+echo '<div id=description></div>';
+echo '</br><strong>Detection results:</strong></br>';
+echo '<div id="content">';
 echo "<p>\n";
-echo "    Hardware Vendor: " . (isset($device->hardwarevendor) && $device->hardwarevendor->hasValue ? $device->hardwarevendor->value : "Unknown (" . (isset($device->hardwarevendor) ? $device->hardwarevendor->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Hardware Name: " . (isset($device->hardwarename) && $device->hardwarename->hasValue ? implode(",", $device->hardwarename->value) : "Unknown (" . (isset($device->hardwarename) ? $device->hardwarename->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Device Type: " . (isset($device->devicetype) && $device->devicetype->hasValue ? $device->devicetype->value  : "Unknown (" . (isset($device->devicetype) ? $device->devicetype->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Platform Vendor: " . (isset($device->platformvendor) && $device->platformvendor->hasValue ? $device->platformvendor->value : "Unknown (" . (isset($device->platformvendor) ? $device->platformvendor->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Platform Name: " . (isset($device->platformname) && $device->platformname->hasValue ? $device->platformname->value : "Unknown (" . (isset($device->platformname) ? $device->platformname->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Platform Version: " . (isset($device->platformversion) && $device->platformversion->hasValue ? $device->platformversion->value : "Unknown (" . (isset($device->platformversion) ? $device->platformversion->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Browser Vendor: " . (isset($device->browservendor) && $device->browservendor->hasValue ? $device->browservendor->value : "Unknown (" . (isset($device->browservendor) ? $device->browservendor->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Browser Name: " . (isset($device->browsername) && $device->browsername->hasValue ? $device->browsername->value : "Unknown (" . (isset($device->browsername) ? $device->browsername->noValueMessage : "property unavailable" ) .")") . "<br />\n";
-echo "    Browser Version: " . (isset($device->browserversion) && $device->browserversion->hasValue ? $device->browserversion->value : "Unknown (" . (isset($device->browserversion) ? $device->browserversion->noValueMessage : "property unavailable" ) .")") . "\n";
+echo '    Hardware Vendor: ' . (isset($device->hardwarevendor) && $device->hardwarevendor->hasValue ? $device->hardwarevendor->value : 'Unknown (' . (isset($device->hardwarevendor) ? $device->hardwarevendor->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Hardware Name: ' . (isset($device->hardwarename) && $device->hardwarename->hasValue ? implode(',', $device->hardwarename->value) : 'Unknown (' . (isset($device->hardwarename) ? $device->hardwarename->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Device Type: ' . (isset($device->devicetype) && $device->devicetype->hasValue ? $device->devicetype->value : 'Unknown (' . (isset($device->devicetype) ? $device->devicetype->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Platform Vendor: ' . (isset($device->platformvendor) && $device->platformvendor->hasValue ? $device->platformvendor->value : 'Unknown (' . (isset($device->platformvendor) ? $device->platformvendor->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Platform Name: ' . (isset($device->platformname) && $device->platformname->hasValue ? $device->platformname->value : 'Unknown (' . (isset($device->platformname) ? $device->platformname->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Platform Version: ' . (isset($device->platformversion) && $device->platformversion->hasValue ? $device->platformversion->value : 'Unknown (' . (isset($device->platformversion) ? $device->platformversion->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Browser Vendor: ' . (isset($device->browservendor) && $device->browservendor->hasValue ? $device->browservendor->value : 'Unknown (' . (isset($device->browservendor) ? $device->browservendor->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Browser Name: ' . (isset($device->browsername) && $device->browsername->hasValue ? $device->browsername->value : 'Unknown (' . (isset($device->browsername) ? $device->browsername->noValueMessage : 'property unavailable') . ')') . "<br />\n";
+echo '    Browser Version: ' . (isset($device->browserversion) && $device->browserversion->hasValue ? $device->browserversion->value : 'Unknown (' . (isset($device->browserversion) ? $device->browserversion->noValueMessage : 'property unavailable') . ')') . "\n";

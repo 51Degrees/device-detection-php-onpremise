@@ -23,48 +23,54 @@
 
 namespace fiftyone\pipeline\devicedetection\tests\classes;
 
-/* 
- * Class to track external processes for Linux only.
- */
-class Process{
+// Class to track external processes for Linux only.
+class Process
+{
     private $pid;
     private $command;
 
-    public function __construct($cl=false){
-        if ($cl != false){
+    public function __construct($cl = false)
+    {
+        if ($cl) {
             $this->command = $cl;
         }
     }
-    private function runCom(){
-        $command = 'nohup '.$this->command. ' 1>/dev/null & echo $!';
-        exec($command ,$op);
-        $this->pid = (int)$op[0];
-    }
 
-    public function setPid($pid){
+    public function setPid($pid)
+    {
         $this->pid = $pid;
     }
 
-    public function getPid(){
+    public function getPid()
+    {
         return $this->pid;
     }
 
-    public function status(){
-        $command = 'ps -p '.$this->pid;
-        exec($command,$op);
-        if (!isset($op[1]))return false;
-        else return true;
+    public function status()
+    {
+        $command = 'ps -p ' . $this->pid;
+        exec($command, $op);
+        return isset($op[1]);
     }
 
-    public function start(){
-        if ($this->command != '')$this->runCom();
-        else return true;
+    public function start()
+    {
+        if ($this->command) {
+            $this->runCom();
+        }
     }
 
-    public function stop(){
-        $command = 'kill '.$this->pid;
+    public function stop()
+    {
+        $command = 'kill ' . $this->pid;
         exec($command);
-        if ($this->status() == false)return true;
-        else return false;
+        return $this->status() === false;
+    }
+
+    private function runCom()
+    {
+        $command = 'nohup ' . $this->command . ' 1>/dev/null & echo $!';
+        exec($command, $op);
+        $this->pid = (int) $op[0];
     }
 }

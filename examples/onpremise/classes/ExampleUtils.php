@@ -22,34 +22,34 @@
  * ********************************************************************* */
 
 namespace fiftyone\pipeline\devicedetection\examples\onpremise\classes;
+
 class ExampleUtils
 {
-    // If data file is older than this number of days then a warning will 
+    // If data file is older than this number of days then a warning will
     // be displayed.
-    const DATA_FILE_AGE_WARNING = 30;
+    public const DATA_FILE_AGE_WARNING = 30;
 
     public static function output($message)
     {
-        if (php_sapi_name() == "cli")
-        {
-            echo $message."\n";
-        }
-        else
-        {
-            echo "<pre>$message\n</pre>";
+        if (php_sapi_name() == 'cli') {
+            echo $message . "\n";
+        } else {
+            echo "<pre>{$message}\n</pre>";
         }
     }
 
     public static function getDataFileDate($engine)
     {
         $date = $engine->engine->getPublishedTime();
+
         return mktime(0, 0, 0, $date->getMonth(), $date->getDay(), $date->getYear());
     }
 
     public static function dataFileIsOld($engine)
     {
         $dataFileDate = ExampleUtils::getDataFileDate($engine);
-        return strtotime("today") >  $dataFileDate + mktime(0, 0, 0, 0, ExampleUtils::DATA_FILE_AGE_WARNING, 0);
+
+        return strtotime('today') > $dataFileDate + mktime(0, 0, 0, 0, ExampleUtils::DATA_FILE_AGE_WARNING, 0);
     }
 
     public static function getDataFileTier($engine)
@@ -62,94 +62,84 @@ class ExampleUtils
      * performs device detection. We can use this to get
      * details about the data file as well as meta-data
      * describing things such as the available properties.
+     *
+     * @param mixed $engine
+     * @param mixed $logger
      */
     public static function checkDataFile($engine, $logger)
     {
-        if (isset($engine))
-        {
+        if (isset($engine)) {
             $dataFileDate = ExampleUtils::getDataFileDate($engine);
-            $logger->log("info",
-                "Using a '".ExampleUtils::getDataFileTier($engine)."' data file created ".
-                "'".date("d/m/Y", $dataFileDate)."' from location ".
-                "'".$engine->engine->getDataFilePath()."'");
+            $logger->log(
+                'info',
+                "Using a '" . ExampleUtils::getDataFileTier($engine) . "' data file created " .
+                "'" . date('d/m/Y', $dataFileDate) . "' from location " .
+                "'" . $engine->engine->getDataFilePath() . "'"
+            );
 
-            if (ExampleUtils::dataFileIsOld($engine))
-            {
-                $logger->log("warn",
-                    "This example is using a data file ".
-                    "that is more than '".ExampleUtils::DATA_FILE_AGE_WARNING."' days ".
-                    "old. A more recent data file may be needed to ".
-                    "correctly detect the latest devices, browsers, ".
-                    "etc. The latest lite data file is available from ".
-                    "the device-detection-data repository on GitHub ".
-                    "https://github.com/51Degrees/device-detection-data. ".
-                    "Find out about the Enterprise data file, which ".
-                    "includes automatic updates, on our pricing page: ".
-                    "https://51degrees.com/pricing");
+            if (ExampleUtils::dataFileIsOld($engine)) {
+                $logger->log(
+                    'warn',
+                    'This example is using a data file ' .
+                    "that is more than '" . ExampleUtils::DATA_FILE_AGE_WARNING . "' days " .
+                    'old. A more recent data file may be needed to ' .
+                    'correctly detect the latest devices, browsers, ' .
+                    'etc. The latest lite data file is available from ' .
+                    'the device-detection-data repository on GitHub ' .
+                    'https://github.com/51Degrees/device-detection-data. ' .
+                    'Find out about the Enterprise data file, which ' .
+                    'includes automatic updates, on our pricing page: ' .
+                    'https://51degrees.com/pricing'
+                );
             }
 
-            if (ExampleUtils::getDataFileTier($engine) === "Lite")
-            {
-                $logger->log("warn",
-                    "This example is using the 'Lite' ".
-                    "data file. This is used for illustration, and ".
-                    "has limited accuracy and capabilities. Find ".
-                    "out about the Enterprise data file on our ".
-                    "pricing page: https://51degrees.com/pricing");
+            if (ExampleUtils::getDataFileTier($engine) === 'Lite') {
+                $logger->log(
+                    'warn',
+                    "This example is using the 'Lite' " .
+                    'data file. This is used for illustration, and ' .
+                    'has limited accuracy and capabilities. Find ' .
+                    'out about the Enterprise data file on our ' .
+                    'pricing page: https://51degrees.com/pricing'
+                );
             }
-        }
-    }
-
-    private static function getEnvVariable($name)
-    {
-        $env = getenv();
-        if (isset($env[$name]))
-        {
-            return $env[$name];
-        }
-        else
-        {
-            return "";
         }
     }
 
     public static function getHumanReadable($device, $name)
     {
-        try
-        {
-            $value = $device->$name;
-            if ($value->hasValue)
-            {
-                if (is_array($value->value))
-                {
-                    return implode(", ", $value->value);
+        try {
+            $value = $device->{$name};
+            if ($value->hasValue) {
+                if (is_array($value->value)) {
+                    return implode(', ', $value->value);
                 }
-                else
-                {
-                    return $value->value;
-                }
+
+                return $value->value;
             }
-            else
-            {
-                return "Unknown (".$value->noValueMessage.")";
-            }
-        }
-        catch (\Exception $e)
-        {
-            return "Property not found in the current data file.";
+
+            return 'Unknown (' . $value->noValueMessage . ')';
+        } catch (\Exception $e) {
+            return 'Property not found in the current data file.';
         }
     }
 
     public static function containsAcceptCh()
     {
-        foreach (headers_list() as $header)
-        {
-            $parts = explode(": ", $header);
-            if (strtolower($parts[0]) === "accept-ch")
-            {
+        foreach (headers_list() as $header) {
+            $parts = explode(': ', $header);
+            if (strtolower($parts[0]) === 'accept-ch') {
                 return true;
             }
         }
+
         return false;
+    }
+
+    private static function getEnvVariable($name)
+    {
+        $env = getenv();
+
+        return $env[$name] ?? '';
     }
 }

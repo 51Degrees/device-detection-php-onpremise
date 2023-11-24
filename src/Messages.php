@@ -26,14 +26,15 @@ namespace fiftyone\pipeline\devicedetection;
 /**
  * Messages which may be reused by the API.
  */
-class Messages {
+class Messages
+{
     /**
      * Error message returned when a cache is configured for the on-premise
      * engine.
      */
-    const CACHE_ERROR =
-        "A results cache cannot be configured in the on-premise Hash " .
-        "engine. The overhead of having to manage native object " .
-        "lifetimes when a cache is enabled outweighs the benefit of the " .
-        "cache.";
+    public const CACHE_ERROR =
+        'A results cache cannot be configured in the on-premise Hash ' .
+        'engine. The overhead of having to manage native object ' .
+        'lifetimes when a cache is enabled outweighs the benefit of the ' .
+        'cache.';
 }

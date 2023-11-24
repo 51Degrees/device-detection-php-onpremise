@@ -23,116 +23,116 @@
 
 namespace fiftyone\pipeline\devicedetection;
 
-use fiftyone\pipeline\engines\AspectData;
 use fiftyone\pipeline\core\AspectPropertyValue;
+use fiftyone\pipeline\engines\AspectData;
 
-
-class SwigData extends AspectData 
+class SwigData extends AspectData
 {
     private $result;
-    
-    public function __construct($engine, $result){
 
+    public function __construct($engine, $result)
+    {
         $this->result = $result;
-        
+
         parent::__construct(...func_get_args());
-        
     }
 
-    public function __isset($key) {
+    public function __isset($key)
+    {
         return isset($this->flowElement->properties[strtolower($key)]);
     }
 
-    public function getInternal($key){
-        $result;
-
+    public function getInternal($key)
+    {
         $key = strtolower($key);
 
-        if(isset($this->flowElement->properties[$key])){
+        if (isset($this->flowElement->properties[$key])) {
             $property = $this->flowElement->properties[$key];
 
-            if ($property["category"] == "DeviceMetrics") {
-                switch ($property["name"]) {
-                    case "MatchedNodes":
+            if ($property['category'] == 'DeviceMetrics') {
+                switch ($property['name']) {
+                    case 'MatchedNodes':
                         $result = new AspectPropertyValue(
-                                null,
-                                $this->result->getMatchedNodes());
+                            null,
+                            $this->result->getMatchedNodes()
+                        );
                         break;
-                    case "Difference":
+                    case 'Difference':
                         $result = new AspectPropertyValue(
-                                null,
-                                $this->result->getDifference());
+                            null,
+                            $this->result->getDifference()
+                        );
                         break;
-                    case "Drift":
+                    case 'Drift':
                         $result = new AspectPropertyValue(
-                                null,
-                                $this->result->getDrift());
+                            null,
+                            $this->result->getDrift()
+                        );
                         break;
-                    case "DeviceId":
+                    case 'DeviceId':
                         $result = new AspectPropertyValue(
-                                null,
-                                $this->result->getDeviceId());
+                            null,
+                            $this->result->getDeviceId()
+                        );
                         break;
-                    case "UserAgents":
-                        $useragents = array();
+                    case 'UserAgents':
+                        $useragents = [];
                         $count = $this->result->getUserAgents();
-                        for ($i = 0; $i < $count; $i++) {
+                        for ($i = 0; $i < $count; ++$i) {
                             $useragents[] = $this->result->getUserAgent($i);
                         }
                         $result = new AspectPropertyValue(
-                                null,
-                                $useragents);
+                            null,
+                            $useragents
+                        );
                         break;
-                    case "Method":
+                    case 'Method':
                         $result = new AspectPropertyValue(
-                                null,
-                                $this->result->getDifference());
+                            null,
+                            $this->result->getDifference()
+                        );
                         break;
-                    case "Iterations":
+                    case 'Iterations':
                         $result = new AspectPropertyValue(
-                                null,
-                                $this->result->getIterations());
+                            null,
+                            $this->result->getIterations()
+                        );
                         break;
                 }
-            }
-            else {
-                switch ($property["type"]) {
-                    case "Boolean":                
-                        $value = $this->result->getValueAsBool($property["name"]);
+            } else {
+                switch ($property['type']) {
+                    case 'Boolean':
+                        $value = $this->result->getValueAsBool($property['name']);
                         break;
-                    case "String":
-                        $value = $this->result->getValueAsString($property["name"]);
+                    case 'String':
+                        $value = $this->result->getValueAsString($property['name']);
                         break;
-                    case "JavaScript":
-                        $value = $this->result->getValueAsString($property["name"]);
+                    case 'JavaScript':
+                        $value = $this->result->getValueAsString($property['name']);
                         break;
-                    case "Integer":
-                        $value = $this->result->getValueAsInteger($property["name"]);
+                    case 'Integer':
+                        $value = $this->result->getValueAsInteger($property['name']);
                         break;
-                    case "Double":
-                        $value = $this->result->getValueAsDouble($property["name"]);
+                    case 'Double':
+                        $value = $this->result->getValueAsDouble($property['name']);
                         break;
-                    case "Array":
-                        $value = $this->result->getValues($property["name"]);
+                    case 'Array':
+                        $value = $this->result->getValues($property['name']);
                         break;
                 }
 
                 if ($value->hasValue()) {
-                    if ($property["type"] == "Array") {
+                    if ($property['type'] == 'Array') {
                         $result = new AspectPropertyValue(null, SwigHelpers::vectorToArray($value->getValue()));
-                    }
-                    else {
+                    } else {
                         $result = new AspectPropertyValue(null, $value->getValue());
                     }
-                }
-                else {
+                } else {
                     $result = new AspectPropertyValue($value->getNoValueMessage());
                 }
             }
+
             return $result;
-
         }
-
     }
-
 }

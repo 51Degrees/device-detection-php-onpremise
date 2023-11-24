@@ -21,21 +21,20 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
-
 /**
  * @example onpremise/gettingStartedWeb.php
  *
  * @include{doc} example-getting-started-web.txt
- * 
- * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/gettingStartedWeb.php). 
- * 
+ *
+ * This example is available in full on [GitHub](https://github.com/51Degrees/device-detection-php-onpremise/blob/master/examples/onpremise/gettingStartedWeb.php).
+ *
  * @include{doc} example-require-resourcekey.txt
- * 
+ *
  * Required Composer Dependencies:
  * - 51degrees/fiftyone.devicedetection
- * 
+ *
  * ## Overview
- * 
+ *
  * The `DeviceDetectionPipelineBuilder` class is used to create a Pipeline instance from the configuration
  * that is supplied.
  * The fiftyone\pipeline\core\Utils module contains helpers which deal with
@@ -44,12 +43,12 @@
  * $flowdata->evidence->setFromWebRequest()
  * ```
  *
- * The module can also handling setting response headers (e.g. Accept-CH for User-Agent 
+ * The module can also handling setting response headers (e.g. Accept-CH for User-Agent
  * Client Hints) and serving requests for client-side JavaScript and JSON resources.
  * ```{php}
  * Utils::setResponseHeader($flowdata);
  * ```
- * 
+ *
  * The results of detection can be accessed by through the flowdata object once
  * processed. This can then be used to interrogate the data.
  * ```{php}
@@ -57,9 +56,9 @@
  * $device = $flowdata->device;
  * $hardwareVendor = $device->hardwarevendor;
  * ```
- * 
- * Results can also be accessed in client-side code by using the `fod` object. See the 
- * [JavaScriptBuilderElement](https://51degrees.com/pipeline-php/classfiftyone_1_1pipeline_1_1core_1_1_javascript_builder_element.html)
+ *
+ * Results can also be accessed in client-side code by using the `fod` object. See the
+ * [JavaScriptBuilderElement](https://51degrees.com/pipeline-php/4.3/classfiftyone_1_1pipeline_1_1core_1_1_javascript_builder_element.html)
  * for details on available settings such as changing the `fod` name.
  * ```{js}
  * window.onload = function () {
@@ -76,7 +75,7 @@
  * ## Class
  */
 
-require(__DIR__ . "/../../vendor/autoload.php");
+require __DIR__ . '/../../vendor/autoload.php';
 
 use fiftyone\pipeline\core\Logger;
 use fiftyone\pipeline\devicedetection\examples\onpremise\classes\GettingStartedWeb;
@@ -84,15 +83,13 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\GettingStartedW
 function main($argv)
 {
     // Configure a logger to output to the console.
-    $logger = new Logger("info");
+    $logger = new Logger('info');
 
-    $configFile = __DIR__ . "/gettingStartedWeb.json";
+    $configFile = __DIR__ . '/gettingStartedWeb.json';
 
-    (new GettingStartedWeb())->run($configFile, $logger, function($message) { echo $message; });
+    (new GettingStartedWeb())->run($configFile, $logger, function ($message) { echo $message; });
 }
 
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))
-{
+if (basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME'])) {
     main(isset($argv) ? array_slice($argv, 1) : null);
 }
-

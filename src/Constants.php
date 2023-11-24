@@ -26,27 +26,28 @@ namespace fiftyone\pipeline\devicedetection;
 /**
  * Constants which may be reused by the API.
  */
-class Constants {
-    /* Match metrics descriptions */
-    const MATCHED_NODES_DESCRIPTION =
-        "Indicates the number of hash nodes matched within the evidence.";
-    const DIFFERENCE_DESCRIPTION =
-        "Used when detection method is not Exact or None. This is an integer " .
-        "value and the larger the value the less confident the detector is " .
-        "in this result.";
-    const DRIFT_DESCRIPTION =
-        "Total difference in character positions where the substrings hashes " .
-        "were found away from where they were expected.";
-    const DEVICE_ID_DESCRIPTION =
-        "Consists of four components separated by a hyphen symbol: " .
-        "Hardware-Platform-Browser-IsCrawler where each Component represents " .
-        "an ID of the corresponding Profile.";
-    const USER_AGENTS_DESCRIPTION =
-        "The matched User-Agents.";
-    const ITERATIONS_DESCRIPTION =
-        "The number of iterations carried out in order to find a match. This " .
-        "is the number of nodes in the graph which have been visited.";
-    const METHOD_DESCRIPTION =
-        "Provides information about the algorithm that was used to perform " .
-        "detection for a particular User-Agent.";
+class Constants
+{
+    // Match metrics descriptions
+    public const MATCHED_NODES_DESCRIPTION =
+        'Indicates the number of hash nodes matched within the evidence.';
+    public const DIFFERENCE_DESCRIPTION =
+        'Used when detection method is not Exact or None. This is an integer ' .
+        'value and the larger the value the less confident the detector is ' .
+        'in this result.';
+    public const DRIFT_DESCRIPTION =
+        'Total difference in character positions where the substrings hashes ' .
+        'were found away from where they were expected.';
+    public const DEVICE_ID_DESCRIPTION =
+        'Consists of four components separated by a hyphen symbol: ' .
+        'Hardware-Platform-Browser-IsCrawler where each Component represents ' .
+        'an ID of the corresponding Profile.';
+    public const USER_AGENTS_DESCRIPTION =
+        'The matched User-Agents.';
+    public const ITERATIONS_DESCRIPTION =
+        'The number of iterations carried out in order to find a match. This ' .
+        'is the number of nodes in the graph which have been visited.';
+    public const METHOD_DESCRIPTION =
+        'Provides information about the algorithm that was used to perform ' .
+        'detection for a particular User-Agent.';
 }
