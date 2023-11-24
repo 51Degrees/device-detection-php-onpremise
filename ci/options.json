@@ -62,13 +62,5 @@
       "LanguageVersion": "7.4",
       "RunPerformance": true,
       "PackageRequirement": true
-    },
-    {
-      "Name": "Ubuntu_PHP_7.2",
-      "Image": "ubuntu-latest",
-      "Language": "php",
-      "LanguageVersion": "7.2",
-      "RunPerformance": false,
-      "PackageRequirement": true
     }
 ]
