@@ -28,7 +28,8 @@
         "51degrees/fiftyone.pipeline.engines": "4.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "friendsofphp/php-cs-fixer": "^3.39"
     },
     "autoload": {
         "psr-4": {

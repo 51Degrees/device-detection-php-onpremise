@@ -23,13 +23,15 @@
 
 namespace fiftyone\pipeline\devicedetection;
 
-class SwigHelpers {
+class SwigHelpers
+{
     /**
-     * Helper to convert a swig vector into a standard JavaScript array
-     * @param {Object} vector
-    */
-    static function vectorToArray($vector) {
-
+     * Helper to convert a swig vector into a standard JavaScript array.
+     *
+     * @param object $vector
+     */
+    public static function vectorToArray($vector)
+    {
         $output = [];
 
         for ($i = 0; $i < $vector->size(); $i++) {
@@ -37,24 +39,22 @@ class SwigHelpers {
         }
 
         return $output;
-
     }
-    /**
-     * Helper to convert a PHP array to a swig vector
-     * @param {Object} vector
-    */
-    static function arrayToVector($array) {
 
+    /**
+     * Helper to convert a PHP array to a swig vector.
+     *
+     * @param array $array
+     * @return \VectorStringSwig
+     */
+    public static function arrayToVector($array)
+    {
         $vector = new \VectorStringSwig();
 
         foreach ($array as $item) {
-
             $vector->push($item);
-
-        };
+        }
 
         return $vector;
-
     }
-
 }

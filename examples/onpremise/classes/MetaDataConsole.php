@@ -23,6 +23,7 @@
 
 namespace fiftyone\pipeline\devicedetection\examples\onpremise\classes;
 
+use fiftyone\pipeline\core\BasicListEvidenceKeyFilter;
 use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 
 class MetaDataConsole
@@ -31,7 +32,9 @@ class MetaDataConsole
      * In this example, we use the DeviceDetectionPipelineBuilder
      * and configure it in code. For more information about
      * pipelines in general see the documentation at
-     * http://51degrees.com/documentation/4.3/_concepts__configuration__builders__index.html
+     * http://51degrees.com/documentation/4.3/_concepts__configuration__builders__index.html.
+     *
+     * @param \fiftyone\pipeline\core\Logger $logger
      */
     public function run($logger, callable $output)
     {
@@ -49,39 +52,34 @@ class MetaDataConsole
 
     private function outputEvidenceKeyDetails($engine, callable $output)
     {
-        $output("");
-        if (is_a($engine->getEvidenceKeyFilter(), "fiftyone\\pipeline\\core\\BasicListEvidenceKeyFilter"))
-        {
+        $output('');
+        if ($engine->getEvidenceKeyFilter() instanceof BasicListEvidenceKeyFilter) {
             // If the evidence key filter extends BasicListEvidenceKeyFilter then we can
             // display a list of accepted keys.
             $filter = $engine->getEvidenceKeyFilter();
-            $output("Accepted evidence keys:");
-            foreach ($filter->getList() as $key)
-            {
-                $output("\t$key");
+            $output('Accepted evidence keys:');
+            foreach ($filter->getList() as $key) {
+                $output("\t{$key}");
             }
-        }
-        else
-        {
-            $output("The evidence key filter has type " .
-                $engine->getEvidenceKeyFilter().". As this does not extend " .
-                "BasicListEvidenceKeyFilter, a list of accepted values cannot be " .
-                "displayed. As an alternative, you can pass evidence keys to " .
-                "filter->filterEvidenceKey(string) to see if a particular key will be included " .
-                "or not.");
-            $output("For example, header.user-agent is " .
-                ($engine->getEvidenceKeyFilter()->filterEvidenceKey("header.user-agent") ? "" : "not ") .
-                "accepted.");
+        } else {
+            $output('The evidence key filter has type ' .
+                $engine->getEvidenceKeyFilter() . '. As this does not extend ' .
+                'BasicListEvidenceKeyFilter, a list of accepted values cannot be ' .
+                'displayed. As an alternative, you can pass evidence keys to ' .
+                'filter->filterEvidenceKey(string) to see if a particular key will be included ' .
+                'or not.');
+            $output('For example, header.user-agent is ' .
+                ($engine->getEvidenceKeyFilter()->filterEvidenceKey('header.user-agent') ? '' : 'not ') .
+                'accepted.');
         }
     }
 
     private function outputProperties($engine, callable $output)
     {
-        foreach ($engine->getProperties() as $property)
-        {
+        foreach ($engine->getProperties() as $property) {
             // Output some details about the property.
-            $output("Property - ".$property["name"] . " " .
-                "[Category: ".$property["category"]."] (".$property["type"].")");
+            $output('Property - ' . $property['name'] . ' ' .
+                '[Category: ' . $property['category'] . '] (' . $property['type'] . ')');
         }
     }
 }

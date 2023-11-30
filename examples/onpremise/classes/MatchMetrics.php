@@ -28,29 +28,28 @@ use fiftyone\pipeline\devicedetection\DeviceDetectionOnPremise;
 
 class MatchMetrics
 {
-    // Evidence values from a windows 11 device using a browser
+    // Evidence values from a Windows 11 device using a browser
     // that supports User-Agent Client Hints.
-    private $evidenceValues = array(
-        "header.user-agent" =>
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ".
-            "AppleWebKit/537.36 (KHTML, like Gecko) ".
-            "Chrome/98.0.4758.102 Safari/537.36",
-        "header.sec-ch-ua-mobile" => "?0",
-        "header.sec-ch-ua" =>
-            "\" Not A; Brand\";v=\"99\", \"Chromium\";v=\"98\", ".
-            "\"Google Chrome\";v=\"98\"",
-        "header.sec-ch-ua-platform" => "\"Windows\"",
-        "header.sec-ch-ua-platform-version" => "\"14.0.0\"");
+    private $evidenceValues = [
+        'header.user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' .
+            'AppleWebKit/537.36 (KHTML, like Gecko) ' .
+            'Chrome/98.0.4758.102 Safari/537.36',
+        'header.sec-ch-ua-mobile' => '?0',
+        'header.sec-ch-ua' => '" Not A; Brand";v="99", "Chromium";v="98", ' .
+            '"Google Chrome";v="98"',
+        'header.sec-ch-ua-platform' => '"Windows"',
+        'header.sec-ch-ua-platform-version' => '"14.0.0"'];
 
     /**
-     * Run the example
-     * @param showDescs show descriptions of properties
-     * @param logger for pipeline logging
-     * @param out an output stream
+     * Run the example.
+     *
+     * @param bool $showDescs Show descriptions of properties
+     * @param \fiftyone\pipeline\core\Logger $logger For pipeline logging
+     * @param callable $output An output stream
      */
     public function run($showDescs, $logger, callable $output)
     {
-        $engine = new DeviceDetectionOnPremise(array(
+        $engine = new DeviceDetectionOnPremise([
             // You can improve matching performance by specifying only those
             // properties you wish to use. If you don't specify any properties
             // you will get all those available in the data file tier that
@@ -62,13 +61,13 @@ class MatchMetrics
             // FiftyOneDegreesHashEngine.required_properties option.
             // If using the full on-premise data file more properties will be
             // present in the data file. See https://51degrees.com/pricing
-        ));
+        ]);
         $pipeline = (new PipelineBuilder())
             ->add($engine)
             ->addLogger($logger)
             ->build();
 
-        ExampleUtils::checkDataFile($pipeline->getElement("device"), $logger);
+        ExampleUtils::checkDataFile($pipeline->getElement('device'), $logger);
 
         // FlowData is a data structure that is used to convey
         // information required for detection and the results of the
@@ -91,37 +90,35 @@ class MatchMetrics
         // asking for a result matching named "device"
         $device = $data->device;
 
-        $output("--- Compare evidence with what was matched ---");
-        $output("");
-        $output("Evidence");
+        $output('--- Compare evidence with what was matched ---');
+        $output('');
+        $output('Evidence');
         // output the evidence in reverse value length order
-        uasort($this->evidenceValues, function($a, $b) {
+        uasort($this->evidenceValues, function ($a, $b) {
             return strlen($b) - strlen($a);
         });
-        foreach ($this->evidenceValues as $key => $value)
-        {
-            $output("    $key: $value");
+        foreach ($this->evidenceValues as $key => $value) {
+            $output("    {$key}: {$value}");
         }
 
         // Obtain the matched User-Agents: the matched substrings in the
         // User-Agents are separated with underscores - output in forward length order.
-        $output("Matches");
+        $output('Matches');
         $useragents = $device->useragents->value;
-        usort($useragents, function($a, $b) {
+        usort($useragents, function ($a, $b) {
             return strlen($a) - strlen($b);
         });
-        foreach($useragents as $useragent)
-        {
-            $output("    Matched User-Agent: $useragent");
+        foreach ($useragents as $useragent) {
+            $output("    Matched User-Agent: {$useragent}");
         }
 
-        $output("");
+        $output('');
 
-        $output("--- Listing all available properties, by component, by property " .
-            "name ---");
-        $output("For a discussion of what the match properties mean, see: " .
-            "https://51degrees.com/documentation/_device_detection__hash" .
-            ".html#DeviceDetection_Hash_DataSetProduction_Performance");
+        $output('--- Listing all available properties, by component, by property ' .
+            'name ---');
+        $output('For a discussion of what the match properties mean, see: ' .
+            'https://51degrees.com/documentation/_device_detection__hash' .
+            '.html#DeviceDetection_Hash_DataSetProduction_Performance');
 
         // retrieve the available properties from the hash engine. The properties
         // available depends on
@@ -132,50 +129,42 @@ class MatchMetrics
         // b) the tier of data file being used. The Lite data file contains fewer
         // than 20 of the >200 available properties
         $availableProperties =
-            $pipeline->getElement("device")->getProperties();
-
+            $pipeline->getElement('device')->getProperties();
 
         // create a Map keyed on the component name of the properties available
         // components being hardware, browser, OS and Crawler.
-        $categoryMap = array();
-        foreach ($availableProperties as $property)
-        {
-            $component = $property["component"];
-            if (array_key_exists($component, $categoryMap) === false)
-            {
-                $categoryMap[$component] = array();
+        $categoryMap = [];
+        foreach ($availableProperties as $property) {
+            $component = $property['component'];
+            if (array_key_exists($component, $categoryMap) === false) {
+                $categoryMap[$component] = [];
             }
             $categoryMap[$component][] = $property;
         }
 
         // iterate the map created above
-        foreach ($categoryMap as $component => $componentProperties)
-        {
+        foreach ($categoryMap as $component => $componentProperties) {
             $output($component);
-            foreach ($componentProperties as $property)
-            {
-                $name = $property["name"];
-                $description = $property["description"];
+            foreach ($componentProperties as $property) {
+                $name = $property['name'];
+                $description = $property['description'];
 
                 // while we get the available properties and their metadata from the
                 // pipeline we get the values for the last detection from flowData
-                $value = $device->$name;
+                $value = $device->{$name};
 
                 // output property names, values and descriptions
                 // some property values are lists. $property["isList"] will be true
                 if ($value->hasValue && is_array($value->value)) {
-                    $output("    $name: ".count($value->value)." Values");
-                    foreach ($value->value as $x)
-                    {
-                        $output("        : $x");
+                    $output("    {$name}: " . count($value->value) . ' Values');
+                    foreach ($value->value as $x) {
+                        $output("        : {$x}");
                     }
-                }
-                else
-                {
-                    $output("    $name: $value->value");
+                } else {
+                    $output("    {$name}: {$value->value}");
                 }
                 if ($showDescs === true) {
-                    $output("        $description");
+                    $output("        {$description}");
                 }
             }
         }
