@@ -164,7 +164,7 @@ Data Fields</h2>
 <!-- startMemberItem() -->
 <tr class="c-table__row memitem:a6b6ce1628a457b689f5c141154dd542b"><td class="c-table__cell"><a id="a6b6ce1628a457b689f5c141154dd542b"></a>
 <!-- insertMemberAlign -->
-&#160;</td><td class="c-table__cell"><b>$dataKey</b> = &quot;device&quot;
+&#160;</td><td class="c-table__cell"><b>$dataKey</b> = 'device'
 </div></td></tr>
 <!-- member dec start -->
 <!-- startMemberItem() -->
@@ -311,13 +311,13 @@ Data Fields</h2>
 <p>This can be used in 3 different scenarios:</p><ol type="1">
 <li>The data file that was originally used to create the engine has been updated on disk. In this case, no parameters are needed.</li>
 <li>A new data file is available, but it is in a different location to the original. In this case, the parameter should be the new data file location.</li>
-<li>A new data file is available in memory. The first parameter will be the variable holding the in-memory data file. The second will be the size of the data file in bytes. <dl class="c-list-definition"><dt class="c-list-definition__title">Parameters</dt><dd class="c-list-definition__desc">
-    <tr><dd class="c-list-definition__desc"><span class="b-text--red">{Object}</span> - data file path or the variable holding the in-memory data file </dd>
-    <tr><dd class="c-list-definition__desc"><span class="b-text--red">{Integer}</span> - length of the in-memory data file in bytes </dd>
+<li>A new data file is available in memory. The first parameter will be the variable holding the in-memory data file. The second will be the size of the data file in bytes.</li>
+</ol>
+<dl class="c-list-definition"><dt class="c-list-definition__title">Parameters</dt><dd class="c-list-definition__desc">
+    <tr><td class="paramtype">null&#160;|&#160;string</td><dd class="c-list-definition__desc"><span class="b-text--red">$fileName_or_data</span> - Data file path or the variable holding the in-memory data file </dd>
+    <tr><td class="paramtype">null&#160;|&#160;int</td><dd class="c-list-definition__desc"><span class="b-text--red">$length</span> - Length of the in-memory data file in bytes </dd>
   </dd>
 </dl>
-</li>
-</ol>
 <!-- endIndent -->
 
 </div>
@@ -357,7 +357,11 @@ Data Fields</h2>
 
 <p>Add a cache to an engine. </p>
 <dl class="c-list-definition"><dt class="c-list-definition__title">Parameters</dt><dd class="c-list-definition__desc">
-    <tr><dd class="c-list-definition__desc"><span class="b-text--red">{Cache}</span> - cache with get and set methods </dd>
+    <tr><td class="paramtype">\fiftyone\pipeline\engines\DataKeyedCache</td><dd class="c-list-definition__desc"><span class="b-text--red">$cache</span> - Cache with get and set methods </dd>
+  </dd>
+</dl>
+<dl class="c-list-definition"><dt class="c-list-definition__title">Exceptions</dt><dd class="c-list-definition__desc">
+    <tr><dd class="c-list-definition__desc"><span class="b-text--red"></span> - </dd>
   </dd>
 </dl>
 <!-- endIndent -->
