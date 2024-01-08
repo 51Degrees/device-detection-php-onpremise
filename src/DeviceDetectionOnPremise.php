@@ -21,18 +21,26 @@
  * such notice(s) shall fulfill the requirements of that article.
  * ********************************************************************* */
 
+declare(strict_types=1);
+
 namespace fiftyone\pipeline\devicedetection;
 
 include_once __DIR__ . '/../on-premise/src/php' . explode('.', PHP_VERSION)[0] . '/FiftyOneDegreesHashEngine.php';
 
 use fiftyone\pipeline\core\BasicListEvidenceKeyFilter;
+use fiftyone\pipeline\core\FlowData;
+use fiftyone\pipeline\engines\DataKeyedCache;
 use fiftyone\pipeline\engines\Engine;
 
 class DeviceDetectionOnPremise extends Engine
 {
-    public $dataKey = 'device';
-    public $engine;
-    private $evidenceKeys;
+    public string $dataKey = 'device';
+    public \EngineHashSwig $engine;
+
+    /**
+     * @var array<string>
+     */
+    private array $evidenceKeys;
 
     public function __construct()
     {
@@ -88,15 +96,13 @@ class DeviceDetectionOnPremise extends Engine
     /**
      * Instance of EvidenceKeyFilter based on the evidence keys fetched
      * from the cloud service by the private getEvidenceKeys() method.
-     *
-     * @return BasicListEvidenceKeyFilter
      */
-    public function getEvidenceKeyFilter()
+    public function getEvidenceKeyFilter(): BasicListEvidenceKeyFilter
     {
         return new BasicListEvidenceKeyFilter($this->evidenceKeys);
     }
 
-    public function processInternal($flowData)
+    public function processInternal(FlowData $flowData): void
     {
         // Make evidence collection
         $evidence = $flowData->evidence->getAll();
@@ -119,10 +125,10 @@ class DeviceDetectionOnPremise extends Engine
     /**
      * Add a cache to an engine.
      *
-     * @param \fiftyone\pipeline\engines\DataKeyedCache $cache Cache with get and set methods
+     * @param null|\fiftyone\pipeline\engines\DataKeyedCache $cache Cache with get and set methods
      * @throws \Exception
      */
-    public function setCache($cache)
+    public function setCache(?DataKeyedCache $cache): void
     {
         throw new \Exception(Messages::CACHE_ERROR);
     }
@@ -143,7 +149,7 @@ class DeviceDetectionOnPremise extends Engine
      * @param null|string $fileName_or_data Data file path or the variable holding the in-memory data file
      * @param null|int $length Length of the in-memory data file in bytes
      */
-    public function refreshData($fileName_or_data = null, $length = null)
+    public function refreshData(string $fileName_or_data = null, int $length = null): void
     {
         switch (func_num_args()) {
             case 0: $this->engine->refreshData();
@@ -162,7 +168,7 @@ class DeviceDetectionOnPremise extends Engine
         return $component->getName();
     }
 
-    private function getPropertyType($property)
+    private function getPropertyType($property): string
     {
         switch ($property->getType()) {
             case 'string': 
@@ -182,7 +188,10 @@ class DeviceDetectionOnPremise extends Engine
         }
     }
 
-    private function getMetricProperties()
+    /**
+     * @return array<string, array<string, bool|string|array<string>>>
+     */
+    private function getMetricProperties(): array
     {
         $dataFiles = ['Lite', 'Premium', 'Enterprise'];
 
