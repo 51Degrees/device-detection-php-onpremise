@@ -5,6 +5,4 @@ param (
     [string]$Version
 )
 
-./php/build-project.ps1 -RepoName $RepoName
-
-exit $LASTEXITCODE
+& ./$RepoName/ci/build-project.ps1 -RepoName $RepoName
