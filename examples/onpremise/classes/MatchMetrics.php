@@ -117,8 +117,8 @@ class MatchMetrics
         $output('--- Listing all available properties, by component, by property ' .
             'name ---');
         $output('For a discussion of what the match properties mean, see: ' .
-            'https://51degrees.com/documentation/_device_detection__hash' .
-            '.html#DeviceDetection_Hash_DataSetProduction_Performance');
+            '/documentation/4.5/_device_detection__hash' .
+            '.html#DeviceDetection_Hash_DataSetProduction');
 
         // retrieve the available properties from the hash engine. The properties
         // available depends on
