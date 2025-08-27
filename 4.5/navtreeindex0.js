@@ -1,12 +1,12 @@
 var NAVTREEINDEX0 =
 {
-"../../documentation/4.4/index.html":[0],
 ".html":[2,0],
+".html":[2,0,0],
 ".html":[2,0,0,0,0,0],
 ".html":[2,0,0,0,0,0,0],
-".html":[2,0,0],
 ".html":[2,0,0,0],
 ".html":[2,0,0,0,0],
+"/documentation/4.5/index.html":[0],
 "annotated.html":[2],
 "class_bool_value_swig.html":[2,1],
 "class_bool_value_swig.html#a00a4695c2ea084263e0d768b4b67facc":[2,1,7],

@@ -23,7 +23,7 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-    [ "General Docs", "../../documentation/4.4/index.html", null ],
+    [ "General Docs", "/documentation/4.5/index.html", null ],
     [ "51Degrees PHP Device Detection On-Premise", "md__home_runner_work_device-detection-php-onpremise_device-detection-php-onpremise_common_device-detection-php-onpremise_readme.html", null ],
     [ "Classes", "annotated.html", "annotated" ],
     [ "Examples", "examples.html", "examples" ]
@@ -35,7 +35,7 @@ var NAVTREEHIDESYNC = true;
 
 var NAVTREEINDEX =
 [
-"../../documentation/4.4/index.html",
+".html",
 "class_config_hash_swig.html#a1bd81b8a1e9052eb5ab7cb9d6150edd5",
 "class_engine_device_detection_swig.html#a0d3ee454d5e57d607959b055066c84c8",
 "class_meta_data_swig.html#afe33781ffb4d3fd43c89c2a388548221",
