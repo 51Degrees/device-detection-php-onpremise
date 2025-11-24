@@ -1,21 +1,21 @@
-name: Nightly Documentation Update
+name: Publish
 
 on:
   workflow_dispatch:
     inputs:
       dryrun:
-        default: false
         type: boolean
-        description: Dry Run
-  schedule:
-    - cron: '30 3 * * *'
+        default: false
 
 jobs:
-  Nightly_Documentation_Update:
-    uses: 51Degrees/common-ci/.github/workflows/nightly-documentation-update.yml@main
+  Publish:
+    name: Publish
+    uses: 51Degrees/common-ci/.github/workflows/nightly-publish.yml@main
     with:
       repo-name: ${{ github.event.repository.name }}
       org-name: ${{ github.event.repository.owner.login }}
       dryrun: ${{ inputs.dryrun || false }}
     secrets:
       token: ${{ secrets.ACCESS_TOKEN }}
+      DeviceDetection: ${{ secrets.DEVICE_DETECTION_KEY }}
+      DeviceDetectionUrl: ${{ secrets.DEVICE_DETECTION_URL }}
