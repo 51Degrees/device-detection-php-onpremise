@@ -1,7 +1,7 @@
 {
     "name": "51degrees/fiftyone.devicedetection",
     "description": "On-premise device detection engines for PHP built for the 51Degrees Pipeline API. Parse HTTP headers locally to identify device hardware, operating systems, browsers, and crawlers.",
-    "homepage": "https://51degrees.com",
+    "homepage": "https://51degrees.com?utm_source=packagist&utm_medium=package&utm_campaign=device-detection-php-onpremise&utm_content=composer.json&utm_term=homepage",
     "authors" : [
         {
             "name": "51Degrees Engineering",

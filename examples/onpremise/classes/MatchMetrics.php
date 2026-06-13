@@ -60,7 +60,7 @@ class MatchMetrics
             // Set the values required in the php.ini file using the
             // FiftyOneDegreesHashEngine.required_properties option.
             // If using the full on-premise data file more properties will be
-            // present in the data file. See https://51degrees.com/pricing
+            // present in the data file. See https://51degrees.com/pricing?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-matchmetrics.php&utm_term=run
         ]);
         $pipeline = (new PipelineBuilder())
             ->add($engine)

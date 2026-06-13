@@ -53,7 +53,7 @@ class GettingStartedWeb
         // requested. So set whatever headers are required by the browser in
         // order to return the evidence needed by the pipeline.
         // More info on this can be found at
-        // https://51degrees.com/blog/user-agent-client-hints
+        // https://51degrees.com/blog/user-agent-client-hints?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-gettingstartedweb.php&utm_term=processrequest
         Utils::setResponseHeader($flowData);
 
         // First we make a JSON route that will be called from the client side

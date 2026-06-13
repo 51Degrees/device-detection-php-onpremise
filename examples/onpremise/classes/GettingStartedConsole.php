@@ -58,7 +58,7 @@ class GettingStartedConsole
      * In this example, we use the DeviceDetectionPipelineBuilder
      * and configure it in code. For more information about
      * pipelines in general see the documentation at
-     * http://51degrees.com/documentation/4.3/_concepts__configuration__builders__index.html.
+     * https://51degrees.com/documentation/_concepts__configuration__builders__index.html?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-gettingstartedconsole.php&utm_term=run.
      *
      * @param \fiftyone\pipeline\core\Logger $logger
      */
@@ -68,9 +68,9 @@ class GettingStartedConsole
             // We use the low memory profile as its performance is
             // sufficient for this example. See the documentation for
             // more detail on this and other configuration options:
-            // http://51degrees.com/documentation/4.3/_device_detection__features__performance_options.html
-            // http://51degrees.com/documentation/4.3/_features__automatic_datafile_updates.html
-            // http://51degrees.com/documentation/4.3/_features__usage_sharing.html
+            // https://51degrees.com/documentation/_device_detection__features__performance_options.html?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-gettingstartedconsole.php&utm_term=run
+            // https://51degrees.com/documentation/_features__automatic_datafile_updates.html?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-gettingstartedconsole.php&utm_term=run
+            // https://51degrees.com/documentation/_features__usage_sharing.html?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-gettingstartedconsole.php&utm_term=run
             'performanceProfile' => 'LowMemory',
         ]);
         $pipeline = (new PipelineBuilder())
@@ -140,7 +140,7 @@ class GettingStartedConsole
 
         // Display the results of the detection, which are called
         // device properties. See the property dictionary at
-        // https://51degrees.com/developers/property-dictionary
+        // https://51degrees.com/developers/property-dictionary?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-gettingstartedconsole.php&utm_term=analyseevidence
         // for details of all available properties.
         $this->outputValue('Mobile Device', $device->ismobile, $message);
         $this->outputValue('Platform Name', $device->platformname, $message);

@@ -82,7 +82,7 @@ $device = $flowData->device;
 // requested. So set whatever headers are required by the browser in
 // order to return the evidence needed by the pipeline.
 // More info on this can be found at
-// https://51degrees.com/blog/user-agent-client-hints
+// https://51degrees.com/blog/user-agent-client-hints?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-useragentclienthints-web.php&utm_term=top
 Utils::setResponseHeader($flowData);
 
 // Generate the HTML
