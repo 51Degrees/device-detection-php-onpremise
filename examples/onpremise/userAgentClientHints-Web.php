@@ -136,7 +136,7 @@ $showContactUs = ExampleUtils::getDataFileTier($flowData->pipeline->getElement('
         will be included.
     </p>
 
-    <div class="c-eg-page__actions">
+    <div class="c-eg-button-row">
         <button type="button" class="b-btn" onclick="redirect()">Make second request</button>
     </div>
 
