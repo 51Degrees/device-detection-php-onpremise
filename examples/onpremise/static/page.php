@@ -202,14 +202,6 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
             client-side values below will appear in the evidence values used and server-side results
             after the refresh.
         </p>
-        <?php if (ExampleUtils::getDataFileTier($flowData->pipeline->getElement('device')) == 'Lite') { ?>
-            <div class="c-eg-alert">
-                WARNING: You are using the free 'Lite' data file. This does not include the client-side
-                evidence capabilities of the paid-for data file, so you will not see any additional
-                data below. Find out about the Enterprise data file on our
-                <a href="https://51degrees.com/pricing?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-static-page.php&utm_term=lite-data-file">pricing page</a>.
-            </div>
-        <?php } ?>
     </div>
 
     <?php $showContactUs = ExampleUtils::getDataFileTier($flowData->pipeline->getElement('device')) === 'Lite'; ?>
