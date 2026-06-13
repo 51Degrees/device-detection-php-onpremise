@@ -2,7 +2,7 @@
 This API complies with the `common-ci` approach.
 
 The following secrets are required:
-* `DEVICE_DETECTION_KEY` - [license key](https://51degrees.com/pricing) for downloading assets (TAC hashes file and TAC CSV data file)
+* `DEVICE_DETECTION_KEY` - [license key](https://51degrees.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=ci-readme.md&utm_term=api-specific-ci-cd-approach) for downloading assets (TAC hashes file and TAC CSV data file)
     * Example: `V3RYL0NGR4ND0M57R1NG`
 
 The following secrets are optional:

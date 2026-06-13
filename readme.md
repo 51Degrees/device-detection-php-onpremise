@@ -1,8 +1,8 @@
 # 51Degrees PHP Device Detection On-Premise
 
-![51Degrees](https://51degrees.com/DesktopModules/FiftyOne/Distributor/Logo.ashx?utm_source=github&utm_medium=repository&utm_content=readme_main&utm_campaign=php-open-source "Data rewards the curious") **PHP Pipeline API**
+![51Degrees](https://51degrees.com/img/logo.png?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=readme.md&utm_term=51degrees-php-device-detection-on-premise "Data rewards the curious") **PHP Pipeline API**
 
-[Developer Documentation](https://51degrees.com/device-detection-php/index.html?utm_source=github&utm_medium=repository&utm_content=documentation&utm_campaign=php-open-source "developer documentation")
+[Developer Documentation](https://51degrees.com/device-detection-php/index.html?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=readme.md&utm_term=51degrees-php-device-detection-on-premise "developer documentation")
 
 ## Introduction
 This project contains the on-premise version of 51Degrees Device Detection for the Pipeline API.
@@ -11,8 +11,8 @@ When using on-premise device detection engines in the PHP pipeline, the appropri
 
 ## Dependencies
 
-For runtime dependencies, see our [dependencies](http://51degrees.com/documentation/_info__dependencies.html) page.
-The [tested versions](https://51degrees.com/documentation/_info__tested_versions.html) page shows 
+For runtime dependencies, see our [dependencies](https://51degrees.com/documentation/_info__dependencies.html?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=readme.md&utm_term=dependencies) page.
+The [tested versions](https://51degrees.com/documentation/_info__tested_versions.html?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=readme.md&utm_term=dependencies) page shows 
 the PHP versions that we currently test against. The software may run fine against other versions, 
 but additional caution should be applied.
 
@@ -21,7 +21,7 @@ but additional caution should be applied.
 In order to perform device detection on-premise, you will need to use a 51Degrees data file. 
 This repository includes a free, 'lite' file in the 'device-detection-data' sub-module, which has 
 a significantly reduced set of properties. To obtain a file with a more complete set of device 
-properties see the [51Degrees website](https://51degrees.com/pricing). 
+properties see the [51Degrees website](https://51degrees.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=readme.md&utm_term=data-file). 
 If you want to use the lite file, you will need to install [GitLFS](https://git-lfs.github.com/):
 
 ```
@@ -153,7 +153,7 @@ When running under Apache MPM, only `prefork` mode is supported, since `dl()` ca
 
 #### Refresh Internal Data
 
-To reload the data file, *refreshData()* needs to be called as described in this [example](https://51degrees.com/documentation/_examples__device_detection__data_file_updates__manual.html) . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.
+To reload the data file, *refreshData()* needs to be called as described in this [example](https://51degrees.com/documentation/_examples__device_detection__data_file_updates__manual.html?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=readme.md&utm_term=refresh-internal-data) . Thus, unless a reload is performed in the main process and all child processes, the data will not be updated. There is not a proven solution to do so yet, so we recommend a full server restart to be performed instead.
 
 ## Examples
 
