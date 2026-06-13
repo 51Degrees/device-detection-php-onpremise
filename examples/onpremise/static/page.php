@@ -207,7 +207,7 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
     <?php $showContactUs = ExampleUtils::getDataFileTier($flowData->pipeline->getElement('device')) === 'Lite'; ?>
     <?php if ($showContactUs) { ?>
         <?php $output('<div class="c-eg-message">'); ?>
-        <?php $output('  <p class="c-eg-message__text">Need more on-premise properties and features? <a href="https://51degrees.com/contact-us">Contact us</a> to explore the options.</p>'); ?>
+        <?php $output('  <p class="c-eg-message__text">The paid data file adds daily automatic updates, non-human identification and IP intelligence. <a href="https://51degrees.com/contact-us">Contact us</a> to explore the options.</p>'); ?>
         <?php $output('  <a class="b-btn c-eg-message__cta" href="https://51degrees.com/contact-us">Contact us</a>'); ?>
         <?php $output('</div>'); ?>
     <?php } ?>
