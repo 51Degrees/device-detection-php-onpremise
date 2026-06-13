@@ -29,6 +29,19 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
 </head>
 
 <div class="c-eg-page">
+    <?php if (ExampleUtils::dataFileIsOld($flowData->pipeline->getElement('device'))) { ?>
+        <div class="c-eg-alert">
+            WARNING: This example is using a data file that is more than
+            <?php echo ExampleUtils::DATA_FILE_AGE_WARNING; ?>
+            days old. A more recent data file may be needed to
+            correctly detect the latest devices, browsers, etc. The latest lite data file is available
+            from the
+            <a href="https://github.com/51Degrees/device-detection-data">device-detection-data</a>
+            repository on GitHub. Find out about the Enterprise data file, which includes automatic
+            daily updates, on our <a href="https://51degrees.com/pricing?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-static-page.php&utm_term=data-file-age-warning">pricing page</a>.
+        </div>
+    <?php } ?>
+
     <h2 class="c-eg-page__title">Web integration example</h2>
 
     <p class="c-eg-page__lead">
@@ -67,18 +80,6 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
             further down this page will not fire and UACH headers will not be sent.
         </div>
     </noscript>
-    <?php if (ExampleUtils::dataFileIsOld($flowData->pipeline->getElement('device'))) { ?>
-        <div class="c-eg-alert">
-            WARNING: This example is using a data file that is more than
-            <?php echo ExampleUtils::DATA_FILE_AGE_WARNING; ?>
-            days old. A more recent data file may be needed to
-            correctly detect the latest devices, browsers, etc. The latest lite data file is available
-            from the
-            <a href="https://github.com/51Degrees/device-detection-data">device-detection-data</a>
-            repository on GitHub. Find out about the Enterprise data file, which includes automatic
-            daily updates, on our <a href="https://51degrees.com/pricing?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-static-page.php&utm_term=data-file-age-warning">pricing page</a>.
-        </div>
-    <?php } ?>
 
     <div id="content">
         <div id="response-headers">
