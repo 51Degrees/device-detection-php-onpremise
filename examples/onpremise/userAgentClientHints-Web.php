@@ -197,8 +197,8 @@ $showContactUs = ExampleUtils::getDataFileTier($flowData->pipeline->getElement('
 
     <?php if ($showContactUs) { ?>
     <div class="c-eg-message">
-      <p class="c-eg-message__text">The paid data file adds daily automatic updates, non-human identification and IP intelligence. <a href="https://51degrees.com/contact-us">Contact us</a> to explore the options.</p>
-      <a class="b-btn c-eg-message__cta" href="https://51degrees.com/contact-us">Contact us</a>
+      <p class="c-eg-message__text">The paid data file adds daily automatic updates, non-human identification and IP intelligence. <a href="https://51degrees.com/contact-us?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-useragentclienthints-web.php&utm_term=paid-data-file">Contact us</a> to explore the options.</p>
+      <a class="b-btn c-eg-message__cta" href="https://51degrees.com/contact-us?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-useragentclienthints-web.php&utm_term=paid-data-file">Contact us</a>
     </div>
     <?php } ?>
 </div>
