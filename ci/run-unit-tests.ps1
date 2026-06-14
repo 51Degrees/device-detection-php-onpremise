@@ -14,9 +14,11 @@ $env:PHP_INI_SCAN_DIR = "$sep$PWD/$RepoName"
 
 ./php/run-unit-tests.ps1 -RepoName $RepoName
 
-if ($IsLinux) {
-    # Run configuration tests
-    & $RepoName/configuration-tests/testConcurrencySetting.ps1 -BaseIniFilePath $PWD/$RepoName/php.ini || $(throw "configuration tests failed")
-}
+# Run configuration tests. These exercise the engine under the PHP built-in
+# server. They previously failed on macOS (see issue #38) and so were limited
+# to Linux, but the underlying problem is now fixed by always using the
+# in-memory MaxPerformance profile, so they run on every platform.
+& $RepoName/configuration-tests/testConcurrencySetting.ps1 -BaseIniFilePath $PWD/$RepoName/php.ini || $(throw "concurrency configuration tests failed")
+& $RepoName/configuration-tests/testPerformanceProfileSetting.ps1 -BaseIniFilePath $PWD/$RepoName/php.ini || $(throw "performance_profile configuration tests failed")
 
 exit $LASTEXITCODE

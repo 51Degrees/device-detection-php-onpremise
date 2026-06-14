@@ -16248,26 +16248,31 @@ SWIG_php_minit {
     int maxUaLength= INI_INT("FiftyOneDegreesHashEngine.max_matched_useragent_length");
 
     config = new ConfigHash();
-    // Set the performance profile.
-    if (performanceProfile != NULL) {
-        if (strcmp("HighPerformance", performanceProfile) == 0) {
-            config->setHighPerformance();              
-        }
-        else if (strcmp("HighPerformance", performanceProfile) == 0) {
-            config->setHighPerformance();              
-        }
-        else if (strcmp("Balanced", performanceProfile) == 0) {
-            config->setBalanced();              
-        }
-        else if (strcmp("BalancedTemp", performanceProfile) == 0) {
-            config->setBalancedTemp();              
-        }
-        else if (strcmp("LowMemory", performanceProfile) == 0) {
-            config->setLowMemory();              
-        }
-        else if (strcmp("MaxPerformance", performanceProfile) == 0) {
-            config->setMaxPerformance();              
-        }
+    // Always build the engine with the MaxPerformance (in memory) profile.
+    // PHP is normally run under a process manager (for example Apache MPM
+    // prefork or php-fpm) that serves each request from a child process forked
+    // from the one this module was initialised in. Streaming profiles keep a
+    // pool of open file handles, and forking copies those handles (together
+    // with their current read positions) into every child. The shared handles
+    // then corrupt each other's reads and can crash the worker (see GitHub
+    // issue #38). Loading the whole data file into memory leaves no shared
+    // handles, so MaxPerformance is the only safe profile for PHP and is
+    // enforced here regardless of the configured performance_profile.
+    config->setMaxPerformance();
+    // performance_profile is retained for backwards compatibility but no
+    // longer changes behaviour. Warn when a profile other than MaxPerformance
+    // was requested so the configuration can be cleaned up.
+    if (performanceProfile != NULL
+            && strlen(performanceProfile) > 0
+            && strcmp("MaxPerformance", performanceProfile) != 0) {
+        zend_error(
+            E_WARNING,
+            "The 'FiftyOneDegreesHashEngine.performance_profile' setting "
+            "'%s' is ignored. PHP always uses the 'MaxPerformance' profile, "
+            "which loads the whole data file into memory. This is the only "
+            "profile that is safe when PHP runs under a process manager such "
+            "as Apache MPM or php-fpm.",
+            performanceProfile);
     }
     // Set the drift.
     if (drift != 0) {

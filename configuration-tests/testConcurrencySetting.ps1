@@ -19,16 +19,30 @@ foreach ($value in $testValues) {
     $config + "`nFiftyOneDegreesHashEngine.concurrency = $value" | Out-File $PSScriptRoot/php.ini
 
     $php = php -S 127.0.0.1:3002 -t $PSScriptRoot *>$PSScriptRoot/log.txt &
-    sleep 1
 
-    $response = Invoke-WebRequest http://127.0.0.1:3002
-    if ($response.StatusCode -eq 200) {
-        Write-Output "PASS: concurrency = $value"
-    } else {
-        Write-Output "FAIL: concurrency = $value"
-        throw "Test failed, status code: $($response.StatusCode)"
+    # Wait for the server to respond. The engine now loads the whole data file
+    # into memory (see issue #38), so startup can take longer than a single
+    # second, and a crash shows up as the request never succeeding.
+    $started = $false
+    foreach ($attempt in 1..30) {
+        Start-Sleep -Milliseconds 500
+        try {
+            if ((Invoke-WebRequest http://127.0.0.1:3002 -TimeoutSec 10).StatusCode -eq 200) {
+                $started = $true
+                break
+            }
+        } catch {
+            # Not ready yet, or the server crashed. Retry until the timeout.
+        }
     }
 
     Remove-Job $php -Force
+
+    if ($started) {
+        Write-Output "PASS: concurrency = $value"
+    } else {
+        Write-Output "FAIL: concurrency = $value"
+        throw "Test failed: server did not return HTTP 200"
+    }
 }
 Write-Output "OK"
