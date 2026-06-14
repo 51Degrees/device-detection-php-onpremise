@@ -39,6 +39,15 @@ class GettingStartedWeb
 
     private function processRequest($pipeline, $output)
     {
+        // The example is run as a router script for the PHP built-in server
+        // (php -S localhost:3000 gettingStartedWeb.php), so every request,
+        // including the shared CSS and JS assets, is routed here. Serve the
+        // vendored pattern-library assets from the static directory before
+        // running detection.
+        if ($this->serveStaticAsset($output)) {
+            return;
+        }
+
         // Create the flowdata object.
         $flowData = $pipeline->createFlowData();
 
@@ -67,5 +76,40 @@ class GettingStartedWeb
         }
 
         include_once __DIR__ . '/../static/page.php';
+    }
+
+    /**
+     * Serve a vendored static asset (the shared examples CSS or JS) when the
+     * request targets one. Returns true when the request was handled.
+     *
+     * @param callable $output
+     * @return bool
+     */
+    private function serveStaticAsset($output)
+    {
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        $assets = [
+            '/css/examples-main.min.css' => ['static/css/examples-main.min.css', 'text/css'],
+            '/js/examples.min.js' => ['static/js/examples.min.js', 'application/javascript']
+        ];
+
+        if (!isset($assets[$path])) {
+            return false;
+        }
+
+        [$relativePath, $contentType] = $assets[$path];
+        $file = __DIR__ . '/../' . $relativePath;
+
+        if (!is_file($file)) {
+            http_response_code(404);
+
+            return true;
+        }
+
+        header('Content-Type: ' . $contentType);
+        $output(file_get_contents($file));
+
+        return true;
     }
 }
