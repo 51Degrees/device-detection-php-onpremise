@@ -9,14 +9,14 @@ $env:PHP_INI_SCAN_DIR = "$([IO.Path]::PathSeparator)$PSScriptRoot"
 
 trap {
     Write-Output "Server logs:"
-    Get-Content $PSScriptRoot/log.txt
+    Get-Content $PSScriptRoot/log.txt -ErrorAction SilentlyContinue
 }
 
 # A high concurrency combined with a streaming performance profile used to
 # crash the server (see issue #38). The engine now always uses the in-memory
 # MaxPerformance profile, so the server must start for every profile, a warning
-# must be logged when a profile other than MaxPerformance is requested, and no
-# warning must be logged for MaxPerformance.
+# must be issued when a profile other than MaxPerformance is requested, and no
+# warning must be issued for MaxPerformance.
 $testProfiles = "Default", "Balanced", "BalancedTemp", "LowMemory", "HighPerformance", "MaxPerformance"
 
 Write-Output "Running performance_profile configuration tests..."
@@ -29,6 +29,9 @@ foreach ($profile in $testProfiles) {
         "display_startup_errors = On"
     ) | Out-File $PSScriptRoot/php.ini
 
+    # 1) The built-in server must start and serve under the streaming profile
+    #    plus high concurrency that used to crash it, because the engine now
+    #    forces the in-memory MaxPerformance profile.
     $php = php -S 127.0.0.1:3002 -t $PSScriptRoot *>$PSScriptRoot/log.txt &
 
     # Wait for the server to respond. A crash shows up as the request never
@@ -54,20 +57,25 @@ foreach ($profile in $testProfiles) {
     }
     Write-Output "PASS: performance_profile = $profile (server started)"
 
-    # Check that a profile other than MaxPerformance is reported as ignored.
-    $log = Get-Content $PSScriptRoot/log.txt -Raw
-    $warned = $log -match "performance_profile' setting"
+    # 2) The module issues a startup warning when a profile other than
+    #    MaxPerformance is configured. Module-init warnings surface on stderr in
+    #    CLI mode but not under the built-in server, so check via a short CLI run
+    #    that loads the same php.ini.
+    $cliOutput = (php -r "exit(0);" 2>&1) | Out-String
+    $warned = $cliOutput -match "performance_profile.*is ignored"
 
     if ($profile -eq "MaxPerformance") {
         if ($warned) {
+            Write-Output $cliOutput
             throw "Did not expect a warning for performance_profile = $profile"
         }
         Write-Output "PASS: performance_profile = $profile (no warning, as expected)"
     } else {
         if (-not $warned) {
+            Write-Output $cliOutput
             throw "Expected a warning for performance_profile = $profile"
         }
-        Write-Output "PASS: performance_profile = $profile (warning logged)"
+        Write-Output "PASS: performance_profile = $profile (warning issued)"
     }
 }
 Write-Output "OK"

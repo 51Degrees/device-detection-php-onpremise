@@ -21,4 +21,8 @@ $env:PHP_INI_SCAN_DIR = "$sep$PWD/$RepoName"
 & $RepoName/configuration-tests/testConcurrencySetting.ps1 -BaseIniFilePath $PWD/$RepoName/php.ini || $(throw "concurrency configuration tests failed")
 & $RepoName/configuration-tests/testPerformanceProfileSetting.ps1 -BaseIniFilePath $PWD/$RepoName/php.ini || $(throw "performance_profile configuration tests failed")
 
+# Prove why MaxPerformance is enforced: a streaming profile fails across a fork
+# (as used by process managers) while the in-memory profile is safe.
+& $RepoName/configuration-tests/testForkSafety.ps1 -RepoName $RepoName || $(throw "fork-safety test failed")
+
 exit $LASTEXITCODE
