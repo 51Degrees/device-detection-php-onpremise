@@ -37,6 +37,46 @@ class DeviceDetectionTests extends TestCase
 {
     protected $iPhoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C114';
 
+    /**
+     * The on-premise Hash engine for PHP can only run with the in-memory
+     * MaxPerformance profile (see issue #38). Configuring any other profile must
+     * raise a clear exception rather than being silently ignored.
+     */
+    public function testNonMaxPerformanceProfileThrows()
+    {
+        $original = ini_get('FiftyOneDegreesHashEngine.performance_profile');
+        ini_set('FiftyOneDegreesHashEngine.performance_profile', 'Balanced');
+
+        $message = null;
+        try {
+            new DeviceDetectionOnPremise();
+        } catch (\Throwable $e) {
+            $message = $e->getMessage();
+        } finally {
+            ini_set('FiftyOneDegreesHashEngine.performance_profile', $original === false ? '' : $original);
+        }
+
+        $this->assertNotNull($message, 'A non-MaxPerformance profile must raise an exception');
+        $this->assertSame(sprintf(Messages::PERFORMANCE_PROFILE_ERROR, 'Balanced'), $message);
+    }
+
+    /**
+     * MaxPerformance (and leaving the profile unset) is the supported
+     * configuration and must not raise the exception.
+     */
+    public function testMaxPerformanceProfileIsAccepted()
+    {
+        $original = ini_get('FiftyOneDegreesHashEngine.performance_profile');
+        ini_set('FiftyOneDegreesHashEngine.performance_profile', 'MaxPerformance');
+
+        try {
+            $engine = new DeviceDetectionOnPremise();
+            $this->assertNotNull($engine);
+        } finally {
+            ini_set('FiftyOneDegreesHashEngine.performance_profile', $original === false ? '' : $original);
+        }
+    }
+
     // TODO: fix the test
     public function __SKIP__testAvailableProperties()
     {

@@ -47,6 +47,21 @@ class DeviceDetectionOnPremise extends Engine
         // List of pipelines the flowElement has been added to
         $this->pipelines = [];
 
+        // The on-premise Hash engine for PHP can only run with the in-memory
+        // MaxPerformance profile. PHP is normally run under a process manager
+        // (Apache MPM prefork, php-fpm) that forks the worker process. Any other
+        // profile keeps the data file open and shares those file handles across
+        // the fork, which corrupts detection (see issue #38). The engine is
+        // always built in memory, so any other configured profile is a mistake
+        // that is rejected here with a clear exception rather than being
+        // silently ignored.
+        $performanceProfile = ini_get('FiftyOneDegreesHashEngine.performance_profile');
+        if ($performanceProfile !== false
+            && $performanceProfile !== ''
+            && strcasecmp($performanceProfile, 'MaxPerformance') !== 0) {
+            throw new \Exception(sprintf(Messages::PERFORMANCE_PROFILE_ERROR, $performanceProfile));
+        }
+
         $this->engine = \FiftyOneDegreesHashEngine::engine_get();
 
         $requiredProperties = ini_get('FiftyOneDegreesHashEngine.required_properties');

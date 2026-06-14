@@ -16237,7 +16237,6 @@ SWIG_php_minit {
     REGISTER_INI_ENTRIES();
     char *filePath = INI_STR("FiftyOneDegreesHashEngine.data_file");
     char *propertyList = INI_STR("FiftyOneDegreesHashEngine.required_properties");
-    char *performanceProfile = INI_STR("FiftyOneDegreesHashEngine.performance_profile");
     int drift = INI_INT("FiftyOneDegreesHashEngine.drift");
     int difference = INI_INT("FiftyOneDegreesHashEngine.difference");
     char *allowUnmatched = INI_STR("FiftyOneDegreesHashEngine.allow_unmatched");
@@ -16256,24 +16255,11 @@ SWIG_php_minit {
     // with their current read positions) into every child. The shared handles
     // then corrupt each other's reads and can crash the worker (see GitHub
     // issue #38). Loading the whole data file into memory leaves no shared
-    // handles, so MaxPerformance is the only safe profile for PHP and is
-    // enforced here regardless of the configured performance_profile.
+    // handles, so MaxPerformance is the only safe profile for PHP. It is
+    // enforced here so the engine can never be built in an unsafe mode, and the
+    // PHP layer (DeviceDetectionOnPremise) raises a clear exception when a
+    // different performance_profile is configured.
     config->setMaxPerformance();
-    // performance_profile is retained for backwards compatibility but no
-    // longer changes behaviour. Warn when a profile other than MaxPerformance
-    // was requested so the configuration can be cleaned up.
-    if (performanceProfile != NULL
-            && strlen(performanceProfile) > 0
-            && strcmp("MaxPerformance", performanceProfile) != 0) {
-        zend_error(
-            E_WARNING,
-            "The 'FiftyOneDegreesHashEngine.performance_profile' setting "
-            "'%s' is ignored. PHP always uses the 'MaxPerformance' profile, "
-            "which loads the whole data file into memory. This is the only "
-            "profile that is safe when PHP runs under a process manager such "
-            "as Apache MPM or php-fpm.",
-            performanceProfile);
-    }
     // Set the drift.
     if (drift != 0) {
         config->setDrift(drift);

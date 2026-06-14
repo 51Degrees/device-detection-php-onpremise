@@ -51,7 +51,6 @@ docker run --rm \
         echo "==> Running the fork-safety reproduction (issue #38)"
         cat > /tmp/ff.ini <<INI
 FiftyOneDegreesHashEngine.data_file=${DATA}
-FiftyOneDegreesHashEngine.performance_profile=Balanced
 extension=/build/on-premise/modules/FiftyOneDegreesHashEngine.so
 INI
         FIFTYONE_DATA_FILE="${DATA}" \

@@ -130,7 +130,7 @@ path to where you have stored your 51Degrees data file.
 | Option | Type | Description | Default |
 | ------ | ---- | ----------- | ------- |
 | `required_properties` | `string` | List of properties which are required. Properties not in this list will not be returned. | `""` (all properties) |
-| `performance_profile` | `string` | **Deprecated and ignored.** PHP always builds the engine with the `MaxPerformance` (in memory) profile, because it is the only profile that is safe under a process manager such as `Apache MPM` or `php-fpm`. See [Running Under Process Manager](#running-under-process-manager). The option is retained for backwards compatibility, but setting it to anything other than `MaxPerformance` has no effect and logs a warning. | `MaxPerformance` (enforced) |
+| `performance_profile` | `string` | PHP on premise can only run with the in-memory `MaxPerformance` profile, because it is the only profile that is safe under a process manager such as `Apache MPM` or `php-fpm`. See [Running Under Process Manager](#running-under-process-manager). Leave this unset or set it to `MaxPerformance`. Configuring any other value raises an exception explaining that in-memory is the only supported configuration. | `MaxPerformance` (enforced) |
 | `difference` | `int` | The difference value to allow when matching (`-1` to disable). | `0` |
 | `drift` | `int` | The drift to allow when matching (`-1` to disable). | `0` |
 | `use_predictive_graph` | `string` | True if the predictive optimized graph should be used for processing. | `true` |
@@ -141,7 +141,7 @@ path to where you have stored your 51Degrees data file.
 
 ### Running Under Process Manager
 
-When a `PHP` program is run under a process manager such as `Apache MPM`, `php-fpm` or any other process manager, the whole data file must be loaded into memory. This is now enforced automatically, so the engine is always built with the `MaxPerformance` profile and the `performance_profile` option is ignored. A warning is logged if a different profile is configured. No action is required to be safe under a process manager.
+When a `PHP` program is run under a process manager such as `Apache MPM`, `php-fpm` or any other process manager, the whole data file must be loaded into memory. The engine is therefore always built with the in-memory `MaxPerformance` profile, and no action is required to be safe under a process manager. Configuring any other `performance_profile` raises a clear exception explaining that `MaxPerformance` is the only supported configuration, so the misconfiguration cannot be missed.
 
 The reason enforcement is needed is that, in other profiles such as `Balanced`, `BalancedTemp`, `LowMemory` or `Default`, only a part of the data file is loaded into memory so from time to time, calls to read data from disk are required. These calls use file handles from a file handle pool which was designed to optimise the performance. However, this pool was created when the Device Detection engine module is loaded in the main process, so when the process manager spawns child processes in response to incoming requests by forking the main process, this pool is copied to the child processes, causing the file handles to be shared. When multiple processes call to load data from file using shared file handles, problems can occur such as the file position being changed unwantedly by another child process. For this reason the engine always uses `MaxPerformance`, where no call to the data file is required.
 
