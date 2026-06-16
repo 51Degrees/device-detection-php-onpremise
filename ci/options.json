@@ -1,5 +1,37 @@
 [
     {
+      "Name": "Ubuntu_PHP_8.5",
+      "Image": "ubuntu-latest",
+      "Language": "php",
+      "LanguageVersion": "8.5",
+      "RunPerformance": true,
+      "PackageRequirement": true
+    },
+    {
+      "Name": "macOS_PHP_8.5",
+      "Image": "macos-latest",
+      "Language": "php",
+      "LanguageVersion": "8.5",
+      "RunPerformance": true,
+      "PackageRequirement": true
+    },
+    {
+      "Name": "Ubuntu_PHP_8.4",
+      "Image": "ubuntu-latest",
+      "Language": "php",
+      "LanguageVersion": "8.4",
+      "RunPerformance": true,
+      "PackageRequirement": true
+    },
+    {
+      "Name": "macOS_PHP_8.4",
+      "Image": "macos-latest",
+      "Language": "php",
+      "LanguageVersion": "8.4",
+      "RunPerformance": true,
+      "PackageRequirement": true
+    },
+    {
       "Name": "Ubuntu_PHP_8.3",
       "Image": "ubuntu-latest",
       "Language": "php",
@@ -60,22 +92,6 @@
       "Image": "macos-latest",
       "Language": "php",
       "LanguageVersion": "8.0",
-      "RunPerformance": true,
-      "PackageRequirement": true
-    },
-    {
-      "Name": "Ubuntu_PHP_7.4",
-      "Image": "ubuntu-latest",
-      "Language": "php",
-      "LanguageVersion": "7.4",
-      "RunPerformance": true,
-      "PackageRequirement": true
-    },
-    {
-      "Name": "macOS_PHP_7.4",
-      "Image": "macos-latest",
-      "Language": "php",
-      "LanguageVersion": "7.4",
       "RunPerformance": true,
       "PackageRequirement": true
     }
