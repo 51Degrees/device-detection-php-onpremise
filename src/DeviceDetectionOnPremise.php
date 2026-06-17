@@ -149,7 +149,7 @@ class DeviceDetectionOnPremise extends Engine
      * @param null|string $fileName_or_data Data file path or the variable holding the in-memory data file
      * @param null|int $length Length of the in-memory data file in bytes
      */
-    public function refreshData(string $fileName_or_data = null, int $length = null): void
+    public function refreshData(?string $fileName_or_data = null, ?int $length = null): void
     {
         switch (func_num_args()) {
             case 0: $this->engine->refreshData();
