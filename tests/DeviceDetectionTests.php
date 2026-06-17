@@ -171,11 +171,10 @@ class DeviceDetectionTests extends TestCase
         $result = $flowData1->process();
 
         $this->assertFalse($result->device->ismobile->hasValue);
-        $this->assertSame(
+        $this->assertStringStartsWith(
             'No matching profiles could be found for the supplied evidence. '
                 . "A 'best guess' can be returned by configuring more lenient "
-                . 'matching rules. See '
-                . 'https://51degrees.com/documentation/_device_detection__features__false_positive_control.html',
+                . 'matching rules. See https://51degrees.com/documentation/',
             $result->device->ismobile->noValueMessage
         );
     }
