@@ -37,4 +37,19 @@ class Messages
         'engine. The overhead of having to manage native object ' .
         'lifetimes when a cache is enabled outweighs the benefit of the ' .
         'cache.';
+
+    /**
+     * Error message returned when a performance profile other than
+     * MaxPerformance is configured for the on-premise engine. The placeholder
+     * is the profile that was configured.
+     */
+    public const PERFORMANCE_PROFILE_ERROR =
+        "The on-premise Hash engine for PHP can only run with the in-memory " .
+        "'MaxPerformance' performance profile, but '%s' was configured. PHP is " .
+        "typically run under a process manager (Apache MPM prefork, php-fpm) " .
+        "that forks the worker process, and any other profile keeps the data " .
+        "file open and shares those file handles across the fork, which " .
+        "corrupts detection. Remove the " .
+        "'FiftyOneDegreesHashEngine.performance_profile' setting, or set it to " .
+        "'MaxPerformance'.";
 }
