@@ -86,7 +86,10 @@ if (isset($assets[$requestPath])) {
 
 $device = new DeviceDetectionOnPremise();
 
-$builder = new PipelineBuilder([]);
+// Set 'suppressProcessExceptions' to true so that if device detection fails
+// while processing a request (for example a data file problem) the pipeline
+// degrades gracefully instead of returning a 500. Use false while developing.
+$builder = new PipelineBuilder(['suppressProcessExceptions' => true]);
 
 $pipeline = $builder->add($device)->build();
 

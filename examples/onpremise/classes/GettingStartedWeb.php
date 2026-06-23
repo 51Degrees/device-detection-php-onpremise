@@ -30,7 +30,12 @@ class GettingStartedWeb
 {
     public function run($configFile, $logger, $output)
     {
-        $pipeline = (new PipelineBuilder())
+        // Set 'suppressProcessExceptions' to true so that if device detection fails
+        // while processing a request (for example a data file problem) the pipeline
+        // degrades gracefully instead of returning a 500. Use false while developing.
+        // Note: buildFromConfig() reads Elements from the config file but takes
+        // pipeline-level settings from the builder constructor, so it is set here.
+        $pipeline = (new PipelineBuilder(['suppressProcessExceptions' => true]))
             ->addLogger($logger)
             ->buildFromConfig($configFile);
 
