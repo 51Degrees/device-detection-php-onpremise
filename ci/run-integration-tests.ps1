@@ -65,6 +65,25 @@ try {
         throw "The Selenium contract tests failed against the on-premise web example"
     }
 } catch {
+    # Show what the example serves as its client-side script and JSON, and
+    # whether the script parses, because a script that fails to parse leaves
+    # no fod object for the tests to wait on.
+    $agent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
+    foreach ($resource in '51Degrees.core.js', 'json') {
+        $file = "$PWD/example-$resource.txt"
+        curl -sS -o $file -A $agent "http://localhost:$port/$resource"
+        if (Test-Path $file) {
+            $content = [string](Get-Content -Raw $file)
+            Write-Host ">>> start of /$resource ($($content.Length) characters) >>>"
+            Write-Host $content.Substring(0, [Math]::Min(1500, $content.Length))
+            Write-Host '<<< end of extract <<<'
+        }
+    }
+    if ((Test-Path "$PWD/example-51Degrees.core.js.txt") -and
+        (Get-Command node -ErrorAction SilentlyContinue)) {
+        Copy-Item "$PWD/example-51Degrees.core.js.txt" "$PWD/example-core.js"
+        node --check "$PWD/example-core.js"
+    }
     if ($example) {
         Write-Host '>>> example app output >>>'
         Receive-Job $example | Out-Host
