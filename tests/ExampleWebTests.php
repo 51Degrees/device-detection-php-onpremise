@@ -73,6 +73,32 @@ class ExampleWebTests extends TestCase
     }
 
     /**
+     * The page references 51Degrees.core.js by name, so the example must serve
+     * the script built by the pipeline at that path, and the script must post
+     * refreshed evidence back to the example's JSON route.
+     */
+    public function testGettingStartedWebServesCoreJs()
+    {
+        $context = stream_context_create([
+            'http' => [
+                'method' => 'GET',
+                'header' => Constants::UA_HEADER . Constants::CHROME_UA . "\r\n"
+            ]
+        ]);
+
+        $page = @file_get_contents(Constants::URL, false, $context);
+        $this->assertStringContainsString('<script src="/51Degrees.core.js"></script>', $page);
+
+        $script = @file_get_contents(Constants::URL . '51Degrees.core.js', false, $context);
+        $responseHeaders = self::parseHeaders($http_response_header);
+
+        $this->assertSame(200, $responseHeaders['response_code']);
+        $this->assertStringStartsWith('application/x-javascript', $responseHeaders['Content-Type']);
+        $this->assertStringNotContainsString('<html', $script);
+        $this->assertStringContainsString('/json', $script);
+    }
+
+    /**
      * Converts response headers string to an indexed array.
      *
      * @param array $headers

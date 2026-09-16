@@ -173,6 +173,7 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
                 <tr class="c-eg-table__row c-eg-table__row--alt"><td class="c-eg-table__cell c-eg-table__cell--key">Browser Version:</td><td class="c-eg-table__cell"><?php $output(ExampleUtils::getHumanReadable($flowData->device, 'browserversion')); ?></td></tr>
                 <tr class="c-eg-table__row"><td class="c-eg-table__cell c-eg-table__cell--key">Screen width (pixels):</td><td class="c-eg-table__cell"><?php $output(ExampleUtils::getHumanReadable($flowData->device, 'screenpixelswidth')); ?></td></tr>
                 <tr class="c-eg-table__row c-eg-table__row--alt"><td class="c-eg-table__cell c-eg-table__cell--key">Screen height (pixels):</td><td class="c-eg-table__cell"><?php $output(ExampleUtils::getHumanReadable($flowData->device, 'screenpixelsheight')); ?></td></tr>
+                <tr class="c-eg-table__row"><td class="c-eg-table__cell c-eg-table__cell--key">Device Id:</td><td class="c-eg-table__cell"><?php $output(ExampleUtils::getHumanReadable($flowData->device, 'deviceid')); ?></td></tr>
             </tbody>
         </table>
 
@@ -212,11 +213,22 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
         <?php $output('  <a class="b-btn c-eg-message__cta" href="https://51degrees.com/contact-us?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-static-page.php&utm_term=paid-data-file">Contact us</a>'); ?>
         <?php $output('</div>'); ?>
     <?php } ?>
+
+    <div id="find-out-more">
+        <h3 class="c-eg-page__heading">Find out more</h3>
+        <ul>
+            <li>This example: https://github.com/51Degrees/device-detection-php-onpremise</li>
+            <li>The device detection engine: https://github.com/51Degrees/device-detection-cxx</li>
+            <li>The free Lite data file: https://github.com/51Degrees/device-detection-data</li>
+            <li><a href="https://51degrees.com/pricing?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-static-page.php&utm_term=find-out-more-pricing">Data files and pricing</a></li>
+            <li><a href="https://51degrees.com/contact-us?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-static-page.php&utm_term=find-out-more-contact">Contact us</a></li>
+        </ul>
+    </div>
 </div>
 
 <!--
-    This script is constructed by the fiftyone\pipeline\core package.
-    It adds a JavaScript include for 51Degrees.core.js.
+    51Degrees.core.js is served by this example from the same script that
+    renders this page, see GettingStartedWeb::processRequest.
     The 51Degrees pipeline will dynamically generate JavaScript, which includes a
     JSON representation of the contents of flow data.
     i.e. The results from device detection.
@@ -232,11 +244,7 @@ use fiftyone\pipeline\devicedetection\examples\onpremise\classes\ExampleUtils;
     new values and the 'complete' event will fire. The shared examples.js helper subscribes to
     that event and appends a results table into #content.
 -->
-<script>
-    <?php
-        $output($flowData->javascriptbuilder->javascript);
-    ?>
-</script>
+<script src="/51Degrees.core.js"></script>
 
 <script src="/js/examples.min.js"></script>
 <script>

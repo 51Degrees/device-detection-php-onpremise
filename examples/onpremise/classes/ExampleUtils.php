@@ -29,6 +29,51 @@ class ExampleUtils
     // be displayed.
     public const DATA_FILE_AGE_WARNING = 30;
 
+    // Environment variable that can name the device detection data file. It
+    // is the name the 51Degrees examples in every language read.
+    public const DATA_FILE_ENV_VAR = '51DEGREES_DD_PATH';
+
+    /**
+     * Use the data file named by the 51DEGREES_DD_PATH environment variable,
+     * when it is set, in place of the one set in php.ini.
+     *
+     * The engine is created once, when PHP starts, from the
+     * FiftyOneDegreesHashEngine.data_file setting in php.ini, so that setting
+     * must still name a data file that exists. When the environment variable
+     * names a different file, the engine is reloaded from that file. The
+     * reload lasts for the life of the PHP process, so each process reloads
+     * once and later requests find the engine already using the file.
+     *
+     * @param mixed $engine The device detection engine in the pipeline
+     * @param mixed $logger
+     */
+    public static function useDataFileFromEnv($engine, $logger)
+    {
+        $path = ExampleUtils::getEnvVariable(ExampleUtils::DATA_FILE_ENV_VAR);
+        if ($path === '') {
+            return;
+        }
+
+        $wanted = realpath($path);
+        if ($wanted === false) {
+            throw new \Exception(
+                "The data file '{$path}' named by the environment variable '" .
+                ExampleUtils::DATA_FILE_ENV_VAR . "' does not exist."
+            );
+        }
+
+        if (realpath($engine->engine->getDataFilePath()) === $wanted) {
+            return;
+        }
+
+        $logger->log(
+            'info',
+            "Loading the data file '{$wanted}' named by the environment " .
+            "variable '" . ExampleUtils::DATA_FILE_ENV_VAR . "'."
+        );
+        $engine->refreshData($wanted);
+    }
+
     public static function output($message)
     {
         if (php_sapi_name() == 'cli') {
