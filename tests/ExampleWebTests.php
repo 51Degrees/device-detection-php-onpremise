@@ -96,6 +96,11 @@ class ExampleWebTests extends TestCase
         $this->assertStringStartsWith('application/x-javascript', $responseHeaders['Content-Type']);
         $this->assertStringNotContainsString('<html', $script);
         $this->assertStringContainsString('/json', $script);
+        // The sequence element supplies the session id and sequence number
+        // the script is built with. Without it the script declares
+        // 'var sequence=;', which does not parse, so no fod object exists.
+        $this->assertMatchesRegularExpression('/var sequence\s*=\s*\d+\s*;/', $script);
+        $this->assertDoesNotMatchRegularExpression('/var sessionId\s*=\s*""/', $script);
     }
 
     /**
