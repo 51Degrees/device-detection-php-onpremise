@@ -5,6 +5,9 @@
                 "BuilderName": "fiftyone\\pipeline\\devicedetection\\DeviceDetectionOnPremise"
             },
             {
+                "BuilderName": "fiftyone\\pipeline\\core\\SequenceElement"
+            },
+            {
                 "BuilderName": "fiftyone\\pipeline\\core\\JsonBundlerElement"
             },
             {

@@ -39,6 +39,10 @@ class GettingStartedWeb
             ->addLogger($logger)
             ->buildFromConfig($configFile);
 
+        // Use the data file named by the 51DEGREES_DD_PATH environment
+        // variable, when it is set, in place of the one set in php.ini.
+        ExampleUtils::useDataFileFromEnv($pipeline->getElement('device'), $logger);
+
         $this->processRequest($pipeline, $output);
     }
 
@@ -70,10 +74,27 @@ class GettingStartedWeb
         // https://51degrees.com/blog/user-agent-client-hints?utm_source=code&utm_medium=example&utm_campaign=device-detection-php-onpremise&utm_content=examples-onpremise-classes-gettingstartedweb.php&utm_term=processrequest
         Utils::setResponseHeader($flowData);
 
-        // First we make a JSON route that will be called from the client side
+        // The .NET and Java APIs have web integration packages which intercept
+        // requests for the pipeline resources. There is no equivalent for PHP,
+        // so the example dispatches on the request path itself, in the same
+        // way as the PHP cloud example.
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        // Serve the client-side JavaScript built by the JavaScriptBuilder
+        // element. The path matches the one used by the other 51Degrees
+        // examples, so the page references the script by name instead of
+        // inlining it.
+        if ($path === '/51Degrees.core.js') {
+            header('Content-Type: application/x-javascript');
+            $output($flowData->javascriptbuilder->javascript);
+
+            return;
+        }
+
+        // Next we make a JSON route that will be called from the client side
         // and will return a JSON encoded property database using any additional
         // evidence provided by the client.
-        if (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) === '/json') {
+        if ($path === '/json') {
             header('Content-Type: application/json');
             $output(json_encode($flowData->jsonbundler->json));
 
