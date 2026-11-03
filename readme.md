@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository is archived. Its code is now developed in the monorepo https://github.com/51Degrees/51degrees-php, under `device-detection/onpremise/`. Please refer to the monorepo for issues and PRs.
+
 # 51Degrees PHP Device Detection On-Premise
 
 ![51Degrees](https://51degrees.com/img/logo.png?utm_source=github&utm_medium=readme&utm_campaign=device-detection-php-onpremise&utm_content=readme.md&utm_term=51degrees-php-device-detection-on-premise "Data rewards the curious") **PHP Pipeline API**
